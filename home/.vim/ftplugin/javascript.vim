@@ -1,0 +1,2 @@
+setl makeprg=node\ \"%:p\" |
+

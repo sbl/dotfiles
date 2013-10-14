@@ -1,0 +1,25 @@
+# globals
+#######################
+
+.DS_Store
+*.class
+*.elc
+*.o
+*.swp
+*.pyc
+tags
+
+# xcode
+#######################
+
+*.pbxuser
+*.perspective
+*.perspectivev3
+
+# this is for eclipse
+#######################
+.project
+
+# ruby
+#######################
+

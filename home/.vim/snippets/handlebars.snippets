@@ -1,0 +1,71 @@
+###############
+# HANDLEBARS  #
+###############
+
+snippet hb "Handlebars template"
+<script type="text/x-handlebars" data-template-name="${1:name}">
+  $2
+</script>
+endsnippet
+
+snippet { "Handlebars interpolation"
+{{$0}}
+endsnippet
+
+snippet out "Handlebars outlet" do
+{{outlet}}$0
+endsnippet
+
+snippet with "Handlebars with"
+{{#with ${1:scope}}}
+  $2
+{{/with}}
+endsnippet
+
+snippet if "Handlebars if"
+{{#if ${1:condition}}}
+  $2
+{{/if}}
+endsnippet
+
+snippet each "Handlebars each"
+{{#each ${1:controller}}}
+  $2
+{{/each}}
+endsnippet
+
+snippet unless "Handlebars unless"
+{{#unless ${1:condition}}}
+  $2
+{{/unless}}
+endsnippet
+
+snippet bind "Handlebars binding"
+{{bind-attr ${1:class}="$2"}}$0
+endsnippet
+
+snippet link "Handlebars link"
+{{#link-to "${1:route}"}}${2:text}{{/link-to}}
+endsnippet
+
+snippet action "Handlebars action"
+{{action "${1:name}"}}$0
+endsnippet
+
+snippet part "Handlebars partial"
+{{partial "${1:partial}"}}
+endsnippet
+
+snippet view "Handlebars view"
+{{view "${1:view}"}}
+endsnippet
+
+snippet render "Handlebars render"
+{{render${1: context}${2: model}}}
+endsnippet
+
+snippet input "Handlebars input"
+{{input value=${1:value}}}
+endsnippet
+
+# vim:ft=snippets:

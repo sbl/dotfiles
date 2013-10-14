@@ -1,0 +1,24 @@
+[include]
+  # For username / creds / etc
+  path = ~/.gitconfig.local
+[alias]
+  co = checkout
+  st = status
+  com = commit
+  br = branch
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+[apply]
+  whitespace = warn
+[core]
+  excludesfile = /Users/stephen/.gitignore
+  editor = vim
+[push]
+  default = simple
+[merge]
+  tool = opendiff
+[mergetool]
+  keepBackup = false

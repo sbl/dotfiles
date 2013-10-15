@@ -34,7 +34,6 @@ zstyle ':prezto:load' pmodule \
   'completion' \
   'prompt' \
   'ruby' \
-  'go' \
   'git'
 
 #

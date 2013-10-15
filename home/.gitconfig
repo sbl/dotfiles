@@ -1,6 +1,3 @@
-[include]
-  # For username / creds / etc
-  path = ~/.gitconfig.local
 [alias]
   co = checkout
   st = status
@@ -22,3 +19,6 @@
   tool = opendiff
 [mergetool]
   keepBackup = false
+[user]
+	name = sbl
+	email = stephen.lumenta@gmail.com

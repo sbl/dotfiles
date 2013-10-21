@@ -13,7 +13,6 @@ fi
 # Customize to your needs...
 
 alias vi=vim
-alias bower='noglob bower'
 
 alias srs='spring rails'
 alias srk='spring rake'

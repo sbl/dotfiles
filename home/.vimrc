@@ -66,7 +66,7 @@ set ignorecase
 set wildignore+=*/tmp/*,*/cache/*,*.so,*.swp,*.zip
 
 "set numberwidth=2
-set number
+set nonumber
 set ruler
 
 set nowrap
@@ -149,7 +149,7 @@ let g:clang_complete_auto = 0
 
 " CTRLP
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'dir':  '\v[\/]\.(git|hg|svn)|node_modules$',
   \ 'file': '\v\.(exe|so|dll|class)$',
   \ }
 

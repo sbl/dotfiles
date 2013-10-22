@@ -58,7 +58,6 @@ path=(
   $GOPATH/bin
   /usr/local/heroku/bin
   $HOME/Dropbox/bin
-  /usr/local/share/npm/bin
   /usr/local/{bin,sbin}
   $path
 )

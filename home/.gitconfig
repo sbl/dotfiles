@@ -11,7 +11,7 @@
 [apply]
   whitespace = warn
 [core]
-  excludesfile = /Users/stephen/.gitignore
+	excludesfile = /Users/sbl/.gitignore
   editor = vim
 [push]
   default = simple

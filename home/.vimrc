@@ -19,7 +19,6 @@ Bundle 'majutsushi/tagbar'
 Bundle 'godlygeek/tabular'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-fugitive'
-Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-endwise'
 Bundle 'SirVer/ultisnips'
 Bundle 'ervandew/supertab'
@@ -126,12 +125,6 @@ let g:tagbar_sort      = 0
 
 let g:ragtag_global_maps = 1
 
-" NERDTREE
-
-let NERDTreeQuitOnOpen = 0
-let NERDTreeMinimalUI  = 1
-let NERDTreeShowHidden = 0
-
 " ULTISNIPS
 
 " jump through snippets with tab
@@ -139,6 +132,12 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsSnippetDirectories=["snippets"]
+
+" NETRW
+let g:netrw_banner       = 0
+let g:netrw_keepdir      = 0
+let g:netrw_liststyle    = 3 " or 3
+let g:netrw_sort_options = 'i'
 
 " SUPERTAB
 
@@ -177,7 +176,6 @@ command -nargs=0 -bar Update if &modified
 " re-map iterm cmd-s to point to f2: 0x1b 0x4f 0x51
 nnoremap <F2> :Update<CR>
 
-map <leader>d :NERDTreeToggle<CR>
 map <leader>t :TagbarToggle<CR>
 
 " tabularize

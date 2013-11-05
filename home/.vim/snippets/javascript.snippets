@@ -79,12 +79,6 @@ it('$1', function() {
 });
 endsnippet
 
-snippet iti "it - example with injection"
-it('$1', inject(function($2) {
-  ${0:// expectation}
-}));
-endsnippet
-
 snippet exp "expectation"
 expect($1).to$2($0);
 endsnippet
@@ -95,24 +89,21 @@ beforeEach(function() {
 });
 endsnippet
 
-snippet befi "before - with injection"
-beforeEach(inject(function($1) {
-  $0
-}));
-endsnippet
-
 snippet aft "afterEach"
 afterEach(function() {
   $0
 });
 endsnippet
 
-snippet brow "broswer()"
-browser().$1
+snippet def "define.js"
+define([], function() {
+  $1
+});
 endsnippet
 
-snippet navi "navigate"
-browser().navigateTo('/$1');
+snippet strict "use strict"
+'use strict';
+$0
 endsnippet
 
 # vim:ft=snippets:

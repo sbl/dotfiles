@@ -56,7 +56,6 @@ typeset -gU cdpath fpath mailpath path
 # Set the list of directories that Zsh searches for programs.
 path=(
   $GOPATH/bin
-  /usr/local/heroku/bin
   $HOME/Dropbox/bin
   /usr/local/{bin,sbin}
   $path

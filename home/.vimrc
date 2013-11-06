@@ -134,8 +134,8 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsSnippetDirectories=["snippets"]
 
 " NETRW
-let g:netrw_banner       = 0
-let g:netrw_keepdir      = 0
+let g:netrw_banner       = 1
+let g:netrw_keepdir      = 1
 let g:netrw_liststyle    = 3 " or 3
 let g:netrw_sort_options = 'i'
 
@@ -204,6 +204,8 @@ endfunction
 au FileType make set noexpandtab
 
 au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown | call s:setupWrapping()
+
+au BufRead,BufNewFile *.{handlebars,hbs} :UltiSnipsAddFiletypes html.mustache
 
 " close preview automatically
 au CursorMovedI * if pumvisible() == 0|pclose|endif

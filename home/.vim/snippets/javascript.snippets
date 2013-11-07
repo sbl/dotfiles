@@ -110,19 +110,18 @@ endsnippet
 
 snippet testa "async test"
 asyncTest('${1:name}', function() {
-  ${2:start();}
+  ${0:start();}
 });
 endsnippet
 
 snippet expect "expect"
 expect(${1:amount});
-$2
 endsnippet
 
 snippet module "module"
-module('${1:name}', function() {
+module('${1:name}', {
   setup: function() {
-    $2
+    $0
   },
   teardown: function() {
   }
@@ -131,37 +130,41 @@ endsnippet
 
 snippet test "test"
 test('${1:title}', function() {
-  $2
+  $0
 });
 endsnippet
 
 snippet deq "deep equal"
-deepEqual(${1:actual}, ${2:expected}, '$3');
+deepEqual(${2:actual}, ${3:expected}, '$1');
 endsnippet
 
 snippet ndeq "not deep equal"
-notDeepEqual(${1:actual}, ${2:expected}, '$3');
+notDeepEqual(${2:actual}, ${3:expected}, '$1');
 endsnippet
 
 snippet eq "non-strict equal"
-equal(${1:actual}, ${2:expected}, '$3');
+equal(${2:actual}, ${3:expected}, '$1');
 endsnippet
 
 snippet neq "non-strict not equal"
-notEqual(${1:actual}, ${2:expected}, '$3');
+notEqual(${2:actual}, ${3:expected}, '$1');
+endsnippet
+
+snippet seq "strict equal"
+strictEqual(${2:actual}, ${3:expected}, '$1');
 endsnippet
 
 snippet ok "ok"
-ok(${1:state}, '$2');
+ok(${2:state}, '$1');
 endsnippet
 
 snippet throws "throws"
 throws(
   function() {
-    ${1:block}
+    ${0:block}
   },
   ${2:expected ,}
-  '$3'
+  '$1'
 );
 endsnippet
 

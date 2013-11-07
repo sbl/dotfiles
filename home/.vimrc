@@ -203,6 +203,7 @@ endfunction
 
 au FileType make set noexpandtab
 
+au BufRead,BufNewFile *.{handlebars,hbs} call UltiSnipsAddFiletypes('html.mustache')
 au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown | call s:setupWrapping()
 
 " close preview automatically

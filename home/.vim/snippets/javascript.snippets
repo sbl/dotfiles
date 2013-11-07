@@ -65,7 +65,7 @@ snippet ce "console.error"
 console.error(${1:'${2:value}'});
 endsnippet
 
-# Jasmine and e2e
+# Jasmine
 
 snippet desc "describe jasmine"
 describe('$1', function() {
@@ -104,6 +104,65 @@ endsnippet
 snippet strict "use strict"
 'use strict';
 $0
+endsnippet
+
+# qunit - ember
+
+snippet testa "async test"
+asyncTest('${1:name}', function() {
+  ${2:start();}
+});
+endsnippet
+
+snippet expect "expect"
+expect(${1:amount});
+$2
+endsnippet
+
+snippet module "module"
+module('${1:name}', function() {
+  setup: function() {
+    $2
+  },
+  teardown: function() {
+  }
+});
+endsnippet
+
+snippet test "test"
+test('${1:title}', function() {
+  $2
+});
+endsnippet
+
+snippet deq "deep equal"
+deepEqual(${1:actual}, ${2:expected}, '$3');
+endsnippet
+
+snippet ndeq "not deep equal"
+notDeepEqual(${1:actual}, ${2:expected}, '$3');
+endsnippet
+
+snippet eq "non-strict equal"
+equal(${1:actual}, ${2:expected}, '$3');
+endsnippet
+
+snippet neq "non-strict not equal"
+notEqual(${1:actual}, ${2:expected}, '$3');
+endsnippet
+
+snippet ok "ok"
+ok(${1:state}, '$2');
+endsnippet
+
+snippet throws "throws"
+throws(
+  function() {
+    ${1:block}
+  },
+  ${2:expected ,}
+  '$3'
+);
 endsnippet
 
 # vim:ft=snippets:

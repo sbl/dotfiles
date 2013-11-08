@@ -149,3 +149,7 @@ hi link jsThis Identifier
 hi link jsPrototype Identifier
 hi link jsObjectKey Function
 hi link jsFunctionKey Function
+
+
+" emberify
+hi emberNamespace guifg=#f16f58     guibg=NONE        gui=bold      ctermfg=red       ctermbg=NONE        cterm=NONE

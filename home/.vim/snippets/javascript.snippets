@@ -169,8 +169,17 @@ throws(
 endsnippet
 
 snippet run "Ember run loop"
-Ember.run(function() {
+Em.run(function() {
   $0
 });
 endsnippet
+
+snippet get "Ember get"
+this.get('${1:property}');
+endsnippet
+
+snippet set "Ember set"
+this.set('${1:property}', $2);
+endsnippet
+
 # vim:ft=snippets:

@@ -65,47 +65,6 @@ snippet ce "console.error"
 console.error(${1:'${2:value}'});
 endsnippet
 
-# Jasmine
-
-snippet desc "describe jasmine"
-describe('$1', function() {
-  ${0:// scenario}
-});
-endsnippet
-
-snippet it "it - example"
-it('$1', function() {
-  ${0:// expectation}
-});
-endsnippet
-
-snippet exp "expectation"
-expect($1).to$2($0);
-endsnippet
-
-snippet bef "beforeEach"
-beforeEach(function() {
-  $1
-});
-endsnippet
-
-snippet aft "afterEach"
-afterEach(function() {
-  $0
-});
-endsnippet
-
-snippet def "define.js"
-define([], function() {
-  $1
-});
-endsnippet
-
-snippet strict "use strict"
-'use strict';
-$0
-endsnippet
-
 # qunit - ember
 
 snippet testa "async test"
@@ -175,11 +134,15 @@ Em.run(function() {
 endsnippet
 
 snippet get "Ember get"
-this.get('${1:property}');
+this.get('${1:property}')
 endsnippet
 
 snippet set "Ember set"
-this.set('${1:property}', $2);
+this.set('${1:property}', $2)
+endsnippet
+
+snippet exp "es6 export"
+export default $1;
 endsnippet
 
 # vim:ft=snippets:

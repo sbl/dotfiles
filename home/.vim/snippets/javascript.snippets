@@ -94,27 +94,27 @@ test('${1:title}', function() {
 endsnippet
 
 snippet deq "deep equal"
-deepEqual(${2:actual}, ${3:expected}, '$1');
+deepEqual(${1:actual}, ${2:expected});
 endsnippet
 
 snippet ndeq "not deep equal"
-notDeepEqual(${2:actual}, ${3:expected}, '$1');
+notDeepEqual(${1:actual}, ${2:expected});
 endsnippet
 
 snippet eq "non-strict equal"
-equal(${2:actual}, ${3:expected}, '$1');
+equal(${1:actual}, ${2:expected});
 endsnippet
 
 snippet neq "non-strict not equal"
-notEqual(${2:actual}, ${3:expected}, '$1');
+notEqual(${1:actual}, ${2:expected});
 endsnippet
 
 snippet seq "strict equal"
-strictEqual(${2:actual}, ${3:expected}, '$1');
+strictEqual(${1:actual}, ${2:expected});
 endsnippet
 
 snippet ok "ok"
-ok(${2:state}, '$1');
+ok(${1:state});
 endsnippet
 
 snippet throws "throws"
@@ -138,7 +138,7 @@ this.get('${1:property}')
 endsnippet
 
 snippet set "Ember set"
-this.set('${1:property}', $2)
+this.set('${1:property}', $0)
 endsnippet
 
 snippet exp "es6 export"

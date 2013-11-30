@@ -23,7 +23,6 @@ Bundle 'tpope/vim-endwise'
 Bundle 'SirVer/ultisnips'
 Bundle 'ervandew/supertab'
 
-"Bundle 'Rip-Rip/clang_complete'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-rails'
 Bundle 'sbl/vim-rspec'
@@ -37,6 +36,7 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'jnwhiteh/vim-golang'
 Bundle 'Blackrush/vim-gocode'
 Bundle 'derekwyatt/vim-scala'
+Bundle 'elixir-lang/vim-elixir'
 Bundle 'sbl/scvim'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -149,7 +149,7 @@ let g:clang_complete_auto = 0
 " CTRLP
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)|node_modules|bower_components$',
-  \ 'file': '\v\.(exe|so|dll|class)$',
+  \ 'file': '\v\.(exe|so|dll|beam|class)$',
   \ }
 
 " SCVIM

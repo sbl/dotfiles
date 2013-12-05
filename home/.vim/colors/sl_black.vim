@@ -38,6 +38,12 @@ hi NonText          guifg=#242c30     guibg=NONE       gui=NONE      ctermfg=bla
 hi Cursor           guifg=black       guibg=white       gui=NONE      ctermfg=black       ctermbg=white       cterm=reverse
 hi LineNr           guifg=darkgray     guibg=NONE       gui=NONE      ctermfg=darkgray    ctermbg=NONE        cterm=NONE
 
+" only affects terminal-vim
+
+hi TablineFill      term=NONE cterm=NONE gui=NONE
+hi TablineSel       ctermfg=white     ctermbg=green
+hi Tabline          term=NONE cterm=NONE ctermfg=15 ctermbg=NONE gui=NONE guibg=NONE
+
 hi VertSplit        guifg=darkgray     guibg=NONE     gui=NONE      ctermfg=darkgray        ctermbg=NONE    cterm=NONE
 hi StatusLine       guifg=white       guibg=#4e9a06     gui=NONE    ctermfg=white       ctermbg=darkgreen       cterm=NONE
 hi StatusLineNC     guifg=#242c30       guibg=darkgray     gui=NONE      ctermfg=white        ctermbg=darkgray    cterm=NONE

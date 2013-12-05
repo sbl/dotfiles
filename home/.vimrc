@@ -176,6 +176,10 @@ command -nargs=0 -bar Update if &modified
 " re-map iterm cmd-s to point to f2: 0x1b 0x4f 0x51
 nnoremap <F2> :Update<CR>
 
+" germanizm
+nmap <Leader>ä :tabnext<CR>
+nmap <Leader>ö :tabprevious<CR>
+
 map <leader>t :TagbarToggle<CR>
 
 " tabularize

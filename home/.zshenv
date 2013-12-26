@@ -57,6 +57,7 @@ typeset -gU cdpath fpath mailpath path
 path=(
   $GOPATH/bin
   $HOME/Dropbox/bin
+  /usr/local/go/bin
   /usr/local/{bin,sbin}
   $path
 )

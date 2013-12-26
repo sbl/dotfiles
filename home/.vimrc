@@ -33,7 +33,6 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'mustache/vim-mode'
 Bundle 'elzr/vim-json'
 Bundle 'kchmck/vim-coffee-script'
-Bundle 'jnwhiteh/vim-golang'
 Bundle 'Blackrush/vim-gocode'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'elixir-lang/vim-elixir'
@@ -140,8 +139,7 @@ let g:netrw_keepdir      = 1
 let g:netrw_sort_options = 'i'
 
 " SUPERTAB
-
-"let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabDefaultCompletionType = "context"
 
 " CLANG
 let g:clang_complete_auto = 0

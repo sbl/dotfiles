@@ -173,6 +173,7 @@ command -nargs=0 -bar Update if &modified
                            \|endif
 " re-map iterm cmd-s to point to f2: 0x1b 0x4f 0x51
 nnoremap <F2> :Update<CR>
+nnoremap <F5> :make!<CR>
 
 " germanizm
 nmap <Leader>ä :tabnext<CR>

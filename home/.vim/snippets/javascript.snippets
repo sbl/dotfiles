@@ -54,15 +54,40 @@ endsnippet
 # Snippets for Console Debug Output
 
 snippet cl "console.log"
-console.log(${1:"${2:value}"});
+console.log(${1:'${2:value}'});
 endsnippet
 
 snippet cw "console.warn"
-console.warn(${1:"${2:value}"});
+console.warn(${1:'${2:value}'});
 endsnippet
 
 snippet ce "console.error"
-console.error(${1:"${2:value}"});
+console.error(${1:'${2:value}'});
+endsnippet
+
+# qunit
+
+snippet test "qunit test"
+test('${1:description}', function() {
+  $0
+});
+endsnippet
+
+snippet module "qunit module"
+module('${1:module name}'${2:, {
+  setup: function() {
+  },
+  teardown: function() {
+  }
+}});
+endsnippet
+
+snippet equal "qunit equal"
+equal(${1:actual}, ${2:expected}${3:, '${4:message}'});
+endsnippet
+
+snippet ok "qunit ok"
+ok(${1:state}${2:, '${3:message}'});
 endsnippet
 
 # vim:ft=snippets:

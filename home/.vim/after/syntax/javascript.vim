@@ -1,5 +1,5 @@
 " keywords
-syn keyword emberNamespace App Webavenue Ember Em DS
+syn keyword emberNamespace App Stores Ember Em DS
 
 " emberjs classes
 syn keyword emberClass ControllerMixin Application DefaultResolver Ember Handlebars Compiler JavaScriptCompiler Checkbox Select
@@ -14,6 +14,9 @@ syn keyword emberClass Test ViewTargetActionSupport EventDispatcher RenderBuffer
 " emberjs functions
 " TODO
 syn keyword emberMethod create extend map setupController beforeModel afterModel model renderTemplate
+
+" ember / qunit
+syn keyword emberTestingFunction test module click currentPath currentRouteName currentURL fillIn find findWithAssert injectTestHelpers keyEvent onInjectHelpers promise registerAsyncHelper registerHelper registerWaiter removeTestHelpers resolve setupForTesting triggerEvent unregisterHelper unregisterWaiter visit wait
 
 " ember data classes
 syn keyword emberDataClass FixtureAdapter RESTAdapter Date AttributeChange RelationshipChange RelationshipChangeAdd RelationshipChangeRemove Mappable Model AdapterPopulatedRecordArray FilteredRecordArray ManyArray RecordArray Adapter RecordArrayManager Store
@@ -31,7 +34,16 @@ hi def link emberClass Type
 hi def link emberMethod Function
 hi def link emberDataClass Define
 hi def link emberDataMethod Function
+hi def link emberTestingFunction Function
 hi def link emberUserClass Identifier
+
+" vim-javascript supplied
+
+hi def link jsNumber      Number
+hi def link jsThis Identifier
+hi def link jsPrototype Identifier
+hi def link jsObjectKey Function
+hi def link jsFunctionKey Function
 
 " default styles
 if !exists('emberjs_no_default_styles')

@@ -147,14 +147,7 @@ hi link rubyConstant          Type
 " Special for HTML
 hi link htmlTagName Function
 
-" Special for Javascript
 
-hi link jsNumber      Number
-"hi link jsFunction Function
-hi link jsThis Identifier
-hi link jsPrototype Identifier
-hi link jsObjectKey Function
-hi link jsFunctionKey Function
 
 
 " emberify

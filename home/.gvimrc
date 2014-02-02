@@ -7,6 +7,6 @@ set guioptions-=Llb
 set guioptions+=Rr
 set guioptions-=Rr
 
-colorscheme sl_black
+colorscheme base16-ocean
 
 set guifont=Menlo:h13

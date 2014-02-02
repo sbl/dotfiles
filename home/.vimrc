@@ -18,8 +18,8 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'majutsushi/tagbar'
 Bundle 'godlygeek/tabular'
 Bundle 'kien/ctrlp.vim'
-Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-endwise'
+Bundle 'chriskempson/base16-vim'
 Bundle 'SirVer/ultisnips'
 Bundle 'ervandew/supertab'
 
@@ -33,6 +33,8 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'mustache/vim-mode'
 Bundle 'elzr/vim-json'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'jnwhiteh/vim-golang'
+Bundle 'dgryski/vim-godef'
 Bundle 'Blackrush/vim-gocode'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'elixir-lang/vim-elixir'
@@ -102,14 +104,14 @@ set statusline+=\%r       "read only flag
 set statusline+=\%m       "modified flag
 set statusline+=%h        "help
 set statusline+=\ %y      "filetype
-set statusline+=\ %{fugitive#statusline()} "git status
+"set statusline+=\ %{fugitive#statusline()} "git status
 set statusline+=%=\ row\ %l/%L\ -\ %c "right lines + line
 
 set vb " disable error bell
 set kp=:help    " I barely need a man output
 
 syntax enable
-colorscheme sl_black
+colorscheme base16-ocean
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN SUPPORT

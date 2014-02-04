@@ -6,3 +6,5 @@ nnoremap <F12> :!go test<CR>
 setlocal noet ts=4 sw=4 sts=4
 
 au BufWritePre <buffer> Fmt
+
+setl nolist

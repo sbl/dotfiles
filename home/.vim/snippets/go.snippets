@@ -50,6 +50,12 @@ if ${1:condition}${1/(.+)/ /}{
 }
 endsnippet
 
+snippet ife "If err statement" !b
+if err != nil{
+	${0:${VISUAL}}
+}
+endsnippet
+
 snippet switch "Switch statement" !b
 switch ${1:expression}${1/(.+)/ /}{
 case${0}
@@ -102,6 +108,12 @@ snippet vars "Variables declaration" !b
 var (
 	${1:name}${2/(.+)/ /}${2:type}${3: = ${0:value} }
 )
+endsnippet
+
+snippet test "Test Case" !b
+func Test${1:Description}(t *testing.T) {
+	${0:${VISUAL}}
+}
 endsnippet
 
 # vim:ft=snippets:

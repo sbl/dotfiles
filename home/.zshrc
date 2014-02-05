@@ -14,10 +14,6 @@ fi
 
 alias vi=vim
 
-alias srs='spring rails'
-alias srk='spring rake'
-alias clean_slate='rake db:drop db:create db:migrate db:seed db:test:prepare'
-
 autoload -U zmv
 
 bindkey -e

@@ -90,4 +90,22 @@ snippet ok "qunit ok"
 ok(${1:state}${2:, '${3:message}'});
 endsnippet
 
+snippet desc "mocha describe"
+describe('$1', function() {
+  $0
+});
+endsnippet
+
+snippet it "mocha it"
+it('$1', function() {
+  $0
+});
+endsnippet
+
+snippet itd "mocha it async"
+it('$1', function(done) {
+  $0
+  done();
+});
+endsnippet
 # vim:ft=snippets:

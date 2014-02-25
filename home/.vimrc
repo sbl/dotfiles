@@ -19,7 +19,6 @@ Bundle 'majutsushi/tagbar'
 Bundle 'godlygeek/tabular'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-endwise'
-Bundle 'chriskempson/base16-vim'
 Bundle 'SirVer/ultisnips'
 Bundle 'ervandew/supertab'
 
@@ -112,7 +111,7 @@ set kp=:help    " I barely need a man output
 
 syntax enable
 set bg=dark
-colorscheme base16-ocean
+colorscheme base16-tomorrow
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN SUPPORT

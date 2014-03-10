@@ -5,6 +5,11 @@ else |
 endif
 
 " better specing
+
+if has("gui_running")
+  let g:rspec_command = "!rspec --no-color {spec}"
+endif
+
 nnoremap <F6>  :call RunCurrentSpecFile()<CR>
 nnoremap <F7>  :call RunNearestSpec()<CR>
 nnoremap <F8>  :call RunLastSpec()<CR>

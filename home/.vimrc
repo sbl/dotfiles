@@ -15,7 +15,6 @@ Bundle 'tpope/vim-ragtag'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
 Bundle 'scrooloose/nerdcommenter'
-Bundle 'majutsushi/tagbar'
 Bundle 'godlygeek/tabular'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-endwise'
@@ -111,16 +110,10 @@ set kp=:help    " I barely need a man output
 
 syntax enable
 set bg=dark
-colorscheme base16-tomorrow
+colorscheme base16-ocean
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN SUPPORT
-
-" TAGBAR
-
-let g:tagbar_autoclose = 1
-let g:tagbar_autofocus = 1
-let g:tagbar_sort      = 0
 
 " RAGTAG
 
@@ -175,13 +168,11 @@ command -nargs=0 -bar Update if &modified
                            \|endif
 " re-map iterm cmd-s to point to f2: 0x1b 0x4f 0x51
 nnoremap <F2> :Update<CR>
-nnoremap <F5> :make!<CR>
+nnoremap <F5> :make<CR>
 
 " germanizm
 nmap <Leader>ä :tabnext<CR>
 nmap <Leader>ö :tabprevious<CR>
-
-map <leader>t :TagbarToggle<CR>
 
 " tabularize
 nmap <Leader>a= :Tabularize /=<CR>
@@ -209,7 +200,7 @@ endfunction
 au FileType make set noexpandtab
 
 au BufRead,BufNewFile *.es6 set filetype=javascript
-au BufRead,BufNewFile *.{handlebars,hbs} call UltiSnipsAddFiletypes('html.mustache')
+au BufRead,BufNewFile *.{handlebars,hbs} UltiSnipsAddFiletypes html.mustache
 au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown | call s:setupWrapping()
 
 au BufRead,BufNewFile *.{handlebars,hbs} :UltiSnipsAddFiletypes html.mustache

@@ -1,8 +1,4 @@
-if expand("%") =~# '_spec\.rb$' |
-  compiler rspec | setl makeprg=rspec\ $*|
-else |
-  compiler ruby | setl makeprg=ruby\ -w\ \"%:p\" |
-endif
+compiler ruby | setl makeprg=ruby\ -w\ \"%:p\" |
 
 " better specing
 

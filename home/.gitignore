@@ -15,11 +15,10 @@ tags
 *.pbxuser
 *.perspective
 *.perspectivev3
+xcuserdata
+*.xccheckout
 
 # this is for eclipse
 #######################
 .project
-
-# ruby
-#######################
 

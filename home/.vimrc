@@ -106,8 +106,6 @@ set vb " disable error bell
 set kp=:help    " I barely need a man output
 
 syntax enable
-set bg=dark
-colorscheme base16-ocean
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN SUPPORT

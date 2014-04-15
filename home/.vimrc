@@ -23,7 +23,6 @@ Bundle 'ervandew/supertab'
 
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-rails'
-Bundle 'thoughtbot/vim-rspec'
 Bundle 'tpope/vim-rake'
 Bundle 'tpope/vim-bundler'
 Bundle 'othree/html5.vim'
@@ -106,6 +105,8 @@ set vb " disable error bell
 set kp=:help    " I barely need a man output
 
 syntax enable
+
+colorscheme base16-ocean
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN SUPPORT

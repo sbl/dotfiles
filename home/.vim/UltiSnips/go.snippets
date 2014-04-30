@@ -1,36 +1,5 @@
 # Snippets for Go
 
-# when to abbriviate and when not?
-# b doesn't work here, because it ignores whitespace
-# optional local name?
-snippet /^import/ "Import declaration" r
-import (
-	"${1:package}"
-)
-endsnippet
-
-snippet /^package/ "Package declaration" r
-// Package $1 provides ...
-package ${1:main}
-endsnippet
-
-# Mostly converted from: https://github.com/AlanQuatermain/go-tmbundle
-snippet /^cons/ "Constants declaration" r
-const (
-	${1:constant}${2/(.+)/ /}${2:type} = ${0:value}
-)
-endsnippet
-
-snippet /^con/ "Constant declaration" r
-const ${1:name}${2/(.+)/ /}${2:type} = ${0:value}
-endsnippet
-
-snippet iota "Iota constant generator" b
-const (
-	${1:constant}${2/(.+)/ /}${2:type} = iota
-)
-endsnippet
-
 # statements
 snippet for "For loop" !b
 for ${1:condition}${1/(.+)/ /}{
@@ -51,7 +20,7 @@ if ${1:condition}${1/(.+)/ /}{
 endsnippet
 
 snippet ife "If err statement" !b
-if err != nil{
+if err != nil {
 	${0:${VISUAL}}
 }
 endsnippet
@@ -100,20 +69,14 @@ snippet : "Variable declaration :=" !b
 ${1:name} := ${0:value}
 endsnippet
 
-snippet var "Variable declaration" !b
-var ${1:name}${2/(.+)/ /}${2:type}${3: = ${0:value}}
-endsnippet
-
-snippet vars "Variables declaration" !b
-var (
-	${1:name}${2/(.+)/ /}${2:type}${3: = ${0:value} }
-)
-endsnippet
-
 snippet test "Test Case" !b
 func Test${1:Description}(t *testing.T) {
 	${0:${VISUAL}}
 }
+endsnippet
+
+snippet /\(wr/ "handler signature" r
+(w http.ResponseWriter, req *http.Request
 endsnippet
 
 # vim:ft=snippets:

@@ -76,7 +76,13 @@ func Test${1:Description}(t *testing.T) {
 endsnippet
 
 snippet /\(wr/ "handler signature" r
-(w http.ResponseWriter, req *http.Request
+(w http.ResponseWriter, r *http.Request
+endsnippet
+
+snippet ass "assertion like"
+if act, exp := ${1:act}, ${2:exp}; ${3:act != exp} {
+	t.Errorf("expected %#v, got ${4:equal} %#v", act, exp)
+}
 endsnippet
 
 # vim:ft=snippets:

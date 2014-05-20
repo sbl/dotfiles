@@ -82,6 +82,21 @@ module('${1:module name}'${2:, {
 }});
 endsnippet
 
+snippet integration "ember integration test"
+import startApp from '${1:appName}/tests/helpers/start-app';
+
+var App;
+
+module('Integration: ${2:what}', {
+  setup: function() {
+    App = startApp();
+  },
+  teardown: function() {
+    Ember.run(App, 'destroy');
+  }
+});
+endsnippet
+
 snippet equal "qunit equal"
 equal(${1:actual}, ${2:expected});
 endsnippet
@@ -95,6 +110,8 @@ describe('$1', function() {
   $0
 });
 endsnippet
+
+# mocha
 
 snippet it "mocha it"
 it('$1', function() {

@@ -65,10 +65,6 @@ snippet map "Map type" !b
 map[${1:keytype}]${2:valtype}
 endsnippet
 
-snippet : "Variable declaration :=" !b
-${1:name} := ${0:value}
-endsnippet
-
 snippet test "Test Case" !b
 func Test${1:Description}(t *testing.T) {
 	${0:${VISUAL}}
@@ -76,12 +72,22 @@ func Test${1:Description}(t *testing.T) {
 endsnippet
 
 snippet /\(wr/ "handler signature" r
-(w http.ResponseWriter, r *http.Request
+(w http.ResponseWriter, r *http.Request)
 endsnippet
 
 snippet ass "assertion like"
-if act, exp := ${1:act}, ${2:exp}; ${3:act != exp} {
-	t.Errorf("expected %#v, got ${4:equal} %#v", act, exp)
+if exp, got := ${1:exp}, ${2:got}; ${3:exp != got} {
+	t.Errorf("expected %#v, got %#v", exp, got)
+}
+endsnippet
+
+snippet middleware "generic middleware"
+func ${1:name}(next http.Handler) http.Handler {
+	fn := func(w http.ResponseWriter, r *http.Request) {
+		${0://}
+		next.ServeHTTP(w, r)
+	}
+	return http.HandlerFunc(fn)
 }
 endsnippet
 

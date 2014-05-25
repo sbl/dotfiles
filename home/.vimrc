@@ -115,13 +115,6 @@ colorscheme base16-ocean
 
 let g:ragtag_global_maps = 1
 
-" ULTISNIPS
-
-" jump through snippets with tab
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
 " NETRW
 let g:netrw_banner       = 0
 let g:netrw_keepdir      = 1
@@ -148,22 +141,18 @@ let g:sclangKillOnExit = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " KEY MAPPINGS
 
+" open help in new tab
+cabbrev h tab help
+
 " get rid of the bloody help key
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
 " global save cmd
-command -nargs=0 -bar Update if &modified 
-                           \|    if empty(bufname('%'))
-                           \|        browse confirm write
-                           \|    else
-                           \|        confirm write
-                           \|    endif
-                           \|endif
 " re-map iterm cmd-s to point to f2: 0x1b 0x4f 0x51
 nnoremap <F2> :Update<CR>
-nnoremap <F5> :make<CR>
+nnoremap <F5> :Make<CR>
 
 " germanizm
 nmap <Leader>ä :tabnext<CR>
@@ -178,11 +167,18 @@ vmap <Leader>a: :Tabularize /:\zs<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM COMMANDS
 
+command! Make silent make | cw 5 | redraw!
 command! CD cd %:p:h
 command! Open silent !open %:p:h 
 command! Todo silent Ack TODO\\|FIXME\\|CHANGED\\|FIX
 command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
-
+command! -nargs=0 -bar Update if &modified
+                           \|    if empty(bufname('%'))
+                           \|        browse confirm write
+                           \|    else
+                           \|        confirm write
+                           \|    endif
+                           \|endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " AUTO CMD / Filetype based modifications
 
@@ -192,12 +188,11 @@ function! s:setupWrapping()
   set textwidth=78
 endfunction
 
-au FileType make set noexpandtab
+au FileType make setl noexpandtab
 
 au BufRead,BufNewFile *.es6 set filetype=javascript
 au BufRead,BufNewFile *.{handlebars,hbs} UltiSnipsAddFiletypes html.mustache
 au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown | call s:setupWrapping()
-
 au BufRead,BufNewFile *.{handlebars,hbs} :UltiSnipsAddFiletypes html.mustache
 
 " close preview automatically

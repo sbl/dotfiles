@@ -129,7 +129,7 @@ let g:clang_complete_auto = 0
 
 " CTRLP
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)|deps|_build|node_modules|bower_components$',
+  \ 'dir':  '\v[\/]\.(git|hg|svn)|deps|_build|vendor|node_modules|bower_components$',
   \ 'file': '\v\.(exe|so|dll|beam|class)$',
   \ }
 

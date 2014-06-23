@@ -17,7 +17,7 @@ fi
 # DOCKER
 #
 
-export DOCKER_HOST=tcp://127.0.0.1:4243
+export DOCKER_HOST=tcp://$(boot2docker ip 2>/dev/null):2375
 
 #
 # Go
@@ -62,6 +62,7 @@ typeset -gU cdpath fpath mailpath path
 # Set the list of directories that Zsh searches for programs.
 path=(
   $GOPATH/bin
+  ./node_modules/.bin
   $HOME/Dropbox/bin
   /usr/local/go/bin
   /usr/local/{bin,sbin}

@@ -20,6 +20,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-endwise'
 Bundle 'SirVer/ultisnips'
 Bundle 'ervandew/supertab'
+Bundle 'tpope/vim-fugitive'
 
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-rails'
@@ -189,6 +190,7 @@ function! s:setupWrapping()
 endfunction
 
 au FileType make setl noexpandtab
+au FileType yaml setl shiftwidth=4 softtabstop=4 tabstop=4
 
 au BufRead,BufNewFile *.es6 set filetype=javascript
 au BufRead,BufNewFile *.{handlebars,hbs} UltiSnipsAddFiletypes html.mustache

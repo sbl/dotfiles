@@ -8,32 +8,32 @@ call vundle#rc()
 
 " let Vundle manage Vundle
 " required!
-Bundle 'gmarik/vundle'
-Bundle 'mileszs/ack.vim'
-Bundle 'vim-scripts/matchit.zip'
-Bundle 'tpope/vim-ragtag'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-repeat'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'godlygeek/tabular'
-Bundle 'kien/ctrlp.vim'
-Bundle 'tpope/vim-endwise'
-Bundle 'SirVer/ultisnips'
-Bundle 'ervandew/supertab'
-Bundle 'tpope/vim-fugitive'
+Plugin 'gmarik/vundle'
+Plugin 'mileszs/ack.vim'
+Plugin 'vim-scripts/matchit.zip'
+Plugin 'tpope/vim-ragtag'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'godlygeek/tabular'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-endwise'
+Plugin 'SirVer/ultisnips'
+Plugin 'ervandew/supertab'
 
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-rake'
-Bundle 'tpope/vim-bundler'
-Bundle 'othree/html5.vim'
-Bundle 'pangloss/vim-javascript'
-Bundle 'mustache/vim-mustache-handlebars'
-Bundle 'elzr/vim-json'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'fatih/vim-go'
-Bundle 'elixir-lang/vim-elixir'
-Bundle 'sbl/scvim'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-rake'
+Plugin 'tpope/vim-bundler'
+Plugin 'othree/html5.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'elzr/vim-json'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'fatih/vim-go'
+Plugin 'elixir-lang/vim-elixir'
+Plugin 'sbl/scvim'
+Plugin 'JuliaLang/julia-vim'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GENERAL
@@ -55,7 +55,7 @@ set wildmode=list:longest   "shell like file completion
 
 set incsearch   "find the next match as we type the search
 set smartcase   "be smart when searching
-set ignorecase
+"set ignorecase
 
 " ignorance is bliss
 set wildignore+=*/tmp/*,*/cache/*,*.so,*.swp,*.zip

@@ -13,7 +13,6 @@ fi
 # Customize to your needs...
 
 alias vi=vim
-eval "$(hub alias -s)"
 
 autoload -U zmv
 

@@ -20,6 +20,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-endwise'
 Plugin 'SirVer/ultisnips'
 Plugin 'ervandew/supertab'
+Plugin 'rizzatti/dash.vim'
 
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails'
@@ -145,6 +146,8 @@ let g:sclangKillOnExit = 0
 " open help in new tab
 cabbrev h tab help
 
+nmap <silent> <leader>d <Plug>DashSearch
+
 " get rid of the bloody help key
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
@@ -190,12 +193,13 @@ function! s:setupWrapping()
 endfunction
 
 au FileType make setl noexpandtab
-au FileType yaml setl shiftwidth=4 softtabstop=4 tabstop=4
 
 au BufRead,BufNewFile *.es6 set filetype=javascript
 au BufRead,BufNewFile *.{handlebars,hbs} UltiSnipsAddFiletypes html.mustache
 au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown | call s:setupWrapping()
 au BufRead,BufNewFile *.{handlebars,hbs} :UltiSnipsAddFiletypes html.mustache
+
+autocmd Filetype gitcommit setlocal spell textwidth=72
 
 " close preview automatically
 au CursorMovedI * if pumvisible() == 0|pclose|endif

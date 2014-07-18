@@ -1,6 +1,4 @@
 # globals
-#######################
-
 .DS_Store
 *.class
 *.elc
@@ -10,15 +8,14 @@
 tags
 
 # xcode
-#######################
-
 *.pbxuser
 *.perspective
 *.perspectivev3
 xcuserdata
 *.xccheckout
 
-# this is for eclipse
-#######################
+# eclipse
 .project
 
+# vagrant
+.vagrant

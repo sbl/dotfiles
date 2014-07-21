@@ -21,6 +21,7 @@ Plugin 'tpope/vim-endwise'
 Plugin 'SirVer/ultisnips'
 Plugin 'ervandew/supertab'
 Plugin 'rizzatti/dash.vim'
+Plugin 'majutsushi/tagbar'
 
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails'
@@ -157,6 +158,8 @@ vnoremap <F1> <ESC>
 " re-map iterm cmd-s to point to f2: 0x1b 0x4f 0x51
 nnoremap <F2> :Update<CR>
 nnoremap <F5> :Make<CR>
+
+nmap <Leader>t :TagbarToggle<CR>
 
 " germanizm
 nmap <Leader>ä :tabnext<CR>

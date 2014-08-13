@@ -22,6 +22,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'ervandew/supertab'
 Plugin 'rizzatti/dash.vim'
 Plugin 'majutsushi/tagbar'
+Plugin 'tpope/vim-fugitive'
 
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails'
@@ -159,7 +160,7 @@ vnoremap <F1> <ESC>
 nnoremap <F2> :Update<CR>
 nnoremap <F5> :Make<CR>
 
-nmap <Leader>t :TagbarToggle<CR>
+"nmap <Leader>t :TagbarToggle<CR>
 
 " germanizm
 nmap <Leader>ä :tabnext<CR>

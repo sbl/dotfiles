@@ -7,4 +7,4 @@ nmap K <Plug>(go-doc)
 
 nmap <F5> <Plug>(go-build)
 nmap <F6> <Plug>(go-run)
-nmap <F12> :!go test ./...<CR>
+nmap <F12> <Plug>(go-test)

@@ -75,6 +75,10 @@ snippet /\(wr/ "handler signature" r
 (w http.ResponseWriter, r *http.Request)
 endsnippet
 
+snippet /\(cwr/ "context handler signature" r
+(ctx context.Context, w http.ResponseWriter, r *http.Request)
+endsnippet
+
 snippet ass "assertion like"
 if exp, got := ${1:exp}, ${2:got}; ${3:exp != got} {
 	t.Errorf("expected %+v, got %+v", exp, got)

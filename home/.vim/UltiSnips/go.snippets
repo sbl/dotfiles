@@ -8,8 +8,16 @@ for ${1:condition}${1/(.+)/ /}{
 endsnippet
 
 snippet forr "For range loop" !b
-for ${2:name} := range ${1:collection} {
+for ${2:_}, ${3:item} := range ${1:collection} {
 	${0:${VISUAL}}
+}
+endsnippet
+
+snippet fors "for select loop" !b
+for {
+	select {
+	case $0:
+	}
 }
 endsnippet
 
@@ -31,25 +39,9 @@ case${0}
 }
 endsnippet
 
-snippet case "Case clause" !b
-case ${1:condition}:
-	${0:${VISUAL}}
-endsnippet
-
-snippet default "Default clause" !b
-default:
-	${0:${VISUAL}}
-endsnippet
-
 # functions
 snippet /^main/ "Main function" r
 func main() {
-	${0:${VISUAL}}
-}
-endsnippet
-
-snippet /^meth/ "Method" r
-func (${1:receiver} ${2:type}) ${3:name}(${4:params})${5/(.+)/ /}${5:type} {
 	${0:${VISUAL}}
 }
 endsnippet

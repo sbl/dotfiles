@@ -61,7 +61,7 @@ set smartcase   "be smart when searching
 "set ignorecase
 
 " ignorance is bliss
-set wildignore+=*/tmp/*,*/cache/*,*.so,*.swp,*.zip
+set wildignore+=*/tmp/*,*/cache/*,*/dist/*,*.so,*.swp,*.zip
 
 "set numberwidth=2
 set nonumber

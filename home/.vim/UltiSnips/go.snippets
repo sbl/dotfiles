@@ -87,4 +87,12 @@ func ${1:name}(next http.Handler) http.Handler {
 }
 endsnippet
 
+snippet fp "print"
+fmt.Println(${1:"$2"})$0
+endsnippet
+
+snippet ff "fprint"
+fmt.Printf("$1", $2)$0
+endsnippet
+
 # vim:ft=snippets:

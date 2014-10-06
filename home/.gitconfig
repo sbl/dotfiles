@@ -23,7 +23,8 @@
 	name = sbl
 	email = stephen.lumenta@gmail.com
 [filter "media"]
-	clean = git-media-clean %f
-	smudge = git-media-smudge %f
+	required = true
+	clean = git media clean %f
+	smudge = git media smudge %f
 [pull]
 	rebase = true

@@ -58,7 +58,7 @@ set wildmode=list:longest   "shell like file completion
 
 set incsearch   "find the next match as we type the search
 set smartcase   "be smart when searching
-"set ignorecase
+set ignorecase
 
 " ignorance is bliss
 set wildignore+=*/tmp/*,*/cache/*,*/dist/*,*.so,*.swp,*.zip
@@ -111,6 +111,11 @@ set kp=:help    " I barely need a man output
 
 syntax enable
 
+" set cursor in iTerm2
+" http://vim.wikia.com/wiki/Change_cursor_shape_in_different_modes
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
 colorscheme base16-ocean
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -151,19 +156,16 @@ let g:sclangKillOnExit = 0
 " open help in new tab
 cabbrev h tab help
 
-nmap <silent> <leader>d <Plug>DashSearch
-
 " get rid of the bloody help key
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
 " global save cmd
-" re-map iterm cmd-s to point to f2: 0x1b 0x4f 0x51
-nnoremap <F2> :Update<CR>
 nnoremap <F5> :Make<CR>
 
-"nmap <Leader>t :TagbarToggle<CR>
+nmap <Leader>t :TagbarToggle<CR>
+nmap <leader>w :Update<CR>
 
 " germanizm
 nmap <Leader>ä :tabnext<CR>

@@ -36,6 +36,7 @@ Plugin 'fatih/vim-go'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'sbl/scvim'
 Plugin 'JuliaLang/julia-vim'
+Plugin 'wting/rust.vim'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GENERAL
@@ -64,6 +65,7 @@ set wildignore+=*/tmp/*,*/cache/*,*/dist/*,*.so,*.swp,*.zip
 
 "set numberwidth=2
 set nonumber
+set foldcolumn=0
 set ruler
 
 set nowrap

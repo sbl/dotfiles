@@ -14,23 +14,10 @@ if [[ "$OSTYPE" == darwin* ]]; then
 fi
 
 #
-# DOCKER
-#
-
-export DOCKER_HOST=tcp://$(boot2docker ip 2>/dev/null):2375
-
-#
 # Go
 #
 
 export GOPATH=$HOME/_dev/go
-
-#
-# ruby gc settings
-#
-
-export RUBY_GC_MALLOC_LIMIT=90000000
-export RUBY_GC_HEAP_FREE_SLOTS=200000
 
 #
 # Editors

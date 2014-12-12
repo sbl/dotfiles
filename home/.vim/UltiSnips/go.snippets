@@ -72,8 +72,8 @@ snippet /\(cwr/ "context handler signature" r
 endsnippet
 
 snippet ass "assertion like"
-if exp, got := ${1:exp}, ${2:got}; ${3:exp != got} {
-	t.Errorf("expected %+v, got %+v", exp, got)
+if want, got := ${1:want}, ${2:got}; ${3:want != got} {
+	t.Errorf("want: %+v, got: %+v", want, got)
 }
 endsnippet
 

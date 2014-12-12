@@ -16,6 +16,8 @@ alias vi=vim
 
 autoload -U zmv
 
+$(boot2docker shellinit 2> /dev/null)
+
 bindkey -e
 bindkey '^[[1;9C' forward-word
 bindkey '^[[1;9D' backward-word

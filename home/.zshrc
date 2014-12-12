@@ -14,6 +14,7 @@ fi
 
 alias vi=vim
 
+setopt AUTO_PUSHD
 autoload -U zmv
 
 $(boot2docker shellinit 2> /dev/null)

@@ -1,7 +1,7 @@
 dotfiles managed with homesick
 
-`gem install homesick`
+`git clone git://github.com/andsens/homeshick.git $HOME/.homesick/repos/homeshick`
 
-`homesick clone sbl/dotfiles`
+`homeshick clone sbl/dotfiles`
 
-`homesick symlink sbl/dotfiles`
+`homeshick link`

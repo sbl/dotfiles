@@ -12,6 +12,8 @@ fi
 
 # Customize to your needs...
 
+source "$HOME/.homesick/repos/homeshick/homeshick.sh"
+
 alias vi=vim
 
 setopt AUTO_PUSHD

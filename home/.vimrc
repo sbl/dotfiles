@@ -6,9 +6,6 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" let Vundle manage Vundle
-" required!
-Plugin 'gmarik/vundle'
 Plugin 'mileszs/ack.vim'
 Plugin 'vim-scripts/matchit.zip'
 Plugin 'tpope/vim-ragtag'

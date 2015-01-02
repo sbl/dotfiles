@@ -159,7 +159,9 @@ inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
-" global save cmd
+set pastetoggle=<F2>
+
+" global make cmd
 nnoremap <F5> :Make<CR>
 
 nmap <Leader>t :TagbarToggle<CR>
@@ -201,8 +203,6 @@ endfunction
 
 au FileType make setl noexpandtab
 
-au BufRead,BufNewFile *.es6 set filetype=javascript
-au BufRead,BufNewFile *.{handlebars,hbs} UltiSnipsAddFiletypes html.mustache
 au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown | call s:setupWrapping()
 au BufRead,BufNewFile *.{handlebars,hbs} :UltiSnipsAddFiletypes html.mustache
 

@@ -35,6 +35,9 @@ Plugin 'elixir-lang/vim-elixir'
 Plugin 'sbl/scvim'
 Plugin 'JuliaLang/julia-vim'
 Plugin 'wting/rust.vim'
+Plugin 'dag/vim2hs'
+Plugin 'eagletmt/neco-ghc'
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GENERAL
@@ -99,9 +102,9 @@ set laststatus=2
 set statusline=\ %t       "tail of the filename
 set statusline+=\%r       "read only flag
 set statusline+=\%m       "modified flag
-set statusline+=%h        "help
 set statusline+=\ %y      "filetype
-"set statusline+=\ %{fugitive#statusline()} "git status
+set statusline+=\ %{HasPaste()}      "paste
+set statusline+=\ %{fugitive#statusline()} "git status
 set statusline+=%=\ row\ %l/%L\ -\ %c "right lines + line
 
 set vb " disable error bell
@@ -192,14 +195,23 @@ command! -nargs=0 -bar Update if &modified
                            \|        confirm write
                            \|    endif
                            \|endif
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" AUTO CMD / Filetype based modifications
+" FUNCS
+
+function! HasPaste()
+    if &paste
+        return '-PST-'
+    en
+    return ''
+endfunction
 
 function! s:setupWrapping()
   set wrap
   set wrapmargin=2
   set textwidth=78
 endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" AUTO CMD / Filetype based modifications
 
 au FileType make setl noexpandtab
 

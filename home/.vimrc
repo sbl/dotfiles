@@ -168,7 +168,7 @@ set pastetoggle=<F2>
 nnoremap <F5> :Make<CR>
 
 nmap <Leader>t :TagbarToggle<CR>
-nmap <leader>w :Update<CR>
+"nmap <leader>w :Update<CR>
 
 " germanizm
 nmap <Leader>ä :tabnext<CR>

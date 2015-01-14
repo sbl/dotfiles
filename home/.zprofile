@@ -6,6 +6,16 @@
 #
 
 #
+# TOKENS
+#
+# given a file $HOME/.tokens load what is in there (we don't track .tokens in
+# git)
+
+if [[ -e "${ZDOTDIR:-$HOME}/.tokens" ]]; then
+  source "${ZDOTDIR:-$HOME}/.tokens"
+fi
+
+#
 # Browser
 #
 

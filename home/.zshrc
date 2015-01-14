@@ -16,6 +16,10 @@ source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 
 alias vi=vim
 
+# thanks to attila!
+alias gll='git log --graph --pretty=format:"%C(bold red)%h%C(reset)%C(yellow)%d%C(reset) %C(red)(%cr)%C(reset) %s — %C(blue)%ae%C(reset)" --abbrev-commit'
+
+
 setopt AUTO_PUSHD
 autoload -U zmv
 

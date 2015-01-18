@@ -18,12 +18,9 @@ alias vi=vim
 
 # thanks to attila!
 alias gll='git log --graph --pretty=format:"%C(bold red)%h%C(reset)%C(yellow)%d%C(reset) %C(red)(%cr)%C(reset) %s — %C(blue)%ae%C(reset)" --abbrev-commit'
-
-
-setopt AUTO_PUSHD
-autoload -U zmv
-
-$(boot2docker shellinit 2> /dev/null)
+alias dockrm='docker rm $(docker ps -aqf status=exited)'
+alias dockrmi='docker rmi $(docker images -q -f dangling=true)'
+alias dock='$(boot2docker shellinit)'
 
 bindkey -e
 bindkey '^[[1;9C' forward-word

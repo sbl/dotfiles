@@ -135,9 +135,6 @@ let g:netrw_sort_options = 'i'
 " SUPERTAB
 let g:SuperTabDefaultCompletionType = "context"
 
-" CLANG
-let g:clang_complete_auto = 0
-
 " CTRLP
 let g:ctrlp_root_markers = ['Makefile', 'package.json']
 
@@ -156,6 +153,9 @@ let g:sclangKillOnExit = 0
 
 " open help in new tab
 cabbrev h tab help
+
+" no Ex mode
+nnoremap Q <nop>
 
 " get rid of the bloody help key
 inoremap <F1> <ESC>

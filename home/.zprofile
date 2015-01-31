@@ -39,6 +39,12 @@ if [ -d "$GHC_DOT_APP" ]; then
 fi
 
 #
+# Docker
+#
+
+$(boot2docker shellinit 2> /dev/null)
+
+#
 # Editors
 #
 

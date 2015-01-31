@@ -20,7 +20,7 @@ alias vi=vim
 alias gll='git log --graph --pretty=format:"%C(bold red)%h%C(reset)%C(yellow)%d%C(reset) %C(red)(%cr)%C(reset) %s — %C(blue)%ae%C(reset)" --abbrev-commit'
 alias dockrm='docker rm $(docker ps -aqf status=exited)'
 alias dockrmi='docker rmi $(docker images -q -f dangling=true)'
-alias dock='$(boot2docker shellinit)'
+alias dco=docker-compose
 
 bindkey -e
 bindkey '^[[1;9C' forward-word

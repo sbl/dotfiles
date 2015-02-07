@@ -14,6 +14,8 @@ fi
 
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 
+$(boot2docker shellinit 2> /dev/null)
+
 alias vi=vim
 
 # thanks to attila!

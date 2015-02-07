@@ -19,6 +19,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'ervandew/supertab'
 Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-fugitive'
+Plugin 'Shougo/vimproc.vim'
 
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails'
@@ -34,8 +35,8 @@ Plugin 'benmills/vim-golang-alternate'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'sbl/scvim'
 Plugin 'JuliaLang/julia-vim'
-Plugin 'wting/rust.vim'
 Plugin 'dag/vim2hs'
+Plugin 'eagletmt/ghcmod-vim'
 Plugin 'eagletmt/neco-ghc'
 
 
@@ -129,7 +130,7 @@ let g:ragtag_global_maps = 1
 " NETRW
 let g:netrw_banner       = 0
 let g:netrw_keepdir      = 1
-"let g:netrw_liststyle    = 3 " or 3
+let g:netrw_liststyle    = 3 " or 3
 let g:netrw_sort_options = 'i'
 
 " SUPERTAB

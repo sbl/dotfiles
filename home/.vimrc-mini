@@ -1,16 +1,12 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GENERAL
 
-filetype plugin indent on
-
 set history=500
 set encoding=utf-8
 set autoread
 
 "allow backspacing over everything in insert mode
 set backspace=indent,eol,start
-let mapleader = ","
-let g:mapleader = ","
 
 set showcmd                 "show incomplete cmds down the bottom
 set wildmenu                "enhanced command line completion
@@ -25,7 +21,6 @@ set wildignore+=*/tmp/*,*/cache/*,*/dist/*,*.so,*.swp,*.zip
 
 "set numberwidth=2
 set nonumber
-set foldcolumn=0
 set ruler
 
 set nowrap
@@ -67,33 +62,3 @@ set statusline+=%=\ row\ %l/%L\ -\ %c "right lines + line
 
 set vb " disable error bell
 set kp=:help    " I barely need a man output
-
-syntax enable
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" CUSTOM COMMANDS
-
-command! CD cd %:p:h
-command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
-
-function! HasPaste()
-    if &paste
-        return '-PST-'
-    en
-    return ''
-endfunction
-
-function! s:setupWrapping()
-  set wrap
-  set wrapmargin=2
-  set textwidth=78
-endfunction
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" AUTO CMD / Filetype based modifications
-
-au FileType make setl noexpandtab
-
-au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown | call s:setupWrapping()
-
-autocmd Filetype gitcommit setlocal spell textwidth=72

@@ -35,10 +35,10 @@ Plugin 'benmills/vim-golang-alternate'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'sbl/scvim'
 Plugin 'JuliaLang/julia-vim'
-Plugin 'dag/vim2hs'
+Plugin 'raichoo/haskell-vim'
 Plugin 'eagletmt/ghcmod-vim'
 Plugin 'eagletmt/neco-ghc'
-
+Plugin 'nbouscal/vim-stylish-haskell'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GENERAL

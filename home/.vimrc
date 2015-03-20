@@ -40,6 +40,7 @@ Plugin 'raichoo/haskell-vim'
 Plugin 'eagletmt/ghcmod-vim'
 Plugin 'eagletmt/neco-ghc'
 Plugin 'nbouscal/vim-stylish-haskell'
+Plugin 'uarun/vim-protobuf'
 
 call vundle#end()
 
@@ -143,7 +144,7 @@ let g:SuperTabDefaultCompletionType = "context"
 let g:ctrlp_root_markers = ['Makefile', 'package.json']
 
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)|deps|_build|vendor|node_modules|bower_components$',
+  \ 'dir':  '\v[\/]\.(git|hg|svn)|deps|_build|build|vendor|node_modules|bower_components$',
   \ 'file': '\v\.(exe|so|dll|beam|class)$',
   \ }
 

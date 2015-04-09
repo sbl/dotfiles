@@ -16,6 +16,8 @@ xcuserdata
 
 # eclipse
 .project
+.classpath
+.settings/
 
 # vagrant
 .vagrant

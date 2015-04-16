@@ -154,6 +154,12 @@ let g:ctrlp_custom_ignore = {
 let g:sclangTerm = "open -a iTerm.app"
 let g:sclangKillOnExit = 0
 
+" ack -> ag
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " KEY MAPPINGS
 

@@ -451,15 +451,10 @@ endsnippet
 ############################
 # testing
 #
-#scalatest imports
-snippet scalatest "scalatest"
-${1:import org.scalatest.Suite}
-${2:import org.scalatest.FunSuite}
-endsnippet
 
 #assert
-snippet assert "assert"
-assert(${1:a}==${2:b})
+snippet ass "assert"
+assert(${1:a} === ${2:b})
 endsnippet
 
 #ensuring(p 296)
@@ -467,68 +462,28 @@ snippet ensuring "ensuring"
 ifel ensuring(${1:a}==${2:b})
 endsnippet
 
-#expect
-snippet expect "expect"
-expect(${1:what}) {
-endsnippet
-
 #intercept
 snippet intercept "intercept"
 intercept[${1:IllegalArgumentException}] {
+	$0
+}
 endsnippet
 
 #test
 snippet test "test"
-test("${0:description}") {
-endsnippet
-
-#suite
-snippet suite "suite"
-class ${1:name} extends Suite {
-	def test() {
+test("${1:description}") {
+	$0
 }
 endsnippet
 
 #funsuite
-snippet fsuite "fsuite"
+snippet suite "suite"
+import org.scalatest.FunSuite
+
 class ${1:name} extends FunSuite {
-	test("${2:description}") {
+  test("${2:description}") {
+		$0
+  }
 }
 endsnippet
-
-############################
-# SBT
-#
-snippet webproject "webproject"
-import sbt._
-class ${1:Name}(info: ProjectInfo) extends DefaultWebProject(info) {
-	val liftVersion = "${2:2.3}"
-	override def libraryDependencies = Set(
-	) ++ super.libraryDependencies
-	val snapshots = ScalaToolsSnapshots
-}
-endsnippet
-
-#depencies
-snippet liftjar "liftjar"
-"net.liftweb" %% "${1:lib}" % liftVersion % "compile->default",
-endsnippet
-
-snippet jettyjar "jettyjar"
-"org.mortbay.jetty" % "jetty" % "${1:version}" % "test->default",	
-endsnippet
-
-############################
-# Lift
-#
-#lift imports
-snippet liftimports "liftimports"
-import _root_.net.liftweb.http._
-import S._
-import _root_.net.liftweb.util._
-import Helpers._
-import _root_.scala.xml._
-endsnippet
-
-#TODO LIFT,SBT,WEB.XML,HTML snippets
 

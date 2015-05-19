@@ -36,6 +36,7 @@ Plugin 'benmills/vim-golang-alternate'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'sbl/scvim'
 Plugin 'JuliaLang/julia-vim'
+Plugin 'rust-lang/rust.vim'
 Plugin 'raichoo/haskell-vim'
 Plugin 'eagletmt/ghcmod-vim'
 Plugin 'eagletmt/neco-ghc'
@@ -143,6 +144,7 @@ let g:SuperTabDefaultCompletionType = "context"
 
 " CTRLP
 let g:ctrlp_root_markers = ['Makefile', 'package.json']
+let g:ctrlp_open_new_file = 'r'
 
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)|deps|_build|build|target|vendor|node_modules|bower_components$',

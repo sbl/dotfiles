@@ -10,3 +10,4 @@ set guioptions-=Rr
 set guifont=Menlo:h13
 
 set bg=dark
+colorscheme base16-flat

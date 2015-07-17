@@ -45,7 +45,7 @@ hi TablineSel       ctermfg=white     ctermbg=green
 hi Tabline          term=NONE cterm=NONE ctermfg=15 ctermbg=NONE gui=NONE guibg=NONE
 
 hi VertSplit        guifg=darkgray     guibg=NONE     gui=NONE      ctermfg=darkgray        ctermbg=NONE    cterm=NONE
-hi StatusLine       guifg=white       guibg=#4e9a06     gui=NONE    ctermfg=white       ctermbg=darkgreen       cterm=NONE
+"hi StatusLine       guifg=white       guibg=#4e9a06     gui=NONE    ctermfg=white       ctermbg=darkgreen       cterm=NONE
 hi StatusLineNC     guifg=#242c30       guibg=darkgray     gui=NONE      ctermfg=white        ctermbg=darkgray    cterm=NONE
 
 hi Folded           guifg=#a0a8b0     guibg=#384048     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
@@ -63,7 +63,7 @@ hi ErrorMsg         guifg=NONE       guibg=#ef2929     gui=BOLD      ctermfg=whi
 hi WarningMsg       guifg=NONE       guibg=#ef2929     gui=BOLD      ctermfg=white       ctermbg=red         cterm=NONE
 
 " Message displayed in lower left, such as --INSERT--
-hi ModeMsg          guifg=black       guibg=#34e2e2     gui=BOLD      ctermfg=black       ctermbg=cyan        cterm=BOLD
+"hi ModeMsg          guifg=black       guibg=#34e2e2     gui=BOLD      ctermfg=black       ctermbg=cyan        cterm=BOLD
 
 if version >= 700 " Vim 7.x specific colors
   hi CursorLine     guifg=NONE        guibg=#212121     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=BOLD
@@ -143,12 +143,5 @@ hi link rubyGlobalVariable    Identifier
 hi link rubyClassVariable     Identifier
 hi link rubyConstant          Type
 
-
 " Special for HTML
 hi link htmlTagName Function
-
-
-
-
-" emberify
-hi emberNamespace guifg=#f16f58     guibg=NONE        gui=bold      ctermfg=red       ctermbg=NONE        cterm=NONE

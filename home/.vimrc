@@ -156,6 +156,10 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
+" sql - please don't complete
+
+let g:omni_sql_no_default_maps = 1
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " KEY MAPPINGS
 

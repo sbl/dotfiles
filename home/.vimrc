@@ -34,6 +34,7 @@ Plugin 'fatih/vim-go'
 Plugin 'sbl/scvim'
 Plugin 'JuliaLang/julia-vim'
 Plugin 'rust-lang/rust.vim'
+Plugin 'davidhalter/jedi-vim'
 Plugin 'raichoo/haskell-vim'
 Plugin 'eagletmt/ghcmod-vim'
 Plugin 'eagletmt/neco-ghc'
@@ -159,6 +160,10 @@ endif
 " sql - please don't complete
 
 let g:omni_sql_no_default_maps = 1
+
+" jedi
+
+let g:jedi#popup_on_dot = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " KEY MAPPINGS

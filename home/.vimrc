@@ -19,7 +19,6 @@ Plugin 'tpope/vim-endwise'
 Plugin 'SirVer/ultisnips'
 Plugin 'ervandew/supertab'
 Plugin 'majutsushi/tagbar'
-Plugin 'tpope/vim-fugitive'
 Plugin 'Shougo/vimproc.vim'
 
 Plugin 'vim-ruby/vim-ruby'
@@ -32,16 +31,12 @@ Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'elzr/vim-json'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'fatih/vim-go'
-Plugin 'benmills/vim-golang-alternate'
-Plugin 'elixir-lang/vim-elixir'
 Plugin 'sbl/scvim'
 Plugin 'JuliaLang/julia-vim'
 Plugin 'rust-lang/rust.vim'
 Plugin 'raichoo/haskell-vim'
 Plugin 'eagletmt/ghcmod-vim'
 Plugin 'eagletmt/neco-ghc'
-Plugin 'nbouscal/vim-stylish-haskell'
-Plugin 'uarun/vim-protobuf'
 Plugin 'derekwyatt/vim-scala'
 
 call vundle#end()
@@ -111,7 +106,6 @@ set statusline+=\%r       "read only flag
 set statusline+=\%m       "modified flag
 set statusline+=\ %y      "filetype
 set statusline+=\ %{HasPaste()}      "paste
-set statusline+=\ %{fugitive#statusline()} "git status
 set statusline+=%=\ row\ %l/%L\ -\ %c "right lines + line
 
 set vb " disable error bell

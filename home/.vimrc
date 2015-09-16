@@ -1,6 +1,5 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VUNDLE
-set nocompatible
 filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -48,31 +47,17 @@ call vundle#end()
 
 filetype plugin indent on
 
-set history=500
-set encoding=utf-8
-set autoread
-
-"allow backspacing over everything in insert mode
-set backspace=indent,eol,start
 let mapleader = ","
 let g:mapleader = ","
 
-set showcmd                 "show incomplete cmds down the bottom
-set wildmenu                "enhanced command line completion
-set wildmode=list:longest   "shell like file completion
-
-set incsearch   "find the next match as we type the search
+set showcmd     "show incomplete cmds down the bottom
 set smartcase   "be smart when searching
 set ignorecase
-
-" ignorance is bliss
 set wildignore+=*/tmp/*,*/cache/*,*/dist/*,*.so,*.swp,*.zip
 
-"set numberwidth=2
 set nonumber
 set foldcolumn=0
 set ruler
-
 set nowrap
 
 " display hidden characters
@@ -81,10 +66,6 @@ set list
 
 " comment formatting help
 set tw=78
-set formatoptions-=t
-set formatoptions+=croql
-
-set autoindent
 set shiftwidth=2
 set softtabstop=2
 set tabstop=2
@@ -95,19 +76,13 @@ set noswapfile
 set nowritebackup
 
 set hidden "allow me to switch unsaved buffers
-
 set splitbelow
 set splitright
-
-" statusline
-
-set laststatus=2
 
 set statusline=\ %t       "tail of the filename
 set statusline+=\%r       "read only flag
 set statusline+=\%m       "modified flag
 set statusline+=\ %y      "filetype
-set statusline+=\ %{HasPaste()}      "paste
 set statusline+=%=\ row\ %l/%L\ -\ %c "right lines + line
 
 set vb " disable error bell
@@ -115,11 +90,7 @@ set kp=:help    " I barely need a man output
 
 syntax enable
 
-" set cursor in iTerm2
-" http://vim.wikia.com/wiki/Change_cursor_shape_in_different_modes
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-
+set background=dark
 colorscheme base16-flat
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -180,8 +151,6 @@ inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
-set pastetoggle=<F2>
-
 " global make cmd
 nnoremap <F5> :Make<CR>
 
@@ -214,13 +183,6 @@ command! -nargs=0 -bar Update if &modified
                            \|    endif
                            \|endif
 " FUNCS
-
-function! HasPaste()
-    if &paste
-        return '-PST-'
-    en
-    return ''
-endfunction
 
 function! s:setupWrapping()
   set wrap

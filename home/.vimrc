@@ -20,6 +20,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'ervandew/supertab'
 Plugin 'majutsushi/tagbar'
 Plugin 'Shougo/vimproc.vim'
+Plugin 'scrooloose/nerdtree'
 
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails'
@@ -185,7 +186,7 @@ set pastetoggle=<F2>
 nnoremap <F5> :Make<CR>
 
 nmap <Leader>t :TagbarToggle<CR>
-"nmap <leader>w :Update<CR>
+nmap <Leader>d :NERDTreeToggle<CR>
 
 " germanizm
 nmap <Leader>ä :tabnext<CR>

@@ -23,14 +23,13 @@ Plugin 'scrooloose/nerdtree'
 
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-rake'
-Plugin 'tpope/vim-bundler'
 Plugin 'othree/html5.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'elzr/vim-json'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'fatih/vim-go'
+Plugin 'benmills/vim-golang-alternate'
 Plugin 'sbl/scvim'
 Plugin 'JuliaLang/julia-vim'
 Plugin 'rust-lang/rust.vim'
@@ -47,11 +46,13 @@ call vundle#end()
 
 filetype plugin indent on
 
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 let mapleader = ","
 let g:mapleader = ","
 
 set showcmd     "show incomplete cmds down the bottom
 set smartcase   "be smart when searching
+set nohlsearch
 set ignorecase
 set wildignore+=*/tmp/*,*/cache/*,*/dist/*,*.so,*.swp,*.zip
 

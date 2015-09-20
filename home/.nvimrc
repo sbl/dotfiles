@@ -2,7 +2,7 @@
 " VUNDLE
 filetype off
 
-set rtp+=~/.nvim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
@@ -187,16 +187,37 @@ function! s:setupWrapping()
   set textwidth=78
 endfunction
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" AUTO CMD / Filetype based modifications
-
-au FileType make setl noexpandtab
-
-au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown | call s:setupWrapping()
-au BufRead,BufNewFile *.{handlebars,hbs} :UltiSnipsAddFiletypes html.mustache
-
-autocmd Filetype gitcommit setlocal spell textwidth=72
-
 " close preview automatically
 au CursorMovedI * if pumvisible() == 0|pclose|endif
 au InsertLeave * if pumvisible() == 0|pclose|endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" AUTO CMD / Filetype based modifications
+
+" make
+au FileType make setl noexpandtab
+
+" markdown
+au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown | call s:setupWrapping()
+
+" handlebars
+au BufRead,BufNewFile *.{handlebars,hbs} :UltiSnipsAddFiletypes html.mustache
+
+" golang
+let g:go_fmt_command = "goimports"
+
+au FileType go setl nolist
+au FileType go nmap gd <Plug>(go-def)
+au FileType go nmap K <Plug>(go-doc)
+au FileType go nmap <F5> <Plug>(go-build)
+au FileType go nmap <F6> <Plug>(go-run)
+au FileType go nmap <F12> <Plug>(go-test)
+
+" haskell
+au FileType haskell setlocal formatoptions+=croql
+au FileType haskell nnoremap <F5>   :w<CR>:!stack build<CR>
+au FileType haskell nnoremap <F6>   :w<CR>:!stack runghc %:p<CR>
+au FileType haskell nnoremap <F12>  :w<CR>:GhcModCheckAndLintAsync<CR>
+au FileType haskell setlocal nofoldenable
+
+autocmd Filetype gitcommit setlocal spell textwidth=72

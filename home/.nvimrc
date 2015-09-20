@@ -2,10 +2,10 @@
 " VUNDLE
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.nvim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'vim-scripts/matchit.zip'
 Plugin 'tpope/vim-ragtag'

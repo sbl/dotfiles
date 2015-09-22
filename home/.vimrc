@@ -30,8 +30,9 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'fatih/vim-go'
 Plugin 'benmills/vim-golang-alternate'
 Plugin 'sbl/scvim'
-Plugin 'neovimhaskell/haskell-vim'
 Plugin 'Shougo/vimproc'
+Plugin 'neovimhaskell/haskell-vim'
+Plugin 'eagletmt/neco-ghc'
 Plugin 'eagletmt/ghcmod-vim'
 Plugin 'derekwyatt/vim-scala'
 
@@ -212,6 +213,7 @@ au FileType go nmap K <Plug>(go-doc)
 au FileType go nmap <F5> <Plug>(go-build)
 au FileType go nmap <F6> <Plug>(go-run)
 au FileType go nmap <F12> <Plug>(go-test)
+au FileType setl noet ts=4 sw=4 sts=4
 
 " haskell
 au FileType haskell setlocal formatoptions+=croql

@@ -43,6 +43,19 @@ call vundle#end()
 
 filetype plugin indent on
 
+" some of the nvim defaults, for consistency
+set autoindent
+set autoread
+set backspace=indent,eol,start
+set complete=".,w,b,u,t"
+set display=lastline
+set encoding=utf-8
+set history=10000
+set nocompatible
+set smarttab
+set wildmenu
+set wildmode=list:longest,full
+
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 let mapleader = ","
 let g:mapleader = ","

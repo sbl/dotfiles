@@ -24,6 +24,7 @@ Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails'
 Plugin 'othree/html5.vim'
 Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'elzr/vim-json'
 Plugin 'kchmck/vim-coffee-script'
@@ -147,6 +148,8 @@ let g:omni_sql_no_default_maps = 1
 " jedi
 
 let g:jedi#popup_on_dot = 0
+
+let g:jsx_ext_required = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " KEY MAPPINGS

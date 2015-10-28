@@ -20,12 +20,6 @@ fi
 export GOPATH=$HOME/_dev/go
 
 #
-# Docker
-#
-
-$(boot2docker shellinit 2> /dev/null)
-
-#
 # Editors
 #
 

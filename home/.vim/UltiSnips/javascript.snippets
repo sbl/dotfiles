@@ -63,7 +63,7 @@ endsnippet
 
 snippet test "qunit test"
 test('${1:description}', function() {
-  $0
+	$0
 });
 endsnippet
 
@@ -95,4 +95,23 @@ it('$1', function(done) {
 	done();
 });
 endsnippet
+
+snippet react "react component"
+class ${1:Component} extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+
+	render() {
+		return (
+			$0
+		);
+	}
+}
+endsnippet
+
+snippet c "const"
+const ${1:name} = $0;
+endsnippet
+
 # vim:ft=snippets:

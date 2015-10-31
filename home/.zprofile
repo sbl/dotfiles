@@ -49,6 +49,7 @@ typeset -gU cdpath fpath mailpath path
 # Set the list of directories that Zsh searches for programs.
 path=(
   $GOPATH/bin
+  ~/.local/bin
   /usr/local/{bin,sbin}
   $path
 )

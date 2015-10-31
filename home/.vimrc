@@ -32,6 +32,7 @@ Plugin 'Shougo/vimproc'
 Plugin 'neovimhaskell/haskell-vim'
 Plugin 'eagletmt/neco-ghc'
 Plugin 'eagletmt/ghcmod-vim'
+Plugin 'nbouscal/vim-stylish-haskell'
 
 call vundle#end()
 
@@ -52,7 +53,6 @@ set smarttab
 set wildmenu
 set wildmode=list:longest,full
 
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 let mapleader = ","
 let g:mapleader = ","
 
@@ -86,6 +86,7 @@ set hidden "allow me to switch unsaved buffers
 set splitbelow
 set splitright
 
+set laststatus=2
 set statusline=\ %t       "tail of the filename
 set statusline+=\%r       "read only flag
 set statusline+=\%m       "modified flag
@@ -99,6 +100,14 @@ syntax enable
 
 set background=dark
 colorscheme base16-flat
+
+" neovim
+
+if has("nvim")
+  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+  tnoremap <Esc> <C-\><C-n>
+endif
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN SUPPORT
@@ -218,10 +227,17 @@ au FileType go nmap <F12> <Plug>(go-test)
 au FileType setl noet ts=4 sw=4 sts=4
 
 " haskell
+
+let g:haskellmode_completion_ghc = 0
+let g:necoghc_enable_detailed_browse = 1
+au FileType haskell setlocal omnifunc=necoghc#omnifunc
 au FileType haskell setlocal formatoptions+=croql
 au FileType haskell nnoremap <F5>   :w<CR>:!stack build<CR>
 au FileType haskell nnoremap <F6>   :w<CR>:!stack runghc %:p<CR>
 au FileType haskell nnoremap <F12>  :w<CR>:GhcModCheckAndLintAsync<CR>
+au FileType haskell nnoremap <Leader>ht  :GhcModInfoPreview<CR>
+au FileType haskell nnoremap <Leader>hi  :GhcModTypeInsert<CR>
 au FileType haskell setlocal nofoldenable
+set tags=tags;/,codex.tags;/
 
 autocmd Filetype gitcommit setlocal spell textwidth=72

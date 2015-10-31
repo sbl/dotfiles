@@ -21,13 +21,10 @@ Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdtree'
 
 Plugin 'vim-ruby/vim-ruby'
-Plugin 'tpope/vim-rails'
 Plugin 'othree/html5.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
-Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'elzr/vim-json'
-Plugin 'kchmck/vim-coffee-script'
 Plugin 'fatih/vim-go'
 Plugin 'benmills/vim-golang-alternate'
 Plugin 'sbl/scvim'
@@ -35,7 +32,6 @@ Plugin 'Shougo/vimproc'
 Plugin 'neovimhaskell/haskell-vim'
 Plugin 'eagletmt/neco-ghc'
 Plugin 'eagletmt/ghcmod-vim'
-Plugin 'derekwyatt/vim-scala'
 
 call vundle#end()
 
@@ -48,7 +44,6 @@ filetype plugin indent on
 set autoindent
 set autoread
 set backspace=indent,eol,start
-set complete=".,w,b,u,t"
 set display=lastline
 set encoding=utf-8
 set history=10000
@@ -111,12 +106,6 @@ colorscheme base16-flat
 " RAGTAG
 
 let g:ragtag_global_maps = 1
-
-" NETRW
-let g:netrw_banner       = 0
-let g:netrw_keepdir      = 1
-let g:netrw_liststyle    = 3 " or 3
-let g:netrw_sort_options = 'i'
 
 " SUPERTAB
 let g:SuperTabDefaultCompletionType = "context"
@@ -216,9 +205,6 @@ au FileType make setl noexpandtab
 
 " markdown
 au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown | call s:setupWrapping()
-
-" handlebars
-au BufRead,BufNewFile *.{handlebars,hbs} :UltiSnipsAddFiletypes html.mustache
 
 " golang
 let g:go_fmt_command = "goimports"

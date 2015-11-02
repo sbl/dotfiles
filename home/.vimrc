@@ -232,7 +232,7 @@ let g:haskellmode_completion_ghc = 0
 let g:necoghc_enable_detailed_browse = 1
 au FileType haskell setlocal omnifunc=necoghc#omnifunc
 au FileType haskell setlocal formatoptions+=croql
-au FileType haskell nnoremap <F5>   :w<CR>:!stack build<CR>
+au FileType haskell nnoremap <F5>   :w<CR>:!stack test<CR>
 au FileType haskell nnoremap <F6>   :w<CR>:!stack runghc %:p<CR>
 au FileType haskell nnoremap <F12>  :w<CR>:GhcModCheckAndLintAsync<CR>
 au FileType haskell nnoremap <Leader>ht  :GhcModInfoPreview<CR>

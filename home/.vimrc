@@ -99,6 +99,7 @@ set kp=:help    " I barely need a man output
 syntax enable
 
 set background=dark
+let base16colorspace=256
 colorscheme base16-flat
 
 " neovim

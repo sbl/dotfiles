@@ -28,11 +28,12 @@ Plugin 'elzr/vim-json'
 Plugin 'fatih/vim-go'
 Plugin 'benmills/vim-golang-alternate'
 Plugin 'sbl/scvim'
+Plugin 'nvie/vim-flake8'
+Plugin 'davidhalter/jedi-vim'
 Plugin 'Shougo/vimproc'
 Plugin 'neovimhaskell/haskell-vim'
 Plugin 'eagletmt/neco-ghc'
 Plugin 'eagletmt/ghcmod-vim'
-Plugin 'nbouscal/vim-stylish-haskell'
 
 call vundle#end()
 
@@ -147,7 +148,7 @@ let g:omni_sql_no_default_maps = 1
 " jedi
 
 let g:jedi#popup_on_dot = 0
-
+let g:jedi#force_py_version = 3
 let g:jsx_ext_required = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -226,6 +227,10 @@ au FileType go nmap <F5> <Plug>(go-build)
 au FileType go nmap <F6> <Plug>(go-run)
 au FileType go nmap <F12> <Plug>(go-test)
 au FileType setl noet ts=4 sw=4 sts=4
+
+" python
+
+au FileType python map <buffer> <F12> :call Flake8()<CR>
 
 " haskell
 

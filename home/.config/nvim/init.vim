@@ -2,7 +2,7 @@
 " VUNDLE
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.config/nvim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
@@ -196,6 +196,9 @@ command! -nargs=0 -bar Update if &modified
                            \|        confirm write
                            \|    endif
                            \|endif
+
+command! Vimrc :e ~/.config/nvim/init.vim
+
 " FUNCS
 
 function! s:setupWrapping()

@@ -27,13 +27,14 @@ Plugin 'mxw/vim-jsx'
 Plugin 'elzr/vim-json'
 Plugin 'fatih/vim-go'
 Plugin 'benmills/vim-golang-alternate'
-Plugin 'sbl/scvim'
-Plugin 'nvie/vim-flake8'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'Shougo/vimproc'
-Plugin 'neovimhaskell/haskell-vim'
-Plugin 'eagletmt/neco-ghc'
-Plugin 'eagletmt/ghcmod-vim'
+
+"Plugin 'sbl/scvim'
+"Plugin 'nvie/vim-flake8'
+"Plugin 'davidhalter/jedi-vim'
+"Plugin 'Shougo/vimproc'
+"Plugin 'neovimhaskell/haskell-vim'
+"Plugin 'eagletmt/neco-ghc'
+"Plugin 'eagletmt/ghcmod-vim'
 
 call vundle#end()
 
@@ -145,12 +146,6 @@ endif
 
 let g:omni_sql_no_default_maps = 1
 
-" jedi
-
-let g:jedi#popup_on_dot = 0
-let g:jedi#force_py_version = 3
-let g:jsx_ext_required = 0
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " KEY MAPPINGS
 
@@ -220,6 +215,11 @@ au FileType make setl noexpandtab
 " markdown
 au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown | call s:setupWrapping()
 
+" javascript
+let g:jsx_ext_required = 0
+au FileType javascript nnoremap <F6>   :w<CR>:!node %:p<CR>
+au FileType javascript nnoremap <F12>  :w<CR>:!npm run test<CR>
+
 " golang
 let g:go_fmt_command = "goimports"
 
@@ -232,7 +232,8 @@ au FileType go nmap <F12> <Plug>(go-test)
 au FileType setl noet ts=4 sw=4 sts=4
 
 " python
-
+let g:jedi#popup_on_dot = 0
+let g:jedi#force_py_version = 3
 au FileType python map <buffer> <F12> :call Flake8()<CR>
 
 " haskell

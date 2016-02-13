@@ -1,18 +1,10 @@
-#
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
+# zprezto
 
-# Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# Customize to your needs...
-
-source "$HOME/.homesick/repos/homeshick/homeshick.sh"
+# …
 
 alias vi=nvim
 alias vim=nvim
@@ -22,3 +14,8 @@ alias gll='git log --graph --pretty=format:"%C(bold red)%h%C(reset)%C(yellow)%d%
 
 BASE16_SHELL="$HOME/.config/base16-shell/base16-flat.dark.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+
+source "$HOME/.homesick/repos/homeshick/homeshick.sh"
+source "$HOME/google-cloud-sdk/path.zsh.inc"
+source "$HOME/google-cloud-sdk/completion.zsh.inc"
+source "/usr/local/bin/virtualenvwrapper_lazy.sh"

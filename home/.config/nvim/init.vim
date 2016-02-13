@@ -126,7 +126,7 @@ let g:ctrlp_root_markers = ['Makefile', 'package.json']
 let g:ctrlp_open_new_file = 'r'
 
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)|deps|_build|build|target|vendor|node_modules|bower_components$',
+  \ 'dir':  '\v[\/]\.(git|hg|svn)|venv|vendor|node_modules$',
   \ 'file': '\v\.(exe|so|dll|beam|class)$',
   \ }
 
@@ -235,8 +235,8 @@ au FileType go nmap <F12> <Plug>(go-test)
 au FileType setl noet ts=4 sw=4 sts=4
 
 " python
+let g:python_host_prog = '/usr/local/bin/python'
 let g:jedi#popup_on_dot = 0
-let g:jedi#force_py_version = 3
 let g:jedi#goto_command = "gd"
 au FileType python map <buffer> <F12> :call Flake8()<CR>
 

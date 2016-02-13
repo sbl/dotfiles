@@ -27,14 +27,13 @@ Plugin 'mxw/vim-jsx'
 Plugin 'elzr/vim-json'
 Plugin 'fatih/vim-go'
 Plugin 'benmills/vim-golang-alternate'
-
+Plugin 'nvie/vim-flake8'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'Shougo/vimproc'
+Plugin 'neovimhaskell/haskell-vim'
+Plugin 'eagletmt/neco-ghc'
+Plugin 'eagletmt/ghcmod-vim'
 "Plugin 'sbl/scvim'
-"Plugin 'nvie/vim-flake8'
-"Plugin 'davidhalter/jedi-vim'
-"Plugin 'Shougo/vimproc'
-"Plugin 'neovimhaskell/haskell-vim'
-"Plugin 'eagletmt/neco-ghc'
-"Plugin 'eagletmt/ghcmod-vim'
 
 call vundle#end()
 
@@ -175,6 +174,10 @@ nmap <Leader>a= :Tabularize /=<CR>
 vmap <Leader>a= :Tabularize /=<CR>
 nmap <Leader>a: :Tabularize /:\zs<CR>
 vmap <Leader>a: :Tabularize /:\zs<CR>
+nmap <Leader>a- :Tabularize /-><CR>
+vmap <Leader>a- :Tabularize /-><CR>
+nmap <Leader>a; :Tabularize /::<CR>
+vmap <Leader>a; :Tabularize /::<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM COMMANDS
@@ -234,10 +237,12 @@ au FileType setl noet ts=4 sw=4 sts=4
 " python
 let g:jedi#popup_on_dot = 0
 let g:jedi#force_py_version = 3
+let g:jedi#goto_command = "gd"
 au FileType python map <buffer> <F12> :call Flake8()<CR>
 
 " haskell
 
+let g:haskell_tabular = 1
 let g:haskellmode_completion_ghc = 0
 let g:necoghc_enable_detailed_browse = 1
 au FileType haskell setlocal omnifunc=necoghc#omnifunc

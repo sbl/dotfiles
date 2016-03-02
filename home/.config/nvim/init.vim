@@ -20,7 +20,7 @@ Plugin 'ervandew/supertab'
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdtree'
 
-Plugin 'vim-ruby/vim-ruby'
+Plugin 'kchmck/vim-coffee-script'
 Plugin 'othree/html5.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
@@ -61,7 +61,7 @@ set showcmd     "show incomplete cmds down the bottom
 set smartcase   "be smart when searching
 set nohlsearch
 set ignorecase
-set wildignore+=*/tmp/*,*/cache/*,*/dist/*,*.so,*.swp,*.zip
+set wildignore+=*/tmp/*,*/cache/*,*/dist/*,*.so,*.swp,*.zip,*.pyc
 
 set nonumber
 set foldcolumn=0
@@ -239,6 +239,7 @@ let g:python_host_prog = '/usr/local/bin/python'
 let g:jedi#popup_on_dot = 0
 let g:jedi#goto_command = "gd"
 au FileType python map <buffer> <F12> :call Flake8()<CR>
+au FileType python map <buffer> <F6> :w<CR>:!python %:p<CR>
 
 " haskell
 

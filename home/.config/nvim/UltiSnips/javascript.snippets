@@ -59,22 +59,6 @@ var _this = this
 $0
 endsnippet
 
-# qunit
-
-snippet test "qunit test"
-test('${1:description}', function() {
-	$0
-})
-endsnippet
-
-snippet equal "qunit equal"
-equal(${1:actual}, ${2:expected})
-endsnippet
-
-snippet ok "qunit ok"
-ok(${1:state}${2:, '${3:message}'})
-endsnippet
-
 # mocha
 
 snippet desc "mocha describe"
@@ -100,20 +84,28 @@ snippet exp "expectation"
 expect($1).to${2:Equal}($0)
 endsnippet
 
+snippet test "react test"
+import expect from 'expect'
+import React from 'react'
+import { mount, shallow } from 'enzyme';
+
+import ${1:Thing} from '../../src/components/$1.js'
+
+describe('<$1 />', () => {
+	$0
+})
+endsnippet
+
 snippet react "react component"
-import React, { Component } from 'react'
+import React from 'react'
 
-class ${1:Component} extends Component {
-	constructor(props) {
-		super(props)
-	}
-
-	render() {
-		return (
+const ${1:Component} = (props) => {
+	return (
 			$0
-		)
-	}
+	)
 }
+
+export default $1
 endsnippet
 
 snippet c "const"

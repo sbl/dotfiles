@@ -21,3 +21,7 @@ xcuserdata
 
 # vagrant
 .vagrant
+
+# autoenv
+
+.autoenv.zsh

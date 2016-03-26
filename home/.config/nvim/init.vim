@@ -26,7 +26,6 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'elzr/vim-json'
 Plugin 'fatih/vim-go'
-Plugin 'benmills/vim-golang-alternate'
 Plugin 'nvie/vim-flake8'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'Shougo/vimproc'
@@ -127,7 +126,7 @@ let g:ctrlp_open_new_file = 'r'
 
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)|venv|vendor|node_modules$',
-  \ 'file': '\v\.(exe|so|dll|beam|class)$',
+  \ 'file': '\v\.(exe|so|dll|pyc|beam|class)$',
   \ }
 
 " SCVIM
@@ -226,12 +225,17 @@ au FileType javascript nnoremap <F12>  :w<CR>:!npm run test<CR>
 " golang
 let g:go_fmt_command = "goimports"
 
-au FileType go setl nolist
-au FileType go nmap gd <Plug>(go-def)
-au FileType go nmap K <Plug>(go-doc)
-au FileType go nmap <F5> <Plug>(go-build)
-au FileType go nmap <F6> <Plug>(go-run)
-au FileType go nmap <F12> <Plug>(go-test)
+augroup go
+  au!
+  au FileType go setl nolist
+  au FileType go nmap gd <Plug>(go-def)
+  au FileType go nmap K <Plug>(go-doc)
+  au FileType go nmap <F5> <Plug>(go-build)
+  au FileType go nmap <F6> <Plug>(go-run)
+  au FileType go nmap <F12> <Plug>(go-test)
+  au Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+augroup END
+
 au FileType setl noet ts=4 sw=4 sts=4
 
 " python

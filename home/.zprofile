@@ -10,7 +10,7 @@ fi
 # Go
 #
 
-export GOPATH=$HOME/_dev/go
+export GOPATH=$HOME
 
 #
 # Editors
@@ -42,7 +42,7 @@ typeset -gU cdpath fpath mailpath path
 # Set the list of directories that Zsh searches for programs.
 path=(
   $GOPATH/bin
-  $HOME/_dev/go_appengine
+  ~/go_appengine
   ~/.local/bin
   /usr/local/{bin,sbin}
   $path

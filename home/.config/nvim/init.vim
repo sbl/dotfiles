@@ -26,6 +26,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'elzr/vim-json'
 Plugin 'fatih/vim-go'
+Plugin 'uarun/vim-protobuf'
 Plugin 'nvie/vim-flake8'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'hynek/vim-python-pep8-indent'
@@ -33,7 +34,7 @@ Plugin 'hynek/vim-python-pep8-indent'
 "Plugin 'neovimhaskell/haskell-vim'
 "Plugin 'eagletmt/neco-ghc'
 "Plugin 'eagletmt/ghcmod-vim'
-"Plugin 'sbl/scvim'
+Plugin 'sbl/scvim'
 
 call vundle#end()
 
@@ -110,6 +111,10 @@ if has("nvim")
   tnoremap <Esc> <C-\><C-n>
 endif
 
+" python support
+"
+let g:python_host_prog = '/Users/stephen/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '/Users/stephen/.pyenv/versions/neovim3/bin/python'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN SUPPORT

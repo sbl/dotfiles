@@ -25,3 +25,4 @@ xcuserdata
 # autoenv
 
 .autoenv.zsh
+.python-version

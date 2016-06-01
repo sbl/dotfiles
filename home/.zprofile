@@ -13,6 +13,14 @@ fi
 export GOPATH=$HOME
 
 #
+# Python
+#
+
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+#
 # Editors
 #
 

@@ -7,22 +7,8 @@
 *.pyc
 tags
 
-# xcode
-*.pbxuser
-*.perspective
-*.perspectivev3
-xcuserdata
-*.xccheckout
-
-# eclipse
-.project
-.classpath
-.settings/
-
-# vagrant
-.vagrant
-
 # autoenv
 
 .autoenv.zsh
+.autoenv_leave.zsh
 .python-version

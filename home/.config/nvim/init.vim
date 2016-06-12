@@ -20,20 +20,12 @@ Plugin 'ervandew/supertab'
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdtree'
 
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'othree/html5.vim'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-Plugin 'elzr/vim-json'
+" Language Support
+Plugin 'sheerun/vim-polyglot'
 Plugin 'fatih/vim-go'
-Plugin 'uarun/vim-protobuf'
+Plugin 'flowtype/vim-flow'
 Plugin 'nvie/vim-flake8'
 Plugin 'davidhalter/jedi-vim'
-Plugin 'hynek/vim-python-pep8-indent'
-"Plugin 'Shougo/vimproc'
-"Plugin 'neovimhaskell/haskell-vim'
-"Plugin 'eagletmt/neco-ghc'
-"Plugin 'eagletmt/ghcmod-vim'
 Plugin 'sbl/scvim'
 
 call vundle#end()

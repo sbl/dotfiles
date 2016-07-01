@@ -12,21 +12,20 @@ Plugin 'tpope/vim-ragtag'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'godlygeek/tabular'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-endwise'
 Plugin 'SirVer/ultisnips'
 Plugin 'ervandew/supertab'
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdtree'
+Plugin 'neomake/neomake'
 
 " Language Support
 Plugin 'sheerun/vim-polyglot'
-Plugin 'fatih/vim-go'
 Plugin 'flowtype/vim-flow'
-Plugin 'nvie/vim-flake8'
+Plugin 'fatih/vim-go'
 Plugin 'davidhalter/jedi-vim'
-Plugin 'sbl/scvim'
+"Plugin 'sbl/scvim'
 
 call vundle#end()
 
@@ -115,7 +114,6 @@ let g:python3_host_prog = '/Users/stephen/.pyenv/versions/neovim3/bin/python'
 
 let NERDTreeIgnore=['\.pyc$']
 
-
 " RAGTAG
 
 let g:ragtag_global_maps = 1
@@ -131,6 +129,11 @@ let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)|venv|vendor|node_modules$',
   \ 'file': '\v\.(exe|so|dll|pyc|beam|class)$',
   \ }
+
+" neomake
+
+let g:neomake_javascript_enabled_makers = ['eslint', 'flow']
+autocmd! BufWritePost * Neomake
 
 " SCVIM
 
@@ -162,7 +165,8 @@ nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
 " global make cmd
-nnoremap <F5> :Make<CR>
+nnoremap <F5> :Neomake!<CR>
+nnoremap <F12> :Neomake %<CR>
 
 nmap <Leader>t :TagbarToggle<CR>
 nmap <Leader>d :NERDTreeToggle<CR>
@@ -170,16 +174,6 @@ nmap <Leader>d :NERDTreeToggle<CR>
 " germanizm
 nmap <Leader>ä :tabnext<CR>
 nmap <Leader>ö :tabprevious<CR>
-
-" tabularize
-nmap <Leader>a= :Tabularize /=<CR>
-vmap <Leader>a= :Tabularize /=<CR>
-nmap <Leader>a: :Tabularize /:\zs<CR>
-vmap <Leader>a: :Tabularize /:\zs<CR>
-nmap <Leader>a- :Tabularize /-><CR>
-vmap <Leader>a- :Tabularize /-><CR>
-nmap <Leader>a; :Tabularize /::<CR>
-vmap <Leader>a; :Tabularize /::<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM COMMANDS
@@ -189,14 +183,6 @@ command! CD cd %:p:h
 command! Open silent !open %:p:h 
 command! Todo silent Ack TODO\\|FIXME\\|CHANGED\\|FIX
 command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
-command! -nargs=0 -bar Update if &modified
-                           \|    if empty(bufname('%'))
-                           \|        browse confirm write
-                           \|    else
-                           \|        confirm write
-                           \|    endif
-                           \|endif
-
 command! Vimrc :e ~/.config/nvim/init.vim
 
 " FUNCS
@@ -221,6 +207,9 @@ au FileType make setl noexpandtab
 au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown | call s:setupWrapping()
 
 " javascript
+au FileType javascript setlocal errorformat=%f:\ line\ %l\\,\ col\ %c\\,\ %trror\ -\ %m,
+au FileType javascript setlocal makeprg=eslint\ -f\ compact\ .
+
 let g:jsx_ext_required = 0
 au FileType javascript nnoremap <F6>   :w<CR>:!node %:p<CR>
 au FileType javascript nnoremap <F12>  :w<CR>:!npm run test<CR>
@@ -233,7 +222,6 @@ augroup go
   au FileType go setl nolist
   au FileType go nmap gd <Plug>(go-def)
   au FileType go nmap K <Plug>(go-doc)
-  au FileType go nmap <F5> <Plug>(go-build)
   au FileType go nmap <F6> <Plug>(go-run)
   au FileType go nmap <F12> <Plug>(go-test)
   au Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
@@ -245,7 +233,6 @@ au FileType setl noet ts=4 sw=4 sts=4
 let g:python_host_prog = '/usr/local/bin/python'
 let g:jedi#popup_on_dot = 0
 let g:jedi#goto_command = "gd"
-au FileType python map <buffer> <F12> :call Flake8()<CR>
 au FileType python map <buffer> <F6> :w<CR>:!python %:p<CR>
 
 " haskell

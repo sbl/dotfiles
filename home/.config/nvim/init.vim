@@ -102,11 +102,6 @@ if has("nvim")
   tnoremap <Esc> <C-\><C-n>
 endif
 
-" python support
-"
-let g:python_host_prog = $HOME . '/.pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN SUPPORT
 
@@ -230,24 +225,14 @@ augroup END
 au FileType setl noet ts=4 sw=4 sts=4
 
 " python
-let g:python_host_prog = '/usr/local/bin/python'
+
+let g:python_host_prog = '/Users/stephen/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '/Users/stephen/.pyenv/versions/neovim3/bin/python'
+
 let g:jedi#popup_on_dot = 0
 let g:jedi#goto_command = "gd"
 au FileType python map <buffer> <F6> :w<CR>:!python %:p<CR>
 
-" haskell
-
-let g:haskell_tabular = 1
-let g:haskellmode_completion_ghc = 0
-let g:necoghc_enable_detailed_browse = 1
-au FileType haskell setlocal omnifunc=necoghc#omnifunc
-au FileType haskell setlocal formatoptions+=croql
-au FileType haskell nnoremap <F5>   :w<CR>:!stack test<CR>
-au FileType haskell nnoremap <F6>   :w<CR>:!stack runghc %:p<CR>
-au FileType haskell nnoremap <F12>  :w<CR>:GhcModCheckAndLintAsync<CR>
-au FileType haskell nnoremap <Leader>ht  :GhcModInfoPreview<CR>
-au FileType haskell nnoremap <Leader>hi  :GhcModTypeInsert<CR>
-au FileType haskell setlocal nofoldenable
-set tags=tags;/,codex.tags;/
+" git
 
 autocmd Filetype gitcommit setlocal spell textwidth=72

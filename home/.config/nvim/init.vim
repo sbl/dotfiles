@@ -12,11 +12,11 @@ Plugin 'tpope/vim-ragtag'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-endwise'
 Plugin 'SirVer/ultisnips'
 Plugin 'ervandew/supertab'
-Plugin 'majutsushi/tagbar'
+" Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdtree'
 Plugin 'neomake/neomake'
 
@@ -229,6 +229,7 @@ au FileType setl noet ts=4 sw=4 sts=4
 let g:python_host_prog = '/Users/stephen/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = '/Users/stephen/.pyenv/versions/neovim3/bin/python'
 
+let g:ultisnips_python_quoting_style = 'single'
 let g:jedi#popup_on_dot = 0
 let g:jedi#goto_command = "gd"
 au FileType python map <buffer> <F6> :w<CR>:!python %:p<CR>

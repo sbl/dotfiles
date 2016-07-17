@@ -1,20 +1,10 @@
 # dotfiles
 
-managed with homeshick
+dotfiles to set up my system
 
-### get homeshick
-`git clone git://github.com/andsens/homeshick.git $HOME/.homesick/repos/homeshick`
+### install
 
-### get this
-`$HOME/.homesick/repos/homeshick/bin/homeshick clone sbl/dotfiles`
-
-### get zprezto since we use zsh
-
-`git clone git@github.com:sbl/prezto.git ~/.zprezto`
-
-### link up the files
-
-`$HOME/.homesick/repos/homeshick/bin/homeshick link dotfiles`
+`./bootstrap.sh`
 
 ### note
 

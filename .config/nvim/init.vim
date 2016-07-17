@@ -226,8 +226,7 @@ au FileType setl noet ts=4 sw=4 sts=4
 
 " python
 
-let g:python_host_prog = '/Users/stephen/.pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog = '/Users/stephen/.pyenv/versions/neovim3/bin/python'
+let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim/bin/python'
 
 let g:ultisnips_python_quoting_style = 'single'
 let g:jedi#popup_on_dot = 0

@@ -5,6 +5,10 @@ cd "$(dirname "${BASH_SOURCE}")";
 git pull origin master;
 
 function doIt() {
+  if ! [[ -d $HOME/.zprezto ]]; then
+    git clone git@github.com:sbl/prezto.git $HOME/.zprezto
+  fi;
+
 	rsync --exclude ".git/" \
 		--exclude ".DS_Store" \
 		--exclude "bootstrap.sh" \

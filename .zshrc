@@ -15,6 +15,5 @@ alias gll='git log --graph --pretty=format:"%C(bold red)%h%C(reset)%C(yellow)%d%
 BASE16_SHELL="$HOME/.config/base16-shell/base16-flat.dark.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
-source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 source "$HOME/google-cloud-sdk/path.zsh.inc"
 source "$HOME/google-cloud-sdk/completion.zsh.inc"

@@ -16,9 +16,6 @@ export GOPATH=$HOME
 # Python
 #
 
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
 
 #
 # Editors
@@ -49,8 +46,8 @@ typeset -gU cdpath fpath mailpath path
 
 # Set the list of directories that Zsh searches for programs.
 path=(
+  $HOME/.pyenv/bin
   $GOPATH/bin
-  ~/go_appengine
   ~/.local/bin
   /usr/local/{bin,sbin}
   $path

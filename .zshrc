@@ -9,6 +9,11 @@ fi
 alias vi=nvim
 alias vim=nvim
 
+# py
+
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
 # thanks to attila!
 alias gll='git log --graph --pretty=format:"%C(bold red)%h%C(reset)%C(yellow)%d%C(reset) %C(red)(%cr)%C(reset) %s — %C(blue)%ae%C(reset)" --abbrev-commit'
 

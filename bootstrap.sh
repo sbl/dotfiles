@@ -5,10 +5,6 @@ cd "$(dirname "${BASH_SOURCE}")";
 git pull origin master;
 
 function doIt() {
-  if ! [[ -d $HOME/.zprezto ]]; then
-    git clone git@github.com:sbl/prezto.git $HOME/.zprezto
-  fi;
-
   find $PWD -mindepth 1 -prune \
     -name '.*' \
     ! -iname '.git' \

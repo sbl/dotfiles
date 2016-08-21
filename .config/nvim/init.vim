@@ -2,32 +2,27 @@
 " VUNDLE
 filetype off
 
-set rtp+=~/.config/nvim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.config/nvim/bundle')
 
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'mileszs/ack.vim'
-Plugin 'vim-scripts/matchit.zip'
-Plugin 'tpope/vim-ragtag'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'tpope/vim-endwise'
-Plugin 'SirVer/ultisnips'
-Plugin 'ervandew/supertab'
-" Plugin 'majutsushi/tagbar'
-Plugin 'scrooloose/nerdtree'
-Plugin 'neomake/neomake'
+Plug 'mileszs/ack.vim'
+Plug 'vim-scripts/matchit.zip'
+Plug 'tpope/vim-ragtag'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'scrooloose/nerdcommenter'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-endwise'
+Plug 'SirVer/ultisnips'
+Plug 'ervandew/supertab'
+Plug 'scrooloose/nerdtree'
+Plug 'neomake/neomake'
 
-" Language Support
-Plugin 'sheerun/vim-polyglot'
-Plugin 'flowtype/vim-flow'
-Plugin 'fatih/vim-go'
-Plugin 'davidhalter/jedi-vim'
-"Plugin 'sbl/scvim'
+Plug 'flowtype/vim-flow'
+Plug 'sheerun/vim-polyglot'
+Plug 'fatih/vim-go'
+Plug 'davidhalter/jedi-vim'
 
-call vundle#end()
+call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GENERAL
@@ -127,7 +122,10 @@ let g:ctrlp_custom_ignore = {
 
 " neomake
 
-let g:neomake_javascript_enabled_makers = ['eslint', 'flow']
+"let g:neomake_javascript_enabled_makers = ['eslint', 'flow']
+let g:neomake_python_flake8_maker = {
+  \ 'exe': $HOME . '/bin/flake8'
+  \ }
 autocmd! BufWritePost * Neomake
 
 " SCVIM
@@ -226,12 +224,15 @@ au FileType setl noet ts=4 sw=4 sts=4
 
 " python
 
-let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim/bin/python'
+let g:python_host_prog = $HOME . '/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
 
 let g:ultisnips_python_quoting_style = 'single'
 let g:jedi#popup_on_dot = 0
 let g:jedi#goto_command = "gd"
 au FileType python map <buffer> <F6> :w<CR>:!python %:p<CR>
+
+command! Yapf silent 0,$!yapf
 
 " git
 

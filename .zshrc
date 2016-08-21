@@ -9,18 +9,15 @@ fi
 alias vi=nvim
 alias vim=nvim
 
-# py
-
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
 # thanks to attila!
 alias gll='git log --graph --pretty=format:"%C(bold red)%h%C(reset)%C(yellow)%d%C(reset) %C(red)(%cr)%C(reset) %s — %C(blue)%ae%C(reset)" --abbrev-commit'
 
 BASE16_SHELL="$HOME/.config/base16-shell/base16-flat.dark.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
-export CLOUDSDK_PYTHON=/usr/bin/python
-source "$HOME/google-cloud-sdk/path.zsh.inc"
-source "$HOME/google-cloud-sdk/completion.zsh.inc"
+#export CLOUDSDK_PYTHON=/usr/bin/python
+#source "$HOME/google-cloud-sdk/path.zsh.inc"
+#source "$HOME/google-cloud-sdk/completion.zsh.inc"

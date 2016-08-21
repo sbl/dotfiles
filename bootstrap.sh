@@ -9,22 +9,22 @@ function doIt() {
     git clone git@github.com:sbl/prezto.git $HOME/.zprezto
   fi;
 
-	rsync --exclude ".git/" \
-		--exclude ".DS_Store" \
-		--exclude "bootstrap.sh" \
-		--exclude "brew.sh" \
-		--exclude "README.md" \
-		-avh --no-perms . ~;
-	zsh ~/.zprofile;
+  find $PWD -mindepth 1 -prune \
+    -name '.*' \
+    ! -iname '.git' \
+    ! -iname '.DS_Store' \
+    -exec ln -is {} $HOME \;
+
+  zsh ~/.zprofile;
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
-	doIt;
+  doIt;
 else
-	read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
-	echo "";
-	if [[ $REPLY =~ ^[Yy]$ ]]; then
-		doIt;
-	fi;
+  read -p "Linking to your '~'. Are you sure? (y/n) " -n 1;
+  echo "";
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    doIt;
+  fi;
 fi;
 unset doIt;

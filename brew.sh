@@ -3,6 +3,7 @@
 # install homebrew things we like
 
 brew install zsh
+brew install the_silver_searcher
 brew install git
 brew install node
 brew install go

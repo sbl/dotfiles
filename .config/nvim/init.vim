@@ -36,7 +36,6 @@ set backspace=indent,eol,start
 set display=lastline
 set encoding=utf-8
 set history=10000
-set nocompatible
 set smarttab
 set wildmenu
 set wildmode=list:longest,full

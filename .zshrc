@@ -18,6 +18,6 @@ BASE16_SHELL="$HOME/.config/base16-shell/base16-flat.dark.sh"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-#export CLOUDSDK_PYTHON=/usr/bin/python
-#source "$HOME/google-cloud-sdk/path.zsh.inc"
-#source "$HOME/google-cloud-sdk/completion.zsh.inc"
+export CLOUDSDK_PYTHON=/usr/bin/python
+source "$HOME/google-cloud-sdk/path.zsh.inc"
+source "$HOME/google-cloud-sdk/completion.zsh.inc"

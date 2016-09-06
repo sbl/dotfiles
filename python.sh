@@ -9,8 +9,8 @@ echo "installing pyenv"
 brew install pyenv
 
 echo "installing py2 + py3"
-pyenv install $py2
-pyenv install $py3
+env PYTHON_CONFIGURE_OPTS="--enable-framework CC=clang" pyenv install $py2
+env PYTHON_CONFIGURE_OPTS="--enable-framework CC=clang" pyenv install $py3
 
 echo "setting up virtualenvs"
 pyenv virtualenv $py2 neovim2

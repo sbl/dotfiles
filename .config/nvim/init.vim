@@ -1,5 +1,4 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" VUNDLE
 filetype off
 
 call plug#begin('~/.config/nvim/bundle')
@@ -17,10 +16,14 @@ Plug 'ervandew/supertab'
 Plug 'scrooloose/nerdtree'
 Plug 'neomake/neomake'
 
-Plug 'flowtype/vim-flow'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-jedi'
+Plug 'davidhalter/jedi-vim'
+Plug 'zchee/deoplete-go', { 'do': 'make'}
+
 Plug 'sheerun/vim-polyglot'
 Plug 'fatih/vim-go'
-Plug 'davidhalter/jedi-vim'
+Plug 'flowtype/vim-flow'
 
 call plug#end()
 
@@ -82,6 +85,7 @@ set statusline+=%=\ row\ %l/%L\ -\ %c "right lines + line
 
 set vb " disable error bell
 set kp=:help    " I barely need a man output
+set clipboard+=unnamedplus
 
 syntax enable
 
@@ -107,12 +111,25 @@ let NERDTreeIgnore=['\.pyc$']
 
 let g:ragtag_global_maps = 1
 
-" SUPERTAB
+" deoplete
+let g:deoplete#enable_at_startup = 1
 let g:SuperTabDefaultCompletionType = "context"
+
+inoremap <silent><expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+" close preview automatically
+au CursorMovedI * if pumvisible() == 0|pclose|endif
+au InsertLeave * if pumvisible() == 0|pclose|endif
 
 " CTRLP
 let g:ctrlp_root_markers = ['Makefile', 'package.json']
 let g:ctrlp_open_new_file = 'r'
+let g:ctrlp_buftag_types = {
+  \ 'go' : '--language-force=go --golang-types=ft'
+  \ }
 
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)|venv|vendor|node_modules$',
@@ -121,16 +138,10 @@ let g:ctrlp_custom_ignore = {
 
 " neomake
 
-"let g:neomake_javascript_enabled_makers = ['eslint', 'flow']
 let g:neomake_python_flake8_maker = {
   \ 'exe': $HOME . '/bin/flake8'
   \ }
 autocmd! BufWritePost * Neomake
-
-" SCVIM
-
-let g:sclangTerm = "open -a iTerm.app"
-let g:sclangKillOnExit = 0
 
 " ack -> ag
 
@@ -156,23 +167,19 @@ inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
-" global make cmd
-nnoremap <F5> :Neomake!<CR>
-nnoremap <F12> :Neomake %<CR>
-
-nmap <Leader>t :TagbarToggle<CR>
-nmap <Leader>d :NERDTreeToggle<CR>
+nnoremap <Leader>d :NERDTreeToggle<CR>
+nnoremap <Leader>t :CtrlPBufTag<CR>
 
 " germanizm
-nmap <Leader>ä :tabnext<CR>
-nmap <Leader>ö :tabprevious<CR>
+nnoremap <Leader>ä :tabnext<CR>
+nnoremap <Leader>ö :tabprevious<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM COMMANDS
 
 command! Make silent make | cw 5 | redraw!
 command! CD cd %:p:h
-command! Open silent !open %:p:h 
+command! Open silent !open %:p:h
 command! Todo silent Ack TODO\\|FIXME\\|CHANGED\\|FIX
 command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
 command! Vimrc :e ~/.config/nvim/init.vim
@@ -184,10 +191,6 @@ function! s:setupWrapping()
   set wrapmargin=2
   set textwidth=78
 endfunction
-
-" close preview automatically
-au CursorMovedI * if pumvisible() == 0|pclose|endif
-au InsertLeave * if pumvisible() == 0|pclose|endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " AUTO CMD / Filetype based modifications
@@ -212,14 +215,11 @@ let g:go_fmt_command = "goimports"
 augroup go
   au!
   au FileType go setl nolist
-  au FileType go nmap gd <Plug>(go-def)
-  au FileType go nmap K <Plug>(go-doc)
   au FileType go nmap <F6> <Plug>(go-run)
   au FileType go nmap <F12> <Plug>(go-test)
   au Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
 augroup END
 
-au FileType setl noet ts=4 sw=4 sts=4
 
 " python
 
@@ -227,8 +227,12 @@ let g:python_host_prog = $HOME . '/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
 
 let g:ultisnips_python_quoting_style = 'single'
-let g:jedi#popup_on_dot = 0
+
+" deoplete is used for completions
+let g:jedi#completions_enabled = 0
 let g:jedi#goto_command = "gd"
+
+"autocmd BufWinEnter '__doc__' setlocal bufhidden=delete
 au FileType python map <buffer> <F6> :w<CR>:!python %:p<CR>
 
 command! Yapf silent 0,$!yapf

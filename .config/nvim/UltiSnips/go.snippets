@@ -10,13 +10,9 @@ snippet /\(wr/ "handler signature" r
 (w http.ResponseWriter, r *http.Request)
 endsnippet
 
-snippet /\(cwr/ "context handler signature" r
-(ctx context.Context, w http.ResponseWriter, r *http.Request)
-endsnippet
-
 snippet ass "assertion like"
-if want, got := ${1:want}, ${2:got}; ${3:want != got} {
-	t.Errorf("want: %+v, got: %+v", want, got)
+if got, want := ${1:got}, ${2:want}; ${3:got != want} {
+	t.Errorf("${4:thing} == %+v want %+v", got, want)
 }
 endsnippet
 

@@ -3,14 +3,15 @@ filetype off
 
 call plug#begin('~/.config/nvim/bundle')
 
-Plug 'mileszs/ack.vim'
-Plug 'vim-scripts/matchit.zip'
+Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-endwise'
+Plug 'mileszs/ack.vim'
+Plug 'vim-scripts/matchit.zip'
 Plug 'scrooloose/nerdcommenter'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'tpope/vim-endwise'
 Plug 'SirVer/ultisnips'
 Plug 'ervandew/supertab'
 Plug 'scrooloose/nerdtree'
@@ -18,29 +19,26 @@ Plug 'neomake/neomake'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
-Plug 'davidhalter/jedi-vim'
 Plug 'zchee/deoplete-go', { 'do': 'make'}
+Plug 'steelsojka/deoplete-flow'
+Plug 'davidhalter/jedi-vim'
 
 Plug 'sheerun/vim-polyglot'
 Plug 'fatih/vim-go'
 Plug 'flowtype/vim-flow'
+"Plug 'elmcast/elm-vim'
 
 call plug#end()
+
+filetype on
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GENERAL
 
-filetype plugin indent on
+" reload when saving this
+autocmd! BufWritePost init.vim source ~/.config/nvim/init.vim
 
-" some of the nvim defaults, for consistency
-set autoindent
-set autoread
-set backspace=indent,eol,start
-set display=lastline
-set encoding=utf-8
 set history=10000
-set smarttab
-set wildmenu
 set wildmode=list:longest,full
 
 let mapleader = ","
@@ -54,7 +52,6 @@ set wildignore+=*/tmp/*,*/cache/*,*/dist/*,*.so,*.swp,*.zip,*.pyc
 
 set nonumber
 set foldcolumn=0
-set ruler
 set nowrap
 
 " display hidden characters
@@ -76,7 +73,6 @@ set hidden "allow me to switch unsaved buffers
 set splitbelow
 set splitright
 
-set laststatus=2
 set statusline=\ %t       "tail of the filename
 set statusline+=\%r       "read only flag
 set statusline+=\%m       "modified flag
@@ -85,9 +81,7 @@ set statusline+=%=\ row\ %l/%L\ -\ %c "right lines + line
 
 set vb " disable error bell
 set kp=:help    " I barely need a man output
-set clipboard+=unnamedplus
-
-syntax enable
+"set clipboard+=unnamedplus
 
 set background=dark
 let base16colorspace=256
@@ -96,6 +90,7 @@ colorscheme base16-flat
 " neovim
 
 if has("nvim")
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
   tnoremap <Esc> <C-\><C-n>
 endif
@@ -106,6 +101,7 @@ endif
 " NERDTree
 
 let NERDTreeIgnore=['\.pyc$']
+let g:NERDTreeMinimalUI = 1
 
 " RAGTAG
 
@@ -132,7 +128,7 @@ let g:ctrlp_buftag_types = {
   \ }
 
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)|venv|vendor|node_modules$',
+  \ 'dir':  '\v[\/]\.(git|hg|svn)|venv|elm-stuff|vendor|node_modules$',
   \ 'file': '\v\.(exe|so|dll|pyc|beam|class)$',
   \ }
 
@@ -141,6 +137,10 @@ let g:ctrlp_custom_ignore = {
 let g:neomake_python_flake8_maker = {
   \ 'exe': $HOME . '/bin/flake8'
   \ }
+
+let g:neomake_javascript_enabled_makers = ['flow']
+let g:neomake_jsx_enabled_makers = ['flow']
+
 autocmd! BufWritePost * Neomake
 
 " ack -> ag
@@ -202,12 +202,10 @@ au FileType make setl noexpandtab
 au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown | call s:setupWrapping()
 
 " javascript
-au FileType javascript setlocal errorformat=%f:\ line\ %l\\,\ col\ %c\\,\ %trror\ -\ %m,
-au FileType javascript setlocal makeprg=eslint\ -f\ compact\ .
-
-let g:jsx_ext_required = 0
+let g:flow#enable = 0
+let g:flow#autoclose = 1
 au FileType javascript nnoremap <F6>   :w<CR>:!node %:p<CR>
-au FileType javascript nnoremap <F12>  :w<CR>:!npm run test<CR>
+au FileType javascript nnoremap <F12>  :w<CR>:FlowMake<CR>
 
 " golang
 let g:go_fmt_command = "goimports"
@@ -220,12 +218,19 @@ augroup go
   au Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
 augroup END
 
+" elm
+"let g:polyglot_disabled = ['elm']
+"let g:elm_format_autosave = 1
+"let g:elm_make_show_warnings = 1
+"let g:elm_setup_keybindings = 0
+
+"autocmd FileType elm setlocal shiftwidth=4 softtabstop=4 tabstop=4
+"autocmd FileType elm setlocal keywordprg=:ElmShowDocs
+"autocmd FileType elm nmap <F12> <Plug>(elm-make)
 
 " python
-
 let g:python_host_prog = $HOME . '/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
-
 let g:ultisnips_python_quoting_style = 'single'
 
 " deoplete is used for completions

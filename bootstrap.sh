@@ -1,26 +1,17 @@
 #!/usr/bin/env bash
 
-cd "$(dirname "${BASH_SOURCE}")";
+if [ ! -d "$HOME/.zplug" ]; then
+  git clone https://github.com/zplug/zplug.git $HOME/.zplug
+fi
 
-git pull origin master;
-
-function doIt() {
+read -p "Linking to your '~'. Are you sure? (y/n) " -n 1;
+echo "";
+if [[ $REPLY =~ ^[Yy]$ ]]; then
   find $PWD -mindepth 1 -prune \
     -name '.*' \
     ! -iname '.git' \
     ! -iname '.DS_Store' \
     -exec ln -is {} $HOME \;
 
-  zsh ~/.zprofile;
-}
-
-if [ "$1" == "--force" -o "$1" == "-f" ]; then
-  doIt;
-else
-  read -p "Linking to your '~'. Are you sure? (y/n) " -n 1;
-  echo "";
-  if [[ $REPLY =~ ^[Yy]$ ]]; then
-    doIt;
-  fi;
+  zsh ~/.zshenv;
 fi;
-unset doIt;

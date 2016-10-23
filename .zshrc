@@ -8,9 +8,9 @@ PURE_PROMPT_SYMBOL=♫
 source ~/.zplug/init.zsh
 zplug "modules/environment", from:prezto
 zplug "modules/history", from:prezto
-zplug "modules/utility", from:prezto
 zplug "modules/editor", from:prezto
 zplug "modules/directory", from:prezto
+zplug "modules/utility", from:prezto
 zplug "mafredri/zsh-async"
 zplug "sindresorhus/pure"
 

@@ -17,16 +17,16 @@ Plug 'ervandew/supertab'
 Plug 'scrooloose/nerdtree'
 Plug 'neomake/neomake'
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-jedi'
-Plug 'zchee/deoplete-go', { 'do': 'make'}
-Plug 'steelsojka/deoplete-flow'
-Plug 'davidhalter/jedi-vim'
-
-Plug 'sheerun/vim-polyglot'
 Plug 'fatih/vim-go'
 Plug 'flowtype/vim-flow'
-"Plug 'elmcast/elm-vim'
+Plug 'JuliaEditorSupport/julia-vim'
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'davidhalter/jedi-vim'
+"Plug 'zchee/deoplete-jedi'
+Plug 'zchee/deoplete-go', { 'do': 'make'}
+Plug 'steelsojka/deoplete-flow'
+
 
 call plug#end()
 
@@ -128,15 +128,11 @@ let g:ctrlp_buftag_types = {
   \ }
 
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)|venv|elm-stuff|vendor|node_modules$',
+  \ 'dir':  '\v[\/]\.(git|hg|svn)|venv|vendor|node_modules$',
   \ 'file': '\v\.(exe|so|dll|pyc|beam|class)$',
   \ }
 
 " neomake
-
-let g:neomake_python_flake8_maker = {
-  \ 'exe': $HOME . '/bin/flake8'
-  \ }
 
 let g:neomake_javascript_enabled_makers = ['flow']
 let g:neomake_jsx_enabled_makers = ['flow']
@@ -218,19 +214,7 @@ augroup go
   au Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
 augroup END
 
-" elm
-"let g:polyglot_disabled = ['elm']
-"let g:elm_format_autosave = 1
-"let g:elm_make_show_warnings = 1
-"let g:elm_setup_keybindings = 0
-
-"autocmd FileType elm setlocal shiftwidth=4 softtabstop=4 tabstop=4
-"autocmd FileType elm setlocal keywordprg=:ElmShowDocs
-"autocmd FileType elm nmap <F12> <Plug>(elm-make)
-
 " python
-let g:python_host_prog = $HOME . '/.pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
 let g:ultisnips_python_quoting_style = 'single'
 
 " deoplete is used for completions

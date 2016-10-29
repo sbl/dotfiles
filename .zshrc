@@ -8,9 +8,9 @@ PURE_PROMPT_SYMBOL=♫
 source ~/.zplug/init.zsh
 zplug "modules/environment", from:prezto
 zplug "modules/history", from:prezto
+zplug "modules/utility", from:prezto
 zplug "modules/editor", from:prezto
 zplug "modules/directory", from:prezto
-zplug "modules/utility", from:prezto
 zplug "mafredri/zsh-async"
 zplug "sindresorhus/pure"
 
@@ -27,11 +27,6 @@ alias vi=nvim
 alias vim=nvim
 # thanks to attila!
 alias gll='git log --graph --pretty=format:"%C(bold red)%h%C(reset)%C(yellow)%d%C(reset) %C(red)(%cr)%C(reset) %s — %C(blue)%ae%C(reset)" --abbrev-commit'
-
-# pyenv
-
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
 
 
 # paths

@@ -28,11 +28,6 @@ alias vim=nvim
 # thanks to attila!
 alias gll='git log --graph --pretty=format:"%C(bold red)%h%C(reset)%C(yellow)%d%C(reset) %C(red)(%cr)%C(reset) %s — %C(blue)%ae%C(reset)" --abbrev-commit'
 
-# pyenv
-
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
 
 # paths
 

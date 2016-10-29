@@ -85,13 +85,7 @@ expect($1).to${2:Equal}($0)
 endsnippet
 
 snippet test "react test"
-import expect from 'expect'
-import React from 'react'
-import { mount, shallow } from 'enzyme';
-
-import ${1:Thing} from '../../src/components/$1.js'
-
-describe('<$1 />', () => {
+test('$1', () => {
 	$0
 })
 endsnippet

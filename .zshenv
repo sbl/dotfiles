@@ -36,7 +36,6 @@ fi
 typeset -gU cdpath fpath mailpath path
 
 path=(
-  $HOME/.pyenv/bin
   $GOPATH/bin
   #~/google-cloud-sdk/platform/google_appengine
   ~/.local/bin

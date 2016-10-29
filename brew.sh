@@ -10,5 +10,3 @@ brew install node
 brew install go
 brew install neovim/neovim/neovim
 brew install trash
-brew install pyenv
-brew install pyenv-virtualenv

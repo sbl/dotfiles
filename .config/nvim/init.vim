@@ -19,11 +19,15 @@ Plug 'neomake/neomake'
 
 Plug 'fatih/vim-go'
 Plug 'flowtype/vim-flow'
+Plug 'mxw/vim-jsx'
+Plug 'othree/yajs.vim'
 Plug 'JuliaEditorSupport/julia-vim'
+Plug 'davidhalter/jedi-vim'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "Plug 'davidhalter/jedi-vim'
 "Plug 'zchee/deoplete-jedi'
+Plug 'zchee/deoplete-jedi'
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'steelsojka/deoplete-flow'
 
@@ -198,6 +202,7 @@ au FileType make setl noexpandtab
 au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown | call s:setupWrapping()
 
 " javascript
+let g:jsx_ext_required = 0
 let g:flow#enable = 0
 let g:flow#autoclose = 1
 au FileType javascript nnoremap <F6>   :w<CR>:!node %:p<CR>

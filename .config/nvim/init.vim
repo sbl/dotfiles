@@ -8,6 +8,7 @@ Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-endwise'
+Plug 'lifepillar/vim-solarized8'
 Plug 'mileszs/ack.vim'
 Plug 'vim-scripts/matchit.zip'
 Plug 'scrooloose/nerdcommenter'
@@ -25,8 +26,6 @@ Plug 'JuliaEditorSupport/julia-vim'
 Plug 'davidhalter/jedi-vim'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"Plug 'davidhalter/jedi-vim'
-"Plug 'zchee/deoplete-jedi'
 Plug 'zchee/deoplete-jedi'
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'steelsojka/deoplete-flow'
@@ -88,8 +87,8 @@ set kp=:help    " I barely need a man output
 "set clipboard+=unnamedplus
 
 set background=dark
-let base16colorspace=256
-colorscheme base16-flat
+colorscheme solarized8_dark_flat
+let g:solarized_term_italics=1
 
 " neovim
 

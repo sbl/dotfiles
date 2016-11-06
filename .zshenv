@@ -37,6 +37,7 @@ typeset -gU cdpath fpath mailpath path
 
 path=(
   $GOPATH/bin
+  #~/go_appengine
   #~/google-cloud-sdk/platform/google_appengine
   ~/.local/bin
   /usr/local/{bin,sbin}

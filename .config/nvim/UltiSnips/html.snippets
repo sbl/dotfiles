@@ -65,6 +65,19 @@ snippet head "XHTML <head>"
 </head>
 endsnippet
 
+snippet doc "a full blown doc"
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8"`!p x(snip)`>
+  <title>${1:`!p snip.rv = snip.basename or "Page Title"`}</title>
+</head>
+<body>
+	$0
+</body>
+</html>
+endsnippet
+
 snippet meta "XHTML <meta>"
 <meta name="${1:name}" content="${2:content}"`!p x(snip)`>
 endsnippet

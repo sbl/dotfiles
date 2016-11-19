@@ -22,7 +22,6 @@ Plug 'fatih/vim-go'
 Plug 'flowtype/vim-flow'
 Plug 'mxw/vim-jsx'
 Plug 'othree/yajs.vim'
-Plug 'JuliaEditorSupport/julia-vim'
 Plug 'davidhalter/jedi-vim'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -88,7 +87,8 @@ set kp=:help    " I barely need a man output
 
 set background=dark
 colorscheme solarized8_dark_flat
-let g:solarized_term_italics=1
+" make thin splits
+hi VertSplit guibg=bg ctermbg=bg
 
 " neovim
 
@@ -119,6 +119,7 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
+au InsertLeave * set nopaste
 " close preview automatically
 au CursorMovedI * if pumvisible() == 0|pclose|endif
 au InsertLeave * if pumvisible() == 0|pclose|endif
@@ -131,7 +132,7 @@ let g:ctrlp_buftag_types = {
   \ }
 
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)|venv|vendor|node_modules$',
+  \ 'dir':  '\v[\/]\.(git|hg|svn)|vendor|node_modules$',
   \ 'file': '\v\.(exe|so|dll|pyc|beam|class)$',
   \ }
 
@@ -157,6 +158,8 @@ let g:omni_sql_no_default_maps = 1
 
 " open help in new tab
 cabbrev h tab help
+" y$ -> Y Make Y behave like other capitals
+map Y y$
 
 " no Ex mode
 nnoremap Q <nop>
@@ -198,7 +201,7 @@ endfunction
 au FileType make setl noexpandtab
 
 " markdown
-au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown | call s:setupWrapping()
+au BufRead,BufNewFile *.{md,markdown,txt} setf markdown | call s:setupWrapping()
 
 " javascript
 let g:jsx_ext_required = 0

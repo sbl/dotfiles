@@ -30,3 +30,8 @@ alias gll='git log --graph --pretty=format:"%C(bold red)%h%C(reset)%C(yellow)%d%
 
 source "$HOME/google-cloud-sdk/path.zsh.inc"
 source "$HOME/google-cloud-sdk/completion.zsh.inc"
+
+if [ $commands[kubectl] ]; then
+  source <(kubectl completion zsh)
+fi
+

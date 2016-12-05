@@ -140,6 +140,7 @@ let g:ctrlp_custom_ignore = {
 
 let g:neomake_javascript_enabled_makers = ['flow']
 let g:neomake_jsx_enabled_makers = ['flow']
+let g:neomake_go_enabled_makers = ['go']
 
 autocmd! BufWritePost * Neomake
 

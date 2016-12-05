@@ -11,11 +11,11 @@ Plug 'tpope/vim-endwise'
 Plug 'lifepillar/vim-solarized8'
 Plug 'mileszs/ack.vim'
 Plug 'vim-scripts/matchit.zip'
+Plug 'ervandew/supertab'
 Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'SirVer/ultisnips'
-Plug 'ervandew/supertab'
-Plug 'scrooloose/nerdtree'
 Plug 'neomake/neomake'
 
 Plug 'fatih/vim-go'
@@ -23,6 +23,10 @@ Plug 'flowtype/vim-flow'
 Plug 'mxw/vim-jsx'
 Plug 'othree/yajs.vim'
 Plug 'davidhalter/jedi-vim'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'neovimhaskell/haskell-vim'
+Plug 'eagletmt/ghcmod-vim'
+Plug 'eagletmt/neco-ghc'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
@@ -211,6 +215,10 @@ let g:flow#autoclose = 1
 au FileType javascript nnoremap <F6>   :w<CR>:!node %:p<CR>
 au FileType javascript nnoremap <F12>  :w<CR>:FlowMake<CR>
 
+" haskell
+let g:haskellmode_completion_ghc = 0
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+
 " golang
 let g:go_fmt_command = "goimports"
 
@@ -229,7 +237,6 @@ let g:ultisnips_python_quoting_style = 'single'
 let g:jedi#completions_enabled = 0
 let g:jedi#goto_command = "gd"
 
-"autocmd BufWinEnter '__doc__' setlocal bufhidden=delete
 au FileType python map <buffer> <F6> :w<CR>:!python %:p<CR>
 
 command! Yapf silent 0,$!yapf

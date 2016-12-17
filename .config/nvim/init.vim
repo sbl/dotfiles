@@ -222,6 +222,12 @@ augroup go
   au Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
 augroup END
 
+" c
+au FileType c nnoremap <F5> :w<CR>:make<CR>
+au FileType c set tabstop=4
+au FileType c set shiftwidth=4
+au BufRead,BufNewFile *.h set filetype=c
+
 " python
 let g:ultisnips_python_quoting_style = 'single'
 

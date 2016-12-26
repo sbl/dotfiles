@@ -201,6 +201,9 @@ endfunction
 " make
 au FileType make setl noexpandtab
 
+" faust
+au BufRead,BufNewFile *.dsp set filetype=faust
+
 " markdown
 au BufRead,BufNewFile *.{md,markdown,txt} setf markdown | call s:setupWrapping()
 

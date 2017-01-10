@@ -16,15 +16,22 @@ zplug load
 # config
 
 fpath=(/usr/local/share/zsh-completions $fpath)
-autoload zmv
+
+autoload -U zmv
+# can do `mmv *.dat *.dat_old`
+alias mmv='noglob zmv -W'
 
 # alias
 
+alias pyact='source .venv/bin/activate'
 alias vi=nvim
 alias vim=nvim
 # thanks to attila!
 alias gll='git log --graph --pretty=format:"%C(bold red)%h%C(reset)%C(yellow)%d%C(reset) %C(red)(%cr)%C(reset) %s — %C(blue)%ae%C(reset)" --abbrev-commit'
 
+# autoenv
+
+source ~/.autoenv/activate.sh
 
 # paths
 

@@ -87,6 +87,8 @@ set kp=:help    " I barely need a man output
 
 set background=dark
 colorscheme solarized8_dark_flat
+"colorscheme solarized8_light_high
+
 " make thin splits
 hi VertSplit guibg=bg ctermbg=bg
 
@@ -132,7 +134,7 @@ let g:ctrlp_buftag_types = {
   \ }
 
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)|vendor|node_modules$',
+  \ 'dir':  '\v[\/]\.(git|hg|svn)|vendor|_site|node_modules$',
   \ 'file': '\v\.(exe|so|dll|pyc|beam|class)$',
   \ }
 
@@ -186,8 +188,22 @@ command! Open silent !open %:p:h
 command! Todo silent Ack TODO\\|FIXME\\|CHANGED\\|FIX
 command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
 command! Vimrc :e ~/.config/nvim/init.vim
+command! ToggleColor :call ToggleColor()
 
 " FUNCS
+
+let g:sbl_color="dark"
+function! ToggleColor()
+  if g:sbl_color != "light"
+    let g:sbl_color="light"
+    set background=light
+    colorscheme solarized8_light_high
+  else
+    let g:sbl_color="dark"
+    set background=dark
+    colorscheme solarized8_dark_flat
+  endif
+endfunction
 
 function! s:setupWrapping()
   set wrap
@@ -226,13 +242,22 @@ augroup go
 augroup END
 
 " c
-au FileType c nnoremap <F5> :w<CR>:make<CR>
-au FileType c set tabstop=4
-au FileType c set shiftwidth=4
+
+" ctags -R --c++-kinds=+p --fields=+iaS --extra=+q
+let g:neomake_cpp_enabled_makers = []
+
+au FileType c,cpp set nolist
+au FileType c,cpp set makeprg=make\ -C\ build
+au FileType c,cpp nnoremap <F5> :w<CR>:make<CR>
+au FileType c,cpp nnoremap <F12> :w<CR>:Neomake!<CR>
+au FileType c,cpp set tabstop=4
+au FileType c,cpp set shiftwidth=4
 au BufRead,BufNewFile *.h set filetype=c
 
 " python
 let g:ultisnips_python_quoting_style = 'single'
+"let g:python_host_prog = '/usr/local/bin/python'
+"let g:python3_host_prog = '/usr/local/bin/python3'
 
 " deoplete is used for completions
 let g:jedi#completions_enabled = 0

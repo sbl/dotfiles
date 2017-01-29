@@ -14,6 +14,7 @@ end
 
 set -gx PATH \
   $GOPATH/bin \
+  $HOME/google-cloud-sdk/bin \
   ~/.local/bin \
   $PATH
 

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 read -p "Linking to your '~'. Are you sure? (y/n) " -n 1;
 echo "";
@@ -8,6 +8,4 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     ! -iname '.git' \
     ! -iname '.DS_Store' \
     -exec ln -is {} $HOME \;
-
-  zsh ~/.zshenv;
 fi;

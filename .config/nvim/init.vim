@@ -18,7 +18,6 @@ Plug 'ervandew/supertab'
 Plug 'scrooloose/nerdtree'
 Plug 'neomake/neomake'
 
-Plug 'dag/vim-fish'
 Plug 'fatih/vim-go'
 Plug 'flowtype/vim-flow'
 Plug 'mxw/vim-jsx'

@@ -1,0 +1,223 @@
+snippet "^#!" "#!/usr/bin/env ruby" r
+#!/usr/bin/env ruby
+$0
+endsnippet
+
+
+
+snippet if "if <condition> ... end"
+if ${1:condition}
+	${2:}
+end
+endsnippet
+
+
+
+snippet ife "if <condition> ... else ... end"
+if ${1:condition}
+	${2:}
+else
+	${3:}
+end
+endsnippet
+
+
+
+snippet unless "unless <condition> ... end"
+unless ${1:condition}
+	${0:}
+end
+endsnippet
+
+
+
+snippet unlesse "unless <condition> ... else ... end"
+unless ${1:condition}
+	${2:}
+else
+	${0:}
+end
+endsnippet
+
+
+
+snippet "\b(de)?f" "def <name>..." r
+def ${1:function_name}${2: ${3:*args}}
+	$0
+end
+endsnippet
+
+
+
+snippet defi "def initialize ..."
+def initialize${1: ${2:*args}}
+	$0
+end
+endsnippet
+
+
+snippet do "do |<key>| ... end" i
+do ${1:|${2:key}|}
+	$0
+end
+endsnippet
+
+snippet Do "do ... end" i
+do
+	$0
+end
+endsnippet
+
+
+snippet "\b(r|attr)" "attr_reader :<attr_names>" r
+attr_reader :${0:attr_names}
+endsnippet
+
+
+snippet "\b(w|attr)" "attr_writer :<attr_names>" r
+attr_writer :${0:attr_names}
+endsnippet
+
+
+snippet "\b(rw|attr)" "attr_accessor :<attr_names>" r
+attr_accessor :${0:attr_names}
+endsnippet
+
+
+snippet begin "begin ... rescue ... end"
+begin
+	${1:}
+rescue
+	${0:}
+end
+endsnippet
+
+
+snippet rescue
+rescue Exception => e
+	puts e.message
+	puts e.backtrace.inspect
+	${0:# Rescue}
+endsnippet
+
+
+snippet "\b(case|sw(itch)?)" "case <variable> when <expression> ... end" r
+case ${1:variable}
+when ${2:expression}
+$0
+end
+endsnippet
+
+
+snippet alias "alias :<new_name> :<old_name>"
+alias :${1:new_name} :${2:old_name}
+endsnippet
+
+
+snippet class "class <class_name> def initialize ... end end"
+class ${1:class_name}
+  def initialize ${2:*args}
+    $0
+  end
+end
+endsnippet
+
+snippet module "module"
+module ${1:module_name}
+	$0
+end
+endsnippet
+
+snippet as "assert"
+assert ${1:what}
+endsnippet
+
+snippet asem "assert_empty"
+assert_empty ${1:obj}
+endsnippet
+
+snippet asnem "assert_not_empty"
+assert_not_empty ${1:obj}
+endsnippet
+
+snippet asni "assert_nil"
+assert_nil ${1:obj}
+endsnippet
+
+snippet asnni "assert_not_nil"
+assert_not_nil ${1:obj}
+endsnippet
+
+snippet aseq "assert_equal"
+assert_equal ${1:exp}, ${2:act}
+endsnippet
+
+snippet asneq "assert_not_equal"
+assert_not_equal ${1:exp}, ${2:act}
+endsnippet
+
+snippet asde "assert_in_delta"
+assert_in_delta ${1:exp}, ${2:act}, ${3:delta}
+endsnippet
+
+snippet asin "assert_includes"
+assert_includes ${1:collection}, ${2:obj}
+endsnippet
+
+snippet asio "assert_instance_of"
+assert_instance_of ${1:Class}, ${2:obj}
+endsnippet
+
+snippet asnio "assert_not_instance_of"
+assert_not_instance_of ${1:Class}, ${2:obj}
+endsnippet
+
+snippet aski "assert_kind_of"
+assert_kind_of ${1:Class}, ${2:obj}
+endsnippet
+
+snippet asnki "assert_not_kind_of"
+assert_not_kind_of ${1:Class}, ${2:obj}
+endsnippet
+
+snippet asma "assert_match"
+assert_match ${1:matcher}, ${2:obj}
+endsnippet
+
+snippet asra "assert_raises"
+assert_raises -> { ${1:exp} }
+endsnippet
+
+snippet context "Context spec"
+context "${1:something}" do
+  $2
+end
+endsnippet
+
+snippet it "It spec"
+it "${1:should}" do
+  $2
+end
+endsnippet
+
+snippet exp "Expect spec"
+expect(${1:subject}).to ${2:matcher}
+endsnippet
+
+snippet expn "Expect spec negotiated"
+expect(${1:subject}).not_to ${2:matcher}
+endsnippet
+
+snippet bef "before spec"
+before do
+  $1
+end
+endsnippet
+
+snippet ## "Big comment"
+# --------------------------------------------------
+# ${1:why}
+# --------------------------------------------------
+endsnippet
+
+# vim: set ts=2 sw=2 expandtab:

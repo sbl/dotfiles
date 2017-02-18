@@ -1,6 +1,7 @@
 # environment variables
 
 set -x GOPATH $HOME
+set -x WORKON $HOME/.virtualenvs
 
 function _setup_environment
   # -U set this universally and persists the setting

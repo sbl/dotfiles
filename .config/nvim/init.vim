@@ -3,7 +3,6 @@ filetype off
 
 call plug#begin('~/.config/nvim/bundle')
 
-Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -20,15 +19,15 @@ Plug 'neomake/neomake'
 
 Plug 'fatih/vim-go'
 Plug 'flowtype/vim-flow'
+Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
-Plug 'othree/yajs.vim'
 Plug 'davidhalter/jedi-vim'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
 Plug 'zchee/deoplete-go', { 'do': 'make'}
+Plug 'Shougo/deoplete.nvim'
 Plug 'steelsojka/deoplete-flow'
-
 
 call plug#end()
 
@@ -83,11 +82,12 @@ set statusline+=%=\ row\ %l/%L\ -\ %c "right lines + line
 
 set vb " disable error bell
 set kp=:help    " I barely need a man output
-"set clipboard+=unnamedplus
+set clipboard+=unnamedplus
 
 set background=dark
 colorscheme solarized8_dark_flat
-"colorscheme solarized8_light_high
+
+set mouse=a
 
 " make thin splits
 hi VertSplit guibg=bg ctermbg=bg
@@ -189,6 +189,7 @@ command! Todo silent Ack TODO\\|FIXME\\|CHANGED\\|FIX
 command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
 command! Vimrc :e ~/.config/nvim/init.vim
 command! ToggleColor :call ToggleColor()
+command! -range=% YAPF <line1>,<line2>call yapf#YAPF()
 
 " FUNCS
 
@@ -224,8 +225,8 @@ au BufRead,BufNewFile *.dsp set filetype=faust
 au BufRead,BufNewFile *.{md,markdown,txt} setf markdown | call s:setupWrapping()
 
 " javascript
-let g:jsx_ext_required = 0
-let g:flow#enable = 0
+let g:javascript_plugin_flow = 1
+let g:flow#enable = 0 "neomake runs flow
 let g:flow#autoclose = 1
 au FileType javascript nnoremap <F6>   :w<CR>:!node %:p<CR>
 au FileType javascript nnoremap <F12>  :w<CR>:FlowMake<CR>
@@ -265,8 +266,6 @@ let g:jedi#goto_command = "gd"
 
 "autocmd BufWinEnter '__doc__' setlocal bufhidden=delete
 au FileType python map <buffer> <F6> :w<CR>:!python %:p<CR>
-
-command! Yapf silent 0,$!yapf
 
 " git
 

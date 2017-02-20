@@ -10,10 +10,11 @@ function _git_branch_name_or_revision
   set -l branch (git symbolic-ref HEAD ^ /dev/null | sed -e 's|^refs/heads/||')
   set -l revision (git rev-parse HEAD ^ /dev/null | cut -b 1-7)
 
+  git diff-index --quiet HEAD; or set git_dirty '*'
   if test (count $branch) -gt 0
-    echo $branch
+    echo "$branch$git_dirty"
   else
-    echo $revision
+    echo "$revision$git_dirty"
   end
 end
 
@@ -56,7 +57,7 @@ end
 
 function _prompt_color_for_status
   if test $argv[1] -eq 0
-    echo magenta
+    echo green
   else
     echo red
   end
@@ -72,5 +73,5 @@ function fish_prompt
     _print_in_color " "(_git_upstream_status) cyan
   end
 
-  _print_in_color "\n♫ " (_prompt_color_for_status $last_status)
+  _print_in_color "\n♩ " (_prompt_color_for_status $last_status)
 end

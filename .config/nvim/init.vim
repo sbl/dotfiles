@@ -17,6 +17,7 @@ Plug 'ervandew/supertab'
 Plug 'scrooloose/nerdtree'
 Plug 'neomake/neomake'
 
+Plug 'dag/vim-fish'
 Plug 'fatih/vim-go'
 Plug 'flowtype/vim-flow'
 Plug 'pangloss/vim-javascript'
@@ -257,8 +258,8 @@ au BufRead,BufNewFile *.h set filetype=c
 
 " python
 let g:ultisnips_python_quoting_style = 'single'
-"let g:python_host_prog = '/usr/local/bin/python'
-"let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python_host_prog = $WORKON . '/neovim2/bin/python'
+let g:python3_host_prog = $WORKON . '/neovim3/bin/python'
 
 " deoplete is used for completions
 let g:jedi#completions_enabled = 0

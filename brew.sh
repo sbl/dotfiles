@@ -2,8 +2,7 @@
 
 # install homebrew things we like
 
-brew install zsh
-brew install zsh-completions
+brew install fish
 brew install the_silver_searcher
 brew install git
 brew install node

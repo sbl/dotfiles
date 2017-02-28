@@ -229,6 +229,7 @@ au BufRead,BufNewFile *.{md,markdown,txt} setf markdown | call s:setupWrapping()
 let g:javascript_plugin_flow = 1
 let g:flow#enable = 0 "neomake runs flow
 let g:flow#autoclose = 1
+let g:jsx_ext_required = 0
 au FileType javascript nnoremap <F6>   :w<CR>:!node %:p<CR>
 au FileType javascript nnoremap <F12>  :w<CR>:FlowMake<CR>
 

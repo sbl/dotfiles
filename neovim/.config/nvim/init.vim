@@ -10,11 +10,11 @@ Plug 'tpope/vim-endwise'
 Plug 'lifepillar/vim-solarized8'
 Plug 'mileszs/ack.vim'
 Plug 'vim-scripts/matchit.zip'
+Plug 'ervandew/supertab'
 Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'SirVer/ultisnips'
-Plug 'ervandew/supertab'
-Plug 'scrooloose/nerdtree'
 Plug 'neomake/neomake'
 
 Plug 'dag/vim-fish'
@@ -23,6 +23,10 @@ Plug 'flowtype/vim-flow'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'davidhalter/jedi-vim'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'neovimhaskell/haskell-vim'
+Plug 'eagletmt/ghcmod-vim'
+Plug 'eagletmt/neco-ghc'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
@@ -233,6 +237,10 @@ let g:jsx_ext_required = 0
 au FileType javascript nnoremap <F6>   :w<CR>:!node %:p<CR>
 au FileType javascript nnoremap <F12>  :w<CR>:FlowMake<CR>
 
+" haskell
+let g:haskellmode_completion_ghc = 0
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+
 " golang
 let g:go_fmt_command = "goimports"
 
@@ -266,7 +274,6 @@ let g:python3_host_prog = $WORKON . '/neovim3/bin/python'
 let g:jedi#completions_enabled = 0
 let g:jedi#goto_command = "gd"
 
-"autocmd BufWinEnter '__doc__' setlocal bufhidden=delete
 au FileType python map <buffer> <F6> :w<CR>:!python %:p<CR>
 
 " git

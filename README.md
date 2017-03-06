@@ -4,8 +4,8 @@ dotfiles to set up my system
 
 ### install
 
-`./bootstrap.sh`
 `./brew.sh` (for commonly used homebrew packages)
+`./bootstrap.sh`
 
 ### note
 

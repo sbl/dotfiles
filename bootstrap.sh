@@ -1,11 +1,7 @@
 #!/bin/sh
 
-read -p "Linking to your '~'. Are you sure? (y/n) " -n 1;
-echo "";
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-  find $PWD -mindepth 1 -prune \
-    -name '.*' \
-    ! -iname '.git' \
-    ! -iname '.DS_Store' \
-    -exec ln -is {} $HOME \;
-fi;
+hash stow 2> /dev/null || echo "please install `stow` first"
+
+stow -vv -t $HOME fish
+stow -vv -t $HOME neovim
+stow -vv -t $HOME misc

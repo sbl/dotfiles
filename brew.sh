@@ -2,6 +2,7 @@
 
 # install homebrew things we like
 
+brew install stow
 brew install fish
 brew install the_silver_searcher
 brew install git

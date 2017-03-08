@@ -90,12 +90,12 @@ set kp=:help    " I barely need a man output
 set clipboard+=unnamedplus
 
 set background=dark
-colorscheme solarized8_dark_flat
+"colorscheme solarized8_dark_flat
 
 set mouse=a
 
 " make thin splits
-hi VertSplit guibg=bg ctermbg=bg
+hi VertSplit guibg=bg ctermbg=0
 
 " neovim
 
@@ -267,8 +267,8 @@ au BufRead,BufNewFile *.h set filetype=c
 
 " python
 let g:ultisnips_python_quoting_style = 'single'
-let g:python_host_prog = $WORKON . '/neovim2/bin/python'
-let g:python3_host_prog = $WORKON . '/neovim3/bin/python'
+"let g:python_host_prog = $WORKON . '/neovim2/bin/python'
+"let g:python3_host_prog = $WORKON . '/neovim3/bin/python'
 
 " deoplete is used for completions
 let g:jedi#completions_enabled = 0

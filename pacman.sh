@@ -21,8 +21,8 @@ pacaur -S nodejs
 
 # apps
 pacaur -S chromium
-pacaur -S firefox
-pacaur -S libreoffice-still
+# pacaur -S firefox
+# pacaur -S libreoffice-still
 
 # fonts
 pacaury -S siji-git

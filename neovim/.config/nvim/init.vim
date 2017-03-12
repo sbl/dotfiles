@@ -7,7 +7,6 @@ Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-endwise'
-Plug 'lifepillar/vim-solarized8'
 Plug 'mileszs/ack.vim'
 Plug 'vim-scripts/matchit.zip'
 Plug 'ervandew/supertab'
@@ -16,6 +15,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'SirVer/ultisnips'
 Plug 'neomake/neomake'
+Plug 'lifepillar/vim-solarized8'
 
 Plug 'dag/vim-fish'
 Plug 'fatih/vim-go'
@@ -87,10 +87,11 @@ set statusline+=%=\ row\ %l/%L\ -\ %c "right lines + line
 
 set vb " disable error bell
 set kp=:help    " I barely need a man output
-set clipboard+=unnamedplus
 
 set background=dark
-"colorscheme solarized8_dark_flat
+let g:solarized_statusline="normal"
+let g:solarized_term_italics=1
+colorscheme solarized8_dark_flat
 
 set mouse=a
 

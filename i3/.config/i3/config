@@ -8,7 +8,8 @@ font pango:lucy tewi 8
 # coloring
 
 # class                 border  backgr. text    indicator child_border
-client.focused          #4c7899 #285577 #ffffff #2e9ef4 #b58900
+client.focused          #eee8d5 #eee8d5 #073642 #2e9ef4   #b58900
+client.unfocused        #073642 #073642 #eee8d5 #292d2e   #073642
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1

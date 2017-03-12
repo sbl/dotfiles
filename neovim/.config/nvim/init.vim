@@ -96,7 +96,7 @@ colorscheme solarized8_dark_flat
 set mouse=a
 
 " make thin splits
-hi VertSplit guibg=bg ctermbg=0
+hi VertSplit guibg=bg ctermbg=bg
 
 " neovim
 

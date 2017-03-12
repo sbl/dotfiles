@@ -7,13 +7,32 @@
 ;
 ;=====================================================
 
+; solarized colors for termite
+;color0 = #073642
+;color1 = #dc322f
+;color2 = #859900
+;color3 = #b58900
+;color4 = #268bd2
+;color5 = #d33682
+;color6 = #2aa198
+;color7 = #eee8d5
+;color8 = #002b36
+;color9 = #cb4b16
+;color10 = #586e75
+;color11 = #657b83
+;color12 = #839496
+;color13 = #6c71c4
+;color14 = #93a1a1
+;color15 = #fdf6e3
+
+
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #fdf6e3
-background-alt = #0736342
+background = #073642
+background-alt = #dc322f
 ;foreground = ${xrdb:color7:#222}
-foreground = #002b36
-foreground-alt = #073643
+foreground = #eee8d5
+foreground-alt = #2aa198
 primary = #b58900
 secondary = #268bd2
 alert = #dc322f
@@ -48,7 +67,7 @@ font-2 = "Wuncon Siji:pixelsize=10;1"
 
 modules-left = i3 xwindow
 modules-center =
-modules-right = volume xkeyboard filesystem memory cpu battery date powermenu
+modules-right = volume xkeyboard cpu memory battery date powermenu
 
 tray-position = right
 tray-padding = 2

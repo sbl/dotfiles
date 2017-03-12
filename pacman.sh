@@ -25,7 +25,8 @@ pacaur -S chromium
 # pacaur -S libreoffice-still
 
 # fonts
-pacaury -S siji-git
-pacaury -S adobe-source-code-pro-fonts
-pacaury -S ttf-ms-fonts
-pacaur  -S ttf-google-fonts-git
+pacaur -S siji-git
+pacaur -S adobe-source-code-pro-fonts
+pacaur -S ttf-ms-fonts
+pacaur -S ttf-google-fonts-git
+pacaur -S bdf-tewi-git

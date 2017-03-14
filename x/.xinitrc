@@ -17,6 +17,7 @@ fi
 
 #xsetroot -solid '#93a1a1'
 feh --bg-scale ~/desktop.jpg
+setxkmap -layout us,de
 
 export TERMINAL=termite
 exec i3

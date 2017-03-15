@@ -268,8 +268,8 @@ au BufRead,BufNewFile *.h set filetype=c
 
 " python
 let g:ultisnips_python_quoting_style = 'single'
-"let g:python_host_prog = $WORKON . '/neovim2/bin/python'
-"let g:python3_host_prog = $WORKON . '/neovim3/bin/python'
+let g:python_host_prog = $WORKON . '/neovim2/bin/python'
+let g:python3_host_prog = $WORKON . '/neovim3/bin/python'
 
 " deoplete is used for completions
 let g:jedi#completions_enabled = 0

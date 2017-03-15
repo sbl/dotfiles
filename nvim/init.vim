@@ -7,7 +7,6 @@ Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-endwise'
-Plug 'lifepillar/vim-solarized8'
 Plug 'mileszs/ack.vim'
 Plug 'vim-scripts/matchit.zip'
 Plug 'ervandew/supertab'
@@ -16,6 +15,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'SirVer/ultisnips'
 Plug 'neomake/neomake'
+Plug 'lifepillar/vim-solarized8'
 
 Plug 'dag/vim-fish'
 Plug 'fatih/vim-go'
@@ -23,16 +23,17 @@ Plug 'flowtype/vim-flow'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'davidhalter/jedi-vim'
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-Plug 'neovimhaskell/haskell-vim'
-Plug 'eagletmt/ghcmod-vim'
-Plug 'eagletmt/neco-ghc'
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-jedi'
-Plug 'zchee/deoplete-go', { 'do': 'make'}
-Plug 'Shougo/deoplete.nvim'
-Plug 'steelsojka/deoplete-flow'
+"Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+"Plug 'neovimhaskell/haskell-vim'
+"Plug 'eagletmt/ghcmod-vim'
+"Plug 'eagletmt/neco-ghc'
+
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'zchee/deoplete-jedi'
+"Plug 'zchee/deoplete-go', { 'do': 'make'}
+"Plug 'Shougo/deoplete.nvim'
+"Plug 'steelsojka/deoplete-flow'
 
 call plug#end()
 
@@ -87,9 +88,10 @@ set statusline+=%=\ row\ %l/%L\ -\ %c "right lines + line
 
 set vb " disable error bell
 set kp=:help    " I barely need a man output
-set clipboard+=unnamedplus
 
 set background=dark
+let g:solarized_statusline="normal"
+let g:solarized_term_italics=1
 colorscheme solarized8_dark_flat
 
 set mouse=a
@@ -146,7 +148,6 @@ let g:ctrlp_custom_ignore = {
 " neomake
 
 let g:neomake_javascript_enabled_makers = ['flow']
-let g:neomake_jsx_enabled_makers = ['flow']
 let g:neomake_go_enabled_makers = ['go']
 
 autocmd! BufWritePost * Neomake
@@ -195,6 +196,7 @@ command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
 command! Vimrc :e ~/.config/nvim/init.vim
 command! ToggleColor :call ToggleColor()
 command! -range=% YAPF <line1>,<line2>call yapf#YAPF()
+command! Date put=strftime('%Y-%m-%d - %H:%M')
 
 " FUNCS
 
@@ -233,6 +235,8 @@ au BufRead,BufNewFile *.{md,markdown,txt} setf markdown | call s:setupWrapping()
 let g:javascript_plugin_flow = 1
 let g:flow#enable = 0 "neomake runs flow
 let g:flow#autoclose = 1
+"let g:flow#omnifunc = 0
+
 let g:jsx_ext_required = 0
 au FileType javascript nnoremap <F6>   :w<CR>:!node %:p<CR>
 au FileType javascript nnoremap <F12>  :w<CR>:FlowMake<CR>

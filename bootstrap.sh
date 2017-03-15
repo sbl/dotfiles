@@ -1,7 +1,10 @@
 #!/bin/sh
 
-hash stow 2> /dev/null || echo "please install `stow` first"
+set -e
 
-stow -vv -t $HOME fish
-stow -vv -t $HOME neovim
+mkdir -p $HOME/.config/{fish,nvim}
+
+stow -vv -t $HOME/.config/fish fish
+stow -vv -t $HOME/.config/nvim nvim
+stow -vv -t $HOME/bin bin
 stow -vv -t $HOME misc

@@ -23,16 +23,17 @@ Plug 'flowtype/vim-flow'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'davidhalter/jedi-vim'
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-Plug 'neovimhaskell/haskell-vim'
-Plug 'eagletmt/ghcmod-vim'
-Plug 'eagletmt/neco-ghc'
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-jedi'
-Plug 'zchee/deoplete-go', { 'do': 'make'}
-Plug 'Shougo/deoplete.nvim'
-Plug 'steelsojka/deoplete-flow'
+"Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+"Plug 'neovimhaskell/haskell-vim'
+"Plug 'eagletmt/ghcmod-vim'
+"Plug 'eagletmt/neco-ghc'
+
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'zchee/deoplete-jedi'
+"Plug 'zchee/deoplete-go', { 'do': 'make'}
+"Plug 'Shougo/deoplete.nvim'
+"Plug 'steelsojka/deoplete-flow'
 
 call plug#end()
 
@@ -147,7 +148,6 @@ let g:ctrlp_custom_ignore = {
 " neomake
 
 let g:neomake_javascript_enabled_makers = ['flow']
-let g:neomake_jsx_enabled_makers = ['flow']
 let g:neomake_go_enabled_makers = ['go']
 
 autocmd! BufWritePost * Neomake
@@ -235,6 +235,8 @@ au BufRead,BufNewFile *.{md,markdown,txt} setf markdown | call s:setupWrapping()
 let g:javascript_plugin_flow = 1
 let g:flow#enable = 0 "neomake runs flow
 let g:flow#autoclose = 1
+"let g:flow#omnifunc = 0
+
 let g:jsx_ext_required = 0
 au FileType javascript nnoremap <F6>   :w<CR>:!node %:p<CR>
 au FileType javascript nnoremap <F12>  :w<CR>:FlowMake<CR>

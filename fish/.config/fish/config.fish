@@ -11,16 +11,6 @@ function _setup_environment
   set -U PAGER less
 end
 
-# start ssh-agent
-
-if test -z "$SSH_ENV"
-    setenv SSH_ENV $HOME/.ssh/environment
-end
-
-if not __ssh_agent_is_started
-    __ssh_agent_start
-end
-
 # path
 
 set -gx PATH \

@@ -196,6 +196,7 @@ command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
 command! Vimrc :e ~/.config/nvim/init.vim
 command! ToggleColor :call ToggleColor()
 command! -range=% YAPF <line1>,<line2>call yapf#YAPF()
+command! Date put=strftime('%Y-%m-%d - %H:%M')
 
 " FUNCS
 

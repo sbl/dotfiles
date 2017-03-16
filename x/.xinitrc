@@ -19,5 +19,5 @@ fi
 feh --bg-scale ~/desktop.jpg
 setxkmap -layout us,de
 
-export TERMINAL=termite
+export TERMINAL=terminator
 exec i3

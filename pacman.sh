@@ -7,7 +7,7 @@ set -e
 command -v pacaur >/dev/null 2>&1 || { echo >&2 "Please install pacaur https://github.com/rmarquis/pacaur. Aborting."; exit 1; }
 
 # environment
-pacaur -S termite
+pacaur -S terminator
 pacaur -S i3-gaps-git
 pacaur -S fish
 pacaur -S neovim

@@ -16,4 +16,6 @@ function mkvirtualenv
   # we use py3
   python3 -mvenv $WORKON/$venv
   echo "Virtualenv $venv created."
+
+  workon $venv
 end

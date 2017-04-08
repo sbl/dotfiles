@@ -3,18 +3,16 @@
 set -x GOPATH $HOME
 set -x WORKON $HOME/.virtualenvs
 
-function _setup_environment
-  # -U set this universally and persists the setting
-  echo "… configuring environment …"
-  set -U EDITOR nvim
-  set -U VISUAL nvim
-  set -U PAGER less
-end
+set -x EDITOR nvim
+set -x VISUAL nvim
+set -x PAGER less
 
 # path
 
 set -gx PATH \
   $GOPATH/bin \
+  ~/google-cloud-sdk/bin \
+  ~/Library/Haskell/bin \
   $PATH
 
 # key bindings

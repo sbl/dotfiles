@@ -1,49 +1,22 @@
+# Fish git prompt
+set __fish_git_prompt_showdirtystate 'yes'
+set __fish_git_prompt_showstashstate 'yes'
+set __fish_git_prompt_showuntrackedfiles 'yes'
+set __fish_git_prompt_showupstream 'yes'
+set __fish_git_prompt_color_branch yellow
+set __fish_git_prompt_color_upstream_ahead green
+set __fish_git_prompt_color_upstream_behind red
+
+# Status Chars
+set __fish_git_prompt_char_dirtystate '⚡'
+set __fish_git_prompt_char_stagedstate ''
+set __fish_git_prompt_char_untrackedfiles '*'
+set __fish_git_prompt_char_stashstate '↩'
+set __fish_git_prompt_char_upstream_ahead '+'
+set __fish_git_prompt_char_upstream_behind '-'
+
 function _pwd_with_tilde
   echo $PWD | sed 's|^'$HOME'\(.*\)$|~\1|'
-end
-
-function _in_git_directory
-  git rev-parse --git-dir > /dev/null 2>&1
-end
-
-function _git_branch_name_or_revision
-  set -l branch (git symbolic-ref HEAD ^ /dev/null | sed -e 's|^refs/heads/||')
-  set -l revision (git rev-parse HEAD ^ /dev/null | cut -b 1-7)
-
-  git diff-index --quiet HEAD; or set git_dirty '*'
-  if test (count $branch) -gt 0
-    echo "$branch$git_dirty"
-  else
-    echo "$revision$git_dirty"
-  end
-end
-
-function _git_upstream_configured
-  git rev-parse --abbrev-ref @"{u}" > /dev/null 2>&1
-end
-
-function _git_behind_upstream
-  test (git rev-list --right-only --count HEAD...@"{u}" ^ /dev/null) -gt 0
-end
-
-function _git_ahead_of_upstream
-  test (git rev-list --left-only --count HEAD...@"{u}" ^ /dev/null) -gt 0
-end
-
-function _git_upstream_status
-  set -l arrows
-
-  if _git_upstream_configured
-    if _git_behind_upstream
-      set arrows "$arrows⇣"
-    end
-
-    if _git_ahead_of_upstream
-      set arrows "$arrows⇡"
-    end
-  end
-
-  echo $arrows
 end
 
 function _print_in_color
@@ -67,11 +40,6 @@ function fish_prompt
   set -l last_status $status
 
   _print_in_color "\n"(_pwd_with_tilde) blue
-
-  if _in_git_directory
-    _print_in_color " "(_git_branch_name_or_revision) 242
-    _print_in_color " "(_git_upstream_status) cyan
-  end
-
   _print_in_color "\n♩ " (_prompt_color_for_status $last_status)
+  printf '%s ' (__fish_git_prompt)
 end

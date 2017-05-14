@@ -1,4 +1,6 @@
 set __fish_git_prompt_show_informative_status 'yes'
+set __fish_git_prompt_showcolorhints 'yes'
+set __fish_git_prompt_char_stateseparator '|'
 
 function _pwd_with_tilde
   echo $PWD | sed 's|^'$HOME'\(.*\)$|~\1|'

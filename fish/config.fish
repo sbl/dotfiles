@@ -1,5 +1,8 @@
 # environment variables
 
+set -x LC_ALL en_US.UTF-8
+set -x LANG en_US.UTF-8
+
 set -x GOPATH $HOME
 set -x WORKON $HOME/.virtualenvs
 

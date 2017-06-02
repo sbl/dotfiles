@@ -29,11 +29,11 @@ Plug 'davidhalter/jedi-vim'
 "Plug 'eagletmt/ghcmod-vim'
 "Plug 'eagletmt/neco-ghc'
 
-"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"Plug 'zchee/deoplete-jedi'
-"Plug 'zchee/deoplete-go', { 'do': 'make'}
-"Plug 'Shougo/deoplete.nvim'
-"Plug 'steelsojka/deoplete-flow'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-jedi'
+Plug 'zchee/deoplete-go', { 'do': 'make'}
+Plug 'Shougo/deoplete.nvim'
+Plug 'steelsojka/deoplete-flow'
 
 call plug#end()
 

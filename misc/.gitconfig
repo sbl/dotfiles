@@ -1,7 +1,7 @@
 [alias]
   co = checkout
   st = status
-  com = commit
+  ci = commit
   br = branch
 [color]
   diff = auto

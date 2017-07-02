@@ -15,12 +15,27 @@ set -x PAGER less
 set -gx PATH \
   $GOPATH/bin \
   ~/google-cloud-sdk/bin \
-  ~/Library/Haskell/bin \
+  ~/.local/bin \
   $PATH
 
 # key bindings
 
 bind \ee accept-autosuggestion # ctrl-e completes first suggestion
+
+# extend the environment
+
+if command -s hub >> /dev/null
+  eval (hub alias -s)
+else
+  echo '`hub` is not installed'
+end
+
+set -l PYTHON_EXE /usr/local/bin/python3
+if command -s $PYTHON_EXE >> /dev/null
+  eval (eval $PYTHON_EXE -m virtualfish auto_activation)
+else
+  echo '`virtualfish` is not properly installed'
+end
 
 # aliases
 

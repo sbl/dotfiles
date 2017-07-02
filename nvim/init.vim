@@ -3,6 +3,8 @@ filetype off
 
 call plug#begin('~/.config/nvim/bundle')
 
+" core
+
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -11,28 +13,34 @@ Plug 'mileszs/ack.vim'
 Plug 'vim-scripts/matchit.zip'
 Plug 'ervandew/supertab'
 Plug 'scrooloose/nerdcommenter'
+Plug 'SirVer/ultisnips'
+Plug 'lifepillar/vim-solarized8'
+Plug 'junegunn/vim-peekaboo'
+Plug 'neomake/neomake'
+
+" interface
+
+Plug 'junegunn/goyo.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'SirVer/ultisnips'
-Plug 'neomake/neomake'
-Plug 'lifepillar/vim-solarized8'
+Plug 'metakirby5/codi.vim'
+
+" language
 
 Plug 'dag/vim-fish'
 Plug 'fatih/vim-go'
 Plug 'flowtype/vim-flow'
 Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
+Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'davidhalter/jedi-vim'
 
-"Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-"Plug 'neovimhaskell/haskell-vim'
-"Plug 'eagletmt/ghcmod-vim'
-"Plug 'eagletmt/neco-ghc'
+" completion
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
 Plug 'zchee/deoplete-go', { 'do': 'make'}
-Plug 'Shougo/deoplete.nvim'
 Plug 'steelsojka/deoplete-flow'
 
 call plug#end()
@@ -95,17 +103,12 @@ let g:solarized_term_italics=1
 colorscheme solarized8_dark_flat
 
 set mouse=a
+"set termguicolors
+set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
 
 " make thin splits
 hi VertSplit guibg=bg ctermbg=bg
 
-" neovim
-
-if has("nvim")
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-  tnoremap <Esc> <C-\><C-n>
-endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN SUPPORT
@@ -146,9 +149,6 @@ let g:ctrlp_custom_ignore = {
   \ }
 
 " neomake
-
-let g:neomake_javascript_enabled_makers = ['flow']
-let g:neomake_go_enabled_makers = ['go']
 
 autocmd! BufWritePost * Neomake
 
@@ -194,24 +194,10 @@ command! Open silent !open %:p:h
 command! Todo silent Ack TODO\\|FIXME\\|CHANGED\\|FIX
 command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
 command! Vimrc :e ~/.config/nvim/init.vim
-command! ToggleColor :call ToggleColor()
-command! -range=% YAPF <line1>,<line2>call yapf#YAPF()
 command! Date put=strftime('%Y-%m-%d - %H:%M')
+command! -range=% YAPF <line1>,<line2>call yapf#YAPF()
 
 " FUNCS
-
-let g:sbl_color="dark"
-function! ToggleColor()
-  if g:sbl_color != "light"
-    let g:sbl_color="light"
-    set background=light
-    colorscheme solarized8_light_high
-  else
-    let g:sbl_color="dark"
-    set background=dark
-    colorscheme solarized8_dark_flat
-  endif
-endfunction
 
 function! s:setupWrapping()
   set wrap
@@ -232,6 +218,8 @@ au BufRead,BufNewFile *.dsp set filetype=faust
 au BufRead,BufNewFile *.{md,markdown,txt} setf markdown | call s:setupWrapping()
 
 " javascript
+let g:neomake_javascript_enabled_makers = ['flow']
+
 let g:javascript_plugin_flow = 1
 let g:flow#enable = 0 "neomake runs flow
 let g:flow#autoclose = 1
@@ -241,11 +229,9 @@ let g:jsx_ext_required = 0
 au FileType javascript nnoremap <F6>   :w<CR>:!node %:p<CR>
 au FileType javascript nnoremap <F12>  :w<CR>:FlowMake<CR>
 
-" haskell
-let g:haskellmode_completion_ghc = 0
-autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 " golang
+let g:neomake_go_enabled_makers = ['go']
 let g:go_fmt_command = "goimports"
 
 augroup go
@@ -279,6 +265,8 @@ let g:jedi#completions_enabled = 0
 let g:jedi#goto_command = "gd"
 
 au FileType python map <buffer> <F6> :w<CR>:!python %:p<CR>
+au FileType python map <F12> :YAPF<cr>
+au FileType python imap <F12> <c-o>:YAPF<cr>
 
 " git
 

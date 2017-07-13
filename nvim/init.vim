@@ -16,7 +16,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'SirVer/ultisnips'
 Plug 'lifepillar/vim-solarized8'
 Plug 'junegunn/vim-peekaboo'
-Plug 'neomake/neomake'
+Plug 'w0rp/ale'
 
 " interface
 
@@ -29,10 +29,8 @@ Plug 'metakirby5/codi.vim'
 
 Plug 'dag/vim-fish'
 Plug 'fatih/vim-go'
-Plug 'flowtype/vim-flow'
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
-Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'davidhalter/jedi-vim'
 
@@ -88,11 +86,6 @@ set hidden "allow me to switch unsaved buffers
 set splitbelow
 set splitright
 
-set statusline=\ %t       "tail of the filename
-set statusline+=\%r       "read only flag
-set statusline+=\%m       "modified flag
-set statusline+=\ %y      "filetype
-set statusline+=%=\ row\ %l/%L\ -\ %c "right lines + line
 
 set vb " disable error bell
 set kp=:help    " I barely need a man output
@@ -112,6 +105,34 @@ hi VertSplit guibg=bg ctermbg=bg
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN SUPPORT
+
+" ale
+
+let g:ale_sign_error = 'x'
+let g:ale_sign_warning = '!'
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
+"let g:ale_lint_on_insert_leave = 1
+let g:ale_echo_msg_format = '%linter% - %s'
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+
+let g:ale_linters = {
+\   'javascript': ['flow'],
+\}
+
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+
+    return l:counts.total == 0 ? 'OK' : printf(
+    \   '%dW %dE',
+    \   all_non_errors,
+    \   all_errors
+    \)
+endfunction
 
 " NERDTree
 
@@ -148,10 +169,6 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(exe|so|dll|pyc|beam|class)$',
   \ }
 
-" neomake
-
-autocmd! BufWritePost * Neomake
-
 " ack -> ag
 
 if executable('ag')
@@ -163,12 +180,42 @@ endif
 let g:omni_sql_no_default_maps = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Poor mans statusline
+
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+
+    return l:counts.total == 0 ? 'OK' : printf(
+    \   '%dW %dE',
+    \   all_non_errors,
+    \   all_errors
+    \)
+endfunction
+
+set statusline=\ %t       "tail of the filename
+set statusline+=\%r       "read only flag
+set statusline+=\%m       "modified flag
+set statusline+=\ %y      "filetype
+set statusline+=%=\ %{LinterStatus()}
+set statusline+=%=\ row\ %l/%L\ -\ %c "right lines + line
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " KEY MAPPINGS
 
 " open help in new tab
 cabbrev h tab help
 " y$ -> Y Make Y behave like other capitals
 map Y y$
+
+" typo help
+cnoreabbrev W! w!
+cnoreabbrev Q! q!
+cnoreabbrev W w
+cnoreabbrev Q q
 
 " no Ex mode
 nnoremap Q <nop>
@@ -180,6 +227,9 @@ vnoremap <F1> <ESC>
 
 nnoremap <Leader>d :NERDTreeToggle<CR>
 nnoremap <Leader>t :CtrlPBufTag<CR>
+
+nnoremap <leader>an :ALENextWrap<cr>
+nnoremap <leader>ap :ALEPreviousWrap<cr>
 
 " germanizm
 nnoremap <Leader>ä :tabnext<CR>
@@ -195,7 +245,6 @@ command! Todo silent Ack TODO\\|FIXME\\|CHANGED\\|FIX
 command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
 command! Vimrc :e ~/.config/nvim/init.vim
 command! Date put=strftime('%Y-%m-%d - %H:%M')
-command! -range=% YAPF <line1>,<line2>call yapf#YAPF()
 
 " FUNCS
 
@@ -218,20 +267,11 @@ au BufRead,BufNewFile *.dsp set filetype=faust
 au BufRead,BufNewFile *.{md,markdown,txt} setf markdown | call s:setupWrapping()
 
 " javascript
-let g:neomake_javascript_enabled_makers = ['flow']
-
 let g:javascript_plugin_flow = 1
-let g:flow#enable = 0 "neomake runs flow
-let g:flow#autoclose = 1
-"let g:flow#omnifunc = 0
-
 let g:jsx_ext_required = 0
 au FileType javascript nnoremap <F6>   :w<CR>:!node %:p<CR>
-au FileType javascript nnoremap <F12>  :w<CR>:FlowMake<CR>
-
 
 " golang
-let g:neomake_go_enabled_makers = ['go']
 let g:go_fmt_command = "goimports"
 
 augroup go
@@ -245,12 +285,10 @@ augroup END
 " c
 
 " ctags -R --c++-kinds=+p --fields=+iaS --extra=+q
-let g:neomake_cpp_enabled_makers = []
 
 au FileType c,cpp set nolist
 au FileType c,cpp set makeprg=make\ -C\ build
 au FileType c,cpp nnoremap <F5> :w<CR>:make<CR>
-au FileType c,cpp nnoremap <F12> :w<CR>:Neomake!<CR>
 au FileType c,cpp set tabstop=4
 au FileType c,cpp set shiftwidth=4
 au BufRead,BufNewFile *.h set filetype=c
@@ -265,8 +303,6 @@ let g:jedi#completions_enabled = 0
 let g:jedi#goto_command = "gd"
 
 au FileType python map <buffer> <F6> :w<CR>:!python %:p<CR>
-au FileType python map <F12> :YAPF<cr>
-au FileType python imap <F12> <c-o>:YAPF<cr>
 
 " git
 

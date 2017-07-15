@@ -33,6 +33,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'davidhalter/jedi-vim'
+Plug 'eagletmt/neco-ghc'
 
 " completion
 
@@ -114,12 +115,13 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
 "let g:ale_lint_on_insert_leave = 1
 let g:ale_echo_msg_format = '%linter% - %s'
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
 
 let g:ale_linters = {
 \   'javascript': ['flow'],
 \}
+
+let g:ale_fixers = {}
+let g:ale_fixers.python = ['yapf', 'isort']
 
 function! LinterStatus() abort
     let l:counts = ale#statusline#Count(bufnr(''))
@@ -230,6 +232,7 @@ nnoremap <Leader>t :CtrlPBufTag<CR>
 
 nnoremap <leader>an :ALENextWrap<cr>
 nnoremap <leader>ap :ALEPreviousWrap<cr>
+nnoremap <leader>af :ALEFix<cr>
 
 " germanizm
 nnoremap <Leader>ä :tabnext<CR>
@@ -281,6 +284,14 @@ augroup go
   au FileType go nmap <F12> <Plug>(go-test)
   au Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
 augroup END
+
+
+" haskell
+
+" Disable haskell-vim omnifunc
+let g:haskellmode_completion_ghc = 0
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+
 
 " c
 

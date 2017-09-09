@@ -23,7 +23,6 @@ Plug 'w0rp/ale'
 Plug 'junegunn/goyo.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'metakirby5/codi.vim'
 
 " language
 
@@ -31,7 +30,6 @@ Plug 'dag/vim-fish'
 Plug 'fatih/vim-go'
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
-Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'davidhalter/jedi-vim'
 Plug 'eagletmt/neco-ghc'
 
@@ -117,7 +115,7 @@ let g:ale_lint_on_enter = 0
 let g:ale_echo_msg_format = '%linter% - %s'
 
 let g:ale_linters = {
-\   'javascript': ['flow'],
+\   'javascript': ['flow', 'eslint'],
 \}
 
 let g:ale_fixers = {}
@@ -291,6 +289,7 @@ augroup END
 " Disable haskell-vim omnifunc
 let g:haskellmode_completion_ghc = 0
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+au FileType haskell map <buffer> <F6> :w<CR>:terminal stack runhaskell %:p<CR>
 
 
 " c
@@ -306,8 +305,8 @@ au BufRead,BufNewFile *.h set filetype=c
 
 " python
 let g:ultisnips_python_quoting_style = 'single'
-let g:python_host_prog = $WORKON . '/neovim2/bin/python'
-let g:python3_host_prog = $WORKON . '/neovim3/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
+let g:deoplete#sources#jedi#python_path = '/usr/local/bin/python3'
 
 " deoplete is used for completions
 let g:jedi#completions_enabled = 0

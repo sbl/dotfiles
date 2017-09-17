@@ -26,8 +26,7 @@ bind \ee accept-autosuggestion # ctrl-e completes first suggestion
 
 alias l='ls -lFh'
 alias ll='ls -alF'
-alias vi=nvim
-alias vim=nvim
+alias vi=vim
 
 alias pip=pip3
 alias python=python3

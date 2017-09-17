@@ -1,21 +1,25 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype off
 
-call plug#begin('~/.config/nvim/bundle')
+call plug#begin('~/.vim/plugged')
 
 " core
 
+Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-endwise'
 Plug 'mileszs/ack.vim'
 Plug 'vim-scripts/matchit.zip'
-Plug 'ervandew/supertab'
 Plug 'scrooloose/nerdcommenter'
-Plug 'SirVer/ultisnips'
 Plug 'lifepillar/vim-solarized8'
+
+" IDE
+
+Plug 'SirVer/ultisnips'
 Plug 'junegunn/vim-peekaboo'
+Plug 'lifepillar/vim-mucomplete'
 Plug 'w0rp/ale'
 
 " interface
@@ -31,27 +35,23 @@ Plug 'fatih/vim-go'
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'davidhalter/jedi-vim'
-Plug 'eagletmt/neco-ghc'
-
-" completion
-
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-jedi'
-Plug 'zchee/deoplete-go', { 'do': 'make'}
-Plug 'steelsojka/deoplete-flow'
+Plug 'Vimjas/vim-python-pep8-indent'
 
 call plug#end()
 
 filetype on
+filetype plugin on
+filetype indent on
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GENERAL
 
 " reload when saving this
-autocmd! BufWritePost init.vim source ~/.config/nvim/init.vim
+autocmd! BufWritePost .vimrc source ~/.vimrc
 
 set history=10000
 set wildmode=list:longest,full
+set autoread
 
 let mapleader = ","
 let g:mapleader = ","
@@ -61,6 +61,7 @@ set smartcase   "be smart when searching
 set nohlsearch
 set ignorecase
 set wildignore+=*/tmp/*,*/cache/*,*/dist/*,*.so,*.swp,*.zip,*.pyc
+set completeopt+=menuone " mu complete wants this
 
 set nonumber
 set foldcolumn=0
@@ -85,18 +86,19 @@ set hidden "allow me to switch unsaved buffers
 set splitbelow
 set splitright
 
-
+set shortmess+=c   " Shut off completion messages
 set vb " disable error bell
 set kp=:help    " I barely need a man output
 
-set background=dark
+set t_Co=256
 let g:solarized_statusline="normal"
-let g:solarized_term_italics=1
 colorscheme solarized8_dark_flat
 
 set mouse=a
-"set termguicolors
-set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+if $TERM_PROGRAM =~ "iTerm"
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
+endif
 
 " make thin splits
 hi VertSplit guibg=bg ctermbg=bg
@@ -111,11 +113,12 @@ let g:ale_sign_error = 'x'
 let g:ale_sign_warning = '!'
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
-"let g:ale_lint_on_insert_leave = 1
+let g:ale_fix_on_save = 1
 let g:ale_echo_msg_format = '%linter% - %s'
 
 let g:ale_linters = {
 \   'javascript': ['flow', 'eslint'],
+\   'go': ['go build', 'golint']
 \}
 
 let g:ale_fixers = {}
@@ -143,19 +146,18 @@ let g:NERDTreeMinimalUI = 1
 
 let g:ragtag_global_maps = 1
 
-" deoplete
-let g:deoplete#enable_at_startup = 1
-let g:SuperTabDefaultCompletionType = "context"
+" COMPLETION
 
-inoremap <silent><expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsExpandTrigger="<C-J>"
+let g:UltiSnipsJumpForwardTrigger="<C-J>"
+let g:UltiSnipsJumpBackwardTrigger="<C-K>"
 
-au InsertLeave * set nopaste
-" close preview automatically
-au CursorMovedI * if pumvisible() == 0|pclose|endif
-au InsertLeave * if pumvisible() == 0|pclose|endif
+inoremap <silent> <plug>(MUcompleteFwdKey) <right>
+imap <expr> <right> <plug>(MUcompleteCycFwd)
+
+let g:peekaboo_ins_prefix = '<c-x>' " mucomplete complains
+" close preview window
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " CTRLP
 let g:ctrlp_root_markers = ['Makefile', 'package.json']
@@ -182,24 +184,11 @@ let g:omni_sql_no_default_maps = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Poor mans statusline
 
-function! LinterStatus() abort
-    let l:counts = ale#statusline#Count(bufnr(''))
-
-    let l:all_errors = l:counts.error + l:counts.style_error
-    let l:all_non_errors = l:counts.total - l:all_errors
-
-    return l:counts.total == 0 ? 'OK' : printf(
-    \   '%dW %dE',
-    \   all_non_errors,
-    \   all_errors
-    \)
-endfunction
-
 set statusline=\ %t       "tail of the filename
 set statusline+=\%r       "read only flag
 set statusline+=\%m       "modified flag
 set statusline+=\ %y      "filetype
-set statusline+=%=\ %{LinterStatus()}
+set statusline+=\ %{LinterStatus()}
 set statusline+=%=\ row\ %l/%L\ -\ %c "right lines + line
 
 
@@ -244,7 +233,7 @@ command! CD cd %:p:h
 command! Open silent !open %:p:h
 command! Todo silent Ack TODO\\|FIXME\\|CHANGED\\|FIX
 command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
-command! Vimrc :e ~/.config/nvim/init.vim
+command! Vimrc :e ~/.vimrc
 command! Date put=strftime('%Y-%m-%d - %H:%M')
 
 " FUNCS
@@ -305,11 +294,8 @@ au BufRead,BufNewFile *.h set filetype=c
 
 " python
 let g:ultisnips_python_quoting_style = 'single'
-let g:python3_host_prog = '/usr/local/bin/python3'
-let g:deoplete#sources#jedi#python_path = '/usr/local/bin/python3'
-
-" deoplete is used for completions
-let g:jedi#completions_enabled = 0
+let g:jedi#popup_on_dot = 0
+let g:jedi#completions_enabled = 1
 let g:jedi#goto_command = "gd"
 
 au FileType python map <buffer> <F6> :w<CR>:!python %:p<CR>

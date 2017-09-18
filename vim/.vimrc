@@ -32,6 +32,8 @@ Plug 'ctrlpvim/ctrlp.vim'
 
 Plug 'dag/vim-fish'
 Plug 'fatih/vim-go'
+Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/vim-racer'
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'davidhalter/jedi-vim'
@@ -272,6 +274,10 @@ augroup go
   au Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
 augroup END
 
+
+" rust
+
+let g:rustfmt_autosave = 1
 
 " haskell
 

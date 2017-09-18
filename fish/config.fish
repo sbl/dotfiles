@@ -14,6 +14,7 @@ set -x PAGER less
 
 set -gx PATH \
   $GOPATH/bin \
+  ~/.cargo/bin \
   ~/google-cloud-sdk/bin \
   ~/.local/bin \
   $PATH

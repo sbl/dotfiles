@@ -12,3 +12,4 @@ tags
 .autoenv.zsh
 .autoenv_leave.zsh
 .python-version
+vim/.vim/plugged

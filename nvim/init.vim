@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype off
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 " core
 
@@ -19,8 +19,11 @@ Plug 'lifepillar/vim-solarized8'
 
 Plug 'SirVer/ultisnips'
 Plug 'junegunn/vim-peekaboo'
-Plug 'lifepillar/vim-mucomplete'
+Plug 'ervandew/supertab'
 Plug 'w0rp/ale'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-jedi'
+Plug 'steelsojka/deoplete-flow'
 
 " interface
 
@@ -37,7 +40,6 @@ Plug 'racer-rust/vim-racer'
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'davidhalter/jedi-vim'
-Plug 'Vimjas/vim-python-pep8-indent'
 
 call plug#end()
 
@@ -49,7 +51,7 @@ filetype indent on
 " GENERAL
 
 " reload when saving this
-autocmd! BufWritePost .vimrc source ~/.vimrc
+autocmd! BufWritePost init.vim source ~/.config/nvim/init.vim
 
 set history=10000
 set wildmode=list:longest,full
@@ -63,7 +65,6 @@ set smartcase   "be smart when searching
 set nohlsearch
 set ignorecase
 set wildignore+=*/tmp/*,*/cache/*,*/dist/*,*.so,*.swp,*.zip,*.pyc
-set completeopt+=menuone " mu complete wants this
 
 set nonumber
 set foldcolumn=0
@@ -97,7 +98,10 @@ let g:solarized_statusline="normal"
 colorscheme solarized8_dark_flat
 
 set mouse=a
-if $TERM_PROGRAM =~ "iTerm"
+
+if has('nvim')
+  let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
+elseif $TERM_PROGRAM =~ "iTerm"
     let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
     let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
 endif
@@ -120,7 +124,8 @@ let g:ale_echo_msg_format = '%linter% - %s'
 
 let g:ale_linters = {
 \   'javascript': ['flow', 'eslint'],
-\   'go': ['go build', 'golint']
+\   'go': ['go build', 'golint'],
+\   'html': []
 \}
 
 let g:ale_fixers = {}
@@ -150,14 +155,9 @@ let g:ragtag_global_maps = 1
 
 " COMPLETION
 
-let g:UltiSnipsExpandTrigger="<C-J>"
-let g:UltiSnipsJumpForwardTrigger="<C-J>"
-let g:UltiSnipsJumpBackwardTrigger="<C-K>"
+let g:SuperTabDefaultCompletionType = "context"
+let g:deoplete#sources#jedi#show_docstring = 0
 
-inoremap <silent> <plug>(MUcompleteFwdKey) <right>
-imap <expr> <right> <plug>(MUcompleteCycFwd)
-
-let g:peekaboo_ins_prefix = '<c-x>' " mucomplete complains
 " close preview window
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
@@ -190,9 +190,8 @@ set statusline=\ %t       "tail of the filename
 set statusline+=\%r       "read only flag
 set statusline+=\%m       "modified flag
 set statusline+=\ %y      "filetype
-set statusline+=\ %{LinterStatus()}
+set statusline+=\ \ ---\ \ \%{LinterStatus()}
 set statusline+=%=\ row\ %l/%L\ -\ %c "right lines + line
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " KEY MAPPINGS
@@ -235,7 +234,7 @@ command! CD cd %:p:h
 command! Open silent !open %:p:h
 command! Todo silent Ack TODO\\|FIXME\\|CHANGED\\|FIX
 command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
-command! Vimrc :e ~/.vimrc
+command! Vimrc :e ~/.config/nvim/init.vim
 command! Date put=strftime('%Y-%m-%d - %H:%M')
 
 " FUNCS
@@ -262,6 +261,7 @@ au BufRead,BufNewFile *.{md,markdown,txt} setf markdown | call s:setupWrapping()
 let g:javascript_plugin_flow = 1
 let g:jsx_ext_required = 0
 au FileType javascript nnoremap <F6>   :w<CR>:!node %:p<CR>
+let g:flow#omnifunc = 1
 
 " golang
 let g:go_fmt_command = "goimports"
@@ -299,9 +299,11 @@ au FileType c,cpp set shiftwidth=4
 au BufRead,BufNewFile *.h set filetype=c
 
 " python
+
+autocmd FileType python setlocal completeopt-=preview
 let g:ultisnips_python_quoting_style = 'single'
 let g:jedi#popup_on_dot = 0
-let g:jedi#completions_enabled = 1
+let g:jedi#completions_enabled = 0
 let g:jedi#goto_command = "gd"
 
 au FileType python map <buffer> <F6> :w<CR>:!python %:p<CR>

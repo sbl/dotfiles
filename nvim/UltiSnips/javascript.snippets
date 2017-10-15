@@ -1,11 +1,5 @@
-snippet for "for (...) {...} (faster)"
-for (var ${2:i} = ${1:Things}.length - 1 $2 >= 0 $2--) {
-	${3:$1[$2]}${VISUAL}$0
-}
-endsnippet
-
 snippet for "for (...) {...}"
-for (var ${2:i}=0 $2 < ${1:Things}.length $2++) {
+for (let ${2:i}=0 $2 < ${1:Things}.length $2++) {
 	${3:$1[$2]}${VISUAL}$0
 }
 endsnippet
@@ -54,12 +48,7 @@ snippet ce "console.error"
 console.error('$1'$0)
 endsnippet
 
-snippet this "_this"
-var _this = this
-$0
-endsnippet
-
-# mocha
+# tests
 
 snippet desc "mocha describe"
 describe('$1', () => {
@@ -90,20 +79,31 @@ test('$1', () => {
 })
 endsnippet
 
-snippet react "react component"
+snippet react "react functional component"
+// @flow
+
 import React from 'react'
 
 const ${1:Component} = (props) => {
-	return (
-			$0
-	)
+	return <div>
+	</div>
 }
 
 export default $1
 endsnippet
 
-snippet c "const"
-const ${1:name} = $0
-endsnippet
+snippet react "react class component"
+// @flow
 
+import React, { Component } from 'react'
+
+type Props = {}
+type State = {}
+
+export default class ${1:Component} extends Component<Props, State> {
+	render () {
+		return <div></div>
+	}
+}
+endsnippet
 # vim:ft=snippets:

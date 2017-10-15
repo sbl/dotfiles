@@ -23,7 +23,6 @@ Plug 'ervandew/supertab'
 Plug 'w0rp/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
-Plug 'steelsojka/deoplete-flow'
 
 " interface
 
@@ -38,7 +37,8 @@ Plug 'fatih/vim-go'
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
 Plug 'pangloss/vim-javascript'
-Plug 'maxmellon/vim-jsx-pretty'
+Plug 'mxw/vim-jsx'
+Plug 'flowtype/vim-flow'
 Plug 'davidhalter/jedi-vim'
 
 call plug#end()
@@ -98,6 +98,7 @@ let g:solarized_statusline="normal"
 colorscheme solarized8_dark_flat
 
 set mouse=a
+set clipboard=unnamed
 
 if has('nvim')
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
@@ -155,6 +156,11 @@ let g:ragtag_global_maps = 1
 
 " COMPLETION
 
+let g:omni_sql_no_default_maps = 1
+
+let g:jedi#popup_on_dot = 0
+let g:jedi#completions_enabled = 0
+
 let g:SuperTabDefaultCompletionType = "context"
 let g:deoplete#sources#jedi#show_docstring = 0
 
@@ -179,10 +185,6 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
-" sql - please don't complete
-
-let g:omni_sql_no_default_maps = 1
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Poor mans statusline
 
@@ -190,7 +192,7 @@ set statusline=\ %t       "tail of the filename
 set statusline+=\%r       "read only flag
 set statusline+=\%m       "modified flag
 set statusline+=\ %y      "filetype
-set statusline+=\ \ ---\ \ \%{LinterStatus()}
+set statusline+=\ %=\%{LinterStatus()}
 set statusline+=%=\ row\ %l/%L\ -\ %c "right lines + line
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -259,9 +261,9 @@ au BufRead,BufNewFile *.{md,markdown,txt} setf markdown | call s:setupWrapping()
 
 " javascript
 let g:javascript_plugin_flow = 1
+let g:flow#enable = 0
 let g:jsx_ext_required = 0
 au FileType javascript nnoremap <F6>   :w<CR>:!node %:p<CR>
-let g:flow#omnifunc = 1
 
 " golang
 let g:go_fmt_command = "goimports"
@@ -276,21 +278,9 @@ augroup END
 
 
 " rust
-
 let g:rustfmt_autosave = 1
 
-" haskell
-
-" Disable haskell-vim omnifunc
-let g:haskellmode_completion_ghc = 0
-autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-au FileType haskell map <buffer> <F6> :w<CR>:terminal stack runhaskell %:p<CR>
-
-
 " c
-
-" ctags -R --c++-kinds=+p --fields=+iaS --extra=+q
-
 au FileType c,cpp set nolist
 au FileType c,cpp set makeprg=make\ -C\ build
 au FileType c,cpp nnoremap <F5> :w<CR>:make<CR>
@@ -299,15 +289,11 @@ au FileType c,cpp set shiftwidth=4
 au BufRead,BufNewFile *.h set filetype=c
 
 " python
-
 autocmd FileType python setlocal completeopt-=preview
+au FileType python map <buffer> <F6> :w<CR>:!python %:p<CR>
 let g:ultisnips_python_quoting_style = 'single'
-let g:jedi#popup_on_dot = 0
-let g:jedi#completions_enabled = 0
 let g:jedi#goto_command = "gd"
 
-au FileType python map <buffer> <F6> :w<CR>:!python %:p<CR>
 
 " git
-
 autocmd Filetype gitcommit setlocal spell textwidth=72

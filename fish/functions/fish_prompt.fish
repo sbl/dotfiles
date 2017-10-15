@@ -26,10 +26,6 @@ end
 function fish_prompt
   set -l last_status $status
 
-  if set -q VIRTUAL_ENV
-    echo -n -s  "(" (basename "$VIRTUAL_ENV") ")"
-  end
-
   _print_in_color "\n"(_pwd_with_tilde) blue
   _print_in_color "\n♩ " (_prompt_color_for_status $last_status)
   printf '%s ' (__fish_git_prompt)

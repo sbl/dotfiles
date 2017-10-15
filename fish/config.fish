@@ -30,5 +30,5 @@ alias ll='ls -alF'
 alias vi=nvim
 alias vim=nvim
 
-alias pip=pip3
-alias python=python3
+# py oh my
+source ~/miniconda3/etc/fish/conf.d/conda.fish

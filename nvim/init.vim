@@ -15,6 +15,7 @@ Plug 'vim-scripts/matchit.zip'
 Plug 'scrooloose/nerdcommenter'
 Plug 'lifepillar/vim-solarized8'
 
+
 " IDE
 
 Plug 'SirVer/ultisnips'
@@ -28,7 +29,7 @@ Plug 'zchee/deoplete-jedi'
 
 Plug 'junegunn/goyo.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 " language
 
@@ -98,13 +99,10 @@ let g:solarized_statusline="normal"
 colorscheme solarized8_dark_flat
 
 set mouse=a
-set clipboard=unnamed
+"set clipboard=unnamed
 
 if has('nvim')
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
-elseif $TERM_PROGRAM =~ "iTerm"
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
 endif
 
 " make thin splits
@@ -167,17 +165,22 @@ let g:deoplete#sources#jedi#show_docstring = 0
 " close preview window
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
-" CTRLP
-let g:ctrlp_root_markers = ['Makefile', 'package.json']
-let g:ctrlp_open_new_file = 'r'
-let g:ctrlp_buftag_types = {
-  \ 'go' : '--language-force=go --golang-types=ft'
-  \ }
+" fzf
 
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)|vendor|_site|node_modules$',
-  \ 'file': '\v\.(exe|so|dll|pyc|beam|class)$',
-  \ }
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
 
 " ack -> ag
 
@@ -218,6 +221,7 @@ nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
 nnoremap <Leader>d :NERDTreeToggle<CR>
+nnoremap <c-p> :FZF<CR>
 nnoremap <Leader>t :CtrlPBufTag<CR>
 
 nnoremap <leader>an :ALENextWrap<cr>

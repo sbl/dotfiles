@@ -13,3 +13,4 @@ tags
 .autoenv_leave.zsh
 .python-version
 vim/.vim/plugged
+fish/functions/fzf_key_bindings.fish

@@ -10,6 +10,8 @@ set -x EDITOR nvim
 set -x VISUAL nvim
 set -x PAGER less
 
+set -x FZF_DEFAULT_COMMAND 'ag -g ""'
+
 # path
 
 set -gx PATH \

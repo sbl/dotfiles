@@ -15,7 +15,6 @@ Plug 'vim-scripts/matchit.zip'
 Plug 'scrooloose/nerdcommenter'
 Plug 'lifepillar/vim-solarized8'
 
-
 " IDE
 
 Plug 'SirVer/ultisnips'
@@ -30,6 +29,7 @@ Plug 'zchee/deoplete-jedi'
 Plug 'junegunn/goyo.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " language
 
@@ -39,7 +39,6 @@ Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
-Plug 'flowtype/vim-flow'
 Plug 'davidhalter/jedi-vim'
 
 call plug#end()
@@ -99,7 +98,7 @@ let g:solarized_statusline="normal"
 colorscheme solarized8_dark_flat
 
 set mouse=a
-"set clipboard=unnamed
+set clipboard=unnamed
 
 if has('nvim')
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
@@ -113,6 +112,10 @@ hi VertSplit guibg=bg ctermbg=bg
 " PLUGIN SUPPORT
 
 " ale
+
+nnoremap <leader>an :ALENextWrap<cr>
+nnoremap <leader>ap :ALEPreviousWrap<cr>
+nnoremap <leader>af :ALEFix<cr>
 
 let g:ale_sign_error = 'x'
 let g:ale_sign_warning = '!'
@@ -148,6 +151,8 @@ endfunction
 let NERDTreeIgnore=['\.pyc$']
 let g:NERDTreeMinimalUI = 1
 
+nnoremap <Leader>d :NERDTreeToggle<CR>
+
 " RAGTAG
 
 let g:ragtag_global_maps = 1
@@ -167,6 +172,7 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " fzf
 
+let g:fzf_command_prefix = 'Fzf'
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
@@ -181,6 +187,9 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
+
+nnoremap <c-p> :FZF<CR>
+nnoremap <Leader>t :FzfBTags<CR>
 
 " ack -> ag
 
@@ -219,14 +228,6 @@ nnoremap Q <nop>
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
-
-nnoremap <Leader>d :NERDTreeToggle<CR>
-nnoremap <c-p> :FZF<CR>
-nnoremap <Leader>t :CtrlPBufTag<CR>
-
-nnoremap <leader>an :ALENextWrap<cr>
-nnoremap <leader>ap :ALEPreviousWrap<cr>
-nnoremap <leader>af :ALEFix<cr>
 
 " germanizm
 nnoremap <Leader>ä :tabnext<CR>

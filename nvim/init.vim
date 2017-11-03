@@ -299,6 +299,7 @@ au FileType python map <buffer> <F6> :w<CR>:!python %:p<CR>
 let g:ultisnips_python_quoting_style = 'single'
 let g:jedi#goto_command = "gd"
 
+" let g:python3_host_prog = '~/miniconda3/bin/python'
 
 " git
 autocmd Filetype gitcommit setlocal spell textwidth=72

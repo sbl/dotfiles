@@ -4,7 +4,6 @@ set -x LC_ALL en_US.UTF-8
 set -x LANG en_US.UTF-8
 
 set -x GOPATH $HOME
-set -x WORKON $HOME/.virtualenvs
 
 set -x EDITOR nvim
 set -x VISUAL nvim
@@ -15,6 +14,7 @@ set -x FZF_DEFAULT_COMMAND 'ag -g ""'
 # path
 
 set -gx PATH \
+  ~/miniconda3/envs/py27/bin \
   $GOPATH/bin \
   ~/.cargo/bin \
   ~/google-cloud-sdk/bin \

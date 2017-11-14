@@ -10,7 +10,6 @@ Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-endwise'
-Plug 'mileszs/ack.vim'
 Plug 'vim-scripts/matchit.zip'
 Plug 'scrooloose/nerdcommenter'
 Plug 'lifepillar/vim-solarized8'
@@ -39,6 +38,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+Plug 'flowtype/vim-flow'
 Plug 'davidhalter/jedi-vim'
 
 call plug#end()
@@ -93,20 +93,20 @@ set shortmess+=c   " Shut off completion messages
 set vb " disable error bell
 set kp=:help    " I barely need a man output
 
-set t_Co=256
+" colors
+
 let g:solarized_statusline="normal"
-colorscheme solarized8_dark_flat
+set t_8f=^[[38;2;%lu;%lu;%lum
+set t_8b=^[[48;2;%lu;%lu;%lum
+set termguicolors
+"set background=dark
+colorscheme solarized8_flat
 
 set mouse=a
 set clipboard=unnamed
 
-if has('nvim')
-  let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
-endif
-
 " make thin splits
 hi VertSplit guibg=bg ctermbg=bg
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN SUPPORT
@@ -157,7 +157,14 @@ nnoremap <Leader>d :NERDTreeToggle<CR>
 
 let g:ragtag_global_maps = 1
 
-" COMPLETION
+" COMPLETION / deoplete
+
+" the python options are not exclusive to deoplete, but here it has the biggest impact
+" on startup performance, UX.
+let g:python_host_prog = $HOME . '/miniconda3/envs/nvim2/bin/python'
+let g:python3_host_prog = $HOME . '/miniconda3/envs/nvim3/bin/python'
+
+let g:deoplete#enable_at_startup = 1
 
 let g:omni_sql_no_default_maps = 1
 
@@ -172,7 +179,6 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " fzf
 
-let g:fzf_command_prefix = 'Fzf'
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
@@ -189,13 +195,8 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 
 nnoremap <c-p> :FZF<CR>
-nnoremap <Leader>t :FzfBTags<CR>
-
-" ack -> ag
-
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
+nnoremap <Leader>t :BTags<CR>
+nnoremap <Leader>l :Lines<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Poor mans statusline
@@ -239,7 +240,7 @@ nnoremap <Leader>ö :tabprevious<CR>
 command! Make silent make | cw 5 | redraw!
 command! CD cd %:p:h
 command! Open silent !open %:p:h
-command! Todo silent Ack TODO\\|FIXME\\|CHANGED\\|FIX
+command! Todo silent Ag TODO\\|FIXME\\|CHANGED\\|FIX
 command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
 command! Vimrc :e ~/.config/nvim/init.vim
 command! Date put=strftime('%Y-%m-%d - %H:%M')
@@ -267,8 +268,12 @@ au BufRead,BufNewFile *.{md,markdown,txt} setf markdown | call s:setupWrapping()
 " javascript
 let g:javascript_plugin_flow = 1
 let g:flow#enable = 0
-let g:jsx_ext_required = 0
 au FileType javascript nnoremap <F6>   :w<CR>:!node %:p<CR>
+au FileType javascript nnoremap gd :FlowJumpToDef<CR>
+
+" always use local flow
+let g:flow#flowpath = './node_modules/.bin/flow'
+
 
 " golang
 let g:go_fmt_command = "goimports"
@@ -294,12 +299,9 @@ au FileType c,cpp set shiftwidth=4
 au BufRead,BufNewFile *.h set filetype=c
 
 " python
-autocmd FileType python setlocal completeopt-=preview
 au FileType python map <buffer> <F6> :w<CR>:!python %:p<CR>
 let g:ultisnips_python_quoting_style = 'single'
 let g:jedi#goto_command = "gd"
-
-" let g:python3_host_prog = '~/miniconda3/bin/python'
 
 " git
 autocmd Filetype gitcommit setlocal spell textwidth=72

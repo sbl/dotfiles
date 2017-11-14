@@ -10,11 +10,11 @@ set -x VISUAL nvim
 set -x PAGER less
 
 set -x FZF_DEFAULT_COMMAND 'ag -g ""'
+set -gx CONDA_LEFT_PROMPT 1
 
 # path
 
 set -gx PATH \
-  ~/miniconda3/envs/py27/bin \
   $GOPATH/bin \
   ~/.cargo/bin \
   ~/google-cloud-sdk/bin \
@@ -33,4 +33,4 @@ alias vi=nvim
 alias vim=nvim
 
 # py oh my
-source ~/miniconda3/etc/fish/conf.d/conda.fish
+source $HOME/miniconda3/etc/fish/conf.d/conda.fish

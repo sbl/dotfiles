@@ -38,6 +38,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+Plug 'maxmellon/vim-jsx-pretty'
 Plug 'flowtype/vim-flow'
 Plug 'davidhalter/jedi-vim'
 
@@ -99,7 +100,7 @@ let g:solarized_statusline="normal"
 set t_8f=^[[38;2;%lu;%lu;%lum
 set t_8b=^[[48;2;%lu;%lu;%lum
 set termguicolors
-"set background=dark
+set background=dark
 colorscheme solarized8_flat
 
 set mouse=a

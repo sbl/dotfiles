@@ -10,16 +10,12 @@ set -x VISUAL nvim
 set -x PAGER less
 
 set -x FZF_DEFAULT_COMMAND 'ag -g ""'
-set -gx CONDA_LEFT_PROMPT 1
+set -x CONDA_LEFT_PROMPT 1
 
 # path
-
-set -gx PATH \
-  $GOPATH/bin \
-  ~/.cargo/bin \
-  ~/google-cloud-sdk/bin \
-  ~/.local/bin \
-  $PATH
+# instead of setting paths via configs (less portable) use fish_user_paths
+# http://fishshell.com/docs/current/tutorial.html#tut_path
+# > set -U fish_user_paths /usr/local/bin $fish_user_paths
 
 # key bindings
 

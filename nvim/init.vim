@@ -21,7 +21,6 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'ervandew/supertab'
 Plug 'w0rp/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-jedi'
 
 " interface
 
@@ -34,12 +33,11 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'dag/vim-fish'
 Plug 'fatih/vim-go'
-Plug 'rust-lang/rust.vim'
-Plug 'racer-rust/vim-racer'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'flowtype/vim-flow'
+Plug 'zchee/deoplete-jedi'
 Plug 'davidhalter/jedi-vim'
 
 call plug#end()
@@ -159,11 +157,6 @@ nnoremap <Leader>d :NERDTreeToggle<CR>
 let g:ragtag_global_maps = 1
 
 " COMPLETION / deoplete
-
-" the python options are not exclusive to deoplete, but here it has the biggest impact
-" on startup performance, UX.
-let g:python_host_prog = $HOME . '/miniconda3/envs/nvim2/bin/python'
-let g:python3_host_prog = $HOME . '/miniconda3/envs/nvim3/bin/python'
 
 let g:deoplete#enable_at_startup = 1
 
@@ -287,9 +280,6 @@ augroup go
   au Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
 augroup END
 
-
-" rust
-let g:rustfmt_autosave = 1
 
 " c
 au FileType c,cpp set nolist

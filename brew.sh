@@ -9,5 +9,4 @@ brew install the_silver_searcher
 brew install git
 brew install node
 brew install go
-brew install python3
 brew install trash

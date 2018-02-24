@@ -28,5 +28,4 @@ alias ll='ls -alF'
 alias vi=nvim
 alias vim=nvim
 
-# py oh my
-source $HOME/miniconda3/etc/fish/conf.d/conda.fish
+source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc

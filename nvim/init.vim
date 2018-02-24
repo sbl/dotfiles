@@ -110,6 +110,11 @@ hi VertSplit guibg=bg ctermbg=bg
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN SUPPORT
 
+" python support
+
+let g:loaded_python_provider = 1
+let g:python3_host_prog = '/usr/local/miniconda3/bin/python'
+
 " ale
 
 nnoremap <leader>an :ALENextWrap<cr>

@@ -31,6 +31,7 @@ Plug 'junegunn/fzf.vim'
 
 " language
 
+Plug 'sbl/scvim'
 Plug 'dag/vim-fish'
 Plug 'fatih/vim-go'
 Plug 'pangloss/vim-javascript'
@@ -164,6 +165,8 @@ let g:ragtag_global_maps = 1
 " COMPLETION / deoplete
 
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#jedi#server_timeout = 60
+let g:deoplete#sources#jedi#show_docstring = 0
 
 let g:omni_sql_no_default_maps = 1
 
@@ -171,7 +174,6 @@ let g:jedi#popup_on_dot = 0
 let g:jedi#completions_enabled = 0
 
 let g:SuperTabDefaultCompletionType = "context"
-let g:deoplete#sources#jedi#show_docstring = 0
 
 " close preview window
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif

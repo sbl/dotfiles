@@ -19,8 +19,10 @@ Plug 'lifepillar/vim-solarized8'
 Plug 'SirVer/ultisnips'
 Plug 'junegunn/vim-peekaboo'
 Plug 'ervandew/supertab'
-Plug 'w0rp/ale'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 
 " interface
 
@@ -37,9 +39,8 @@ Plug 'fatih/vim-go'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'maxmellon/vim-jsx-pretty'
-Plug 'flowtype/vim-flow'
-Plug 'zchee/deoplete-jedi'
-Plug 'davidhalter/jedi-vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'reasonml-editor/vim-reason-plus'
 
 call plug#end()
 
@@ -116,40 +117,19 @@ hi VertSplit guibg=bg ctermbg=bg
 let g:loaded_python_provider = 1
 let g:python3_host_prog = '/usr/local/miniconda3/bin/python'
 
-" ale
 
-nnoremap <leader>an :ALENextWrap<cr>
-nnoremap <leader>ap :ALEPreviousWrap<cr>
-nnoremap <leader>af :ALEFix<cr>
+" language client
 
-let g:ale_sign_error = 'x'
-let g:ale_sign_warning = '!'
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_enter = 0
-let g:ale_fix_on_save = 1
-let g:ale_echo_msg_format = '%linter% - %s'
+let g:LanguageClient_serverCommands = {
+    \ 'ocaml': ['ocaml-language-server', '--stdio'],
+    \ 'reason': ['reason-language-server.exe'],
+    \ 'python': ['pyls'],
+    \ }
 
-let g:ale_linters = {
-\   'javascript': ['flow', 'eslint'],
-\   'go': ['go build', 'golint'],
-\   'html': []
-\}
-
-let g:ale_fixers = {}
-let g:ale_fixers.python = ['yapf', 'isort']
-
-function! LinterStatus() abort
-    let l:counts = ale#statusline#Count(bufnr(''))
-
-    let l:all_errors = l:counts.error + l:counts.style_error
-    let l:all_non_errors = l:counts.total - l:all_errors
-
-    return l:counts.total == 0 ? 'OK' : printf(
-    \   '%dW %dE',
-    \   all_non_errors,
-    \   all_errors
-    \)
-endfunction
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent><leader>f :call LanguageClient#textDocument_formatting()<CR>
 
 " NERDTree
 
@@ -162,16 +142,9 @@ nnoremap <Leader>d :NERDTreeToggle<CR>
 
 let g:ragtag_global_maps = 1
 
-" COMPLETION / deoplete
-
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#jedi#server_timeout = 60
-let g:deoplete#sources#jedi#show_docstring = 0
+" COMPLETION
 
 let g:omni_sql_no_default_maps = 1
-
-let g:jedi#popup_on_dot = 0
-let g:jedi#completions_enabled = 0
 
 let g:SuperTabDefaultCompletionType = "context"
 
@@ -197,7 +170,6 @@ let g:fzf_colors =
 
 nnoremap <c-p> :FZF<CR>
 nnoremap <Leader>t :BTags<CR>
-nnoremap <Leader>l :Lines<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Poor mans statusline
@@ -206,7 +178,7 @@ set statusline=\ %t       "tail of the filename
 set statusline+=\%r       "read only flag
 set statusline+=\%m       "modified flag
 set statusline+=\ %y      "filetype
-set statusline+=\ %=\%{LinterStatus()}
+"set statusline+=\ %=\%{LinterStatus()}
 set statusline+=%=\ row\ %l/%L\ -\ %c "right lines + line
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -232,8 +204,8 @@ nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
 " germanizm
-nnoremap <Leader>ä :tabnext<CR>
-nnoremap <Leader>ö :tabprevious<CR>
+nnoremap <Leader>ä :cn<CR>
+nnoremap <Leader>ö :cp<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM COMMANDS
@@ -267,14 +239,7 @@ au BufRead,BufNewFile *.dsp set filetype=faust
 au BufRead,BufNewFile *.{md,markdown,txt} setf markdown | call s:setupWrapping()
 
 " javascript
-let g:javascript_plugin_flow = 1
-let g:flow#enable = 0
 au FileType javascript nnoremap <F6>   :w<CR>:!node %:p<CR>
-au FileType javascript nnoremap gd :FlowJumpToDef<CR>
-
-" always use local flow
-let g:flow#flowpath = './node_modules/.bin/flow'
-
 
 " golang
 let g:go_fmt_command = "goimports"
@@ -287,7 +252,6 @@ augroup go
   au Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
 augroup END
 
-
 " c
 au FileType c,cpp set nolist
 au FileType c,cpp set makeprg=make\ -C\ build
@@ -299,7 +263,6 @@ au BufRead,BufNewFile *.h set filetype=c
 " python
 au FileType python map <buffer> <F6> :w<CR>:!python %:p<CR>
 let g:ultisnips_python_quoting_style = 'single'
-let g:jedi#goto_command = "gd"
 
 " git
 autocmd Filetype gitcommit setlocal spell textwidth=72

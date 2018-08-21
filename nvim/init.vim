@@ -18,7 +18,7 @@ Plug 'lifepillar/vim-solarized8'
 
 Plug 'SirVer/ultisnips'
 Plug 'junegunn/vim-peekaboo'
-Plug 'ervandew/supertab'
+Plug 'ajh17/VimCompletesMe'
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
@@ -117,8 +117,10 @@ hi VertSplit guibg=bg ctermbg=bg
 let g:loaded_python_provider = 1
 let g:python3_host_prog = '/usr/local/miniconda3/bin/python'
 
-
 " language client
+
+" - npm install -g ocaml-language-server; opam install ocp-indent merlin
+" - pip install pyls
 
 let g:LanguageClient_serverCommands = {
     \ 'ocaml': ['ocaml-language-server', '--stdio'],
@@ -129,7 +131,7 @@ let g:LanguageClient_serverCommands = {
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent><leader>f :call LanguageClient#textDocument_formatting()<CR>
+nnoremap <leader>f :call LanguageClient#textDocument_formatting()<CR>
 
 " NERDTree
 
@@ -145,8 +147,6 @@ let g:ragtag_global_maps = 1
 " COMPLETION
 
 let g:omni_sql_no_default_maps = 1
-
-let g:SuperTabDefaultCompletionType = "context"
 
 " close preview window
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif

@@ -207,6 +207,8 @@ vnoremap <F1> <ESC>
 nnoremap <Leader>ä :cn<CR>
 nnoremap <Leader>ö :cp<CR>
 
+nnoremap <Leader>w :w<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM COMMANDS
 

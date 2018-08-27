@@ -16,13 +16,11 @@ Plug 'lifepillar/vim-solarized8'
 
 " IDE
 
-Plug 'SirVer/ultisnips'
+"Plug 'SirVer/ultisnips'
+Plug 'tpope/vim-fugitive'
 Plug 'junegunn/vim-peekaboo'
 Plug 'ajh17/VimCompletesMe'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+Plug 'w0rp/ale'
 
 " interface
 
@@ -33,13 +31,13 @@ Plug 'junegunn/fzf.vim'
 
 " language
 
-Plug 'sbl/scvim'
 Plug 'dag/vim-fish'
+Plug 'junegunn/vader.vim'
 Plug 'fatih/vim-go'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
-Plug 'maxmellon/vim-jsx-pretty'
 Plug 'leafgarland/typescript-vim'
+Plug 'rgrinberg/vim-ocaml'
 Plug 'reasonml-editor/vim-reason-plus'
 
 call plug#end()
@@ -117,21 +115,45 @@ hi VertSplit guibg=bg ctermbg=bg
 let g:loaded_python_provider = 1
 let g:python3_host_prog = '/usr/local/miniconda3/bin/python'
 
-" language client
 
-" - npm install -g ocaml-language-server; opam install ocp-indent merlin
-" - pip install pyls
+" ale
 
-let g:LanguageClient_serverCommands = {
-    \ 'ocaml': ['ocaml-language-server', '--stdio'],
-    \ 'reason': ['reason-language-server.exe'],
-    \ 'python': ['pyls'],
-    \ }
+"let g:ale_linters_explicit = 1
+let g:ale_completion_enabled = 1
+let g:ale_sign_error = '✖'
+let g:ale_sign_warning = '⚠'
+let g:ale_fix_on_save = 0
+let g:ale_linters = {
+      \ 'javascript': ['eslint', 'flow-language-server'],
+      \ 'ocaml': ['ols'],
+      \}
 
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <leader>f :call LanguageClient#textDocument_formatting()<CR>
+let g:ale_fixers = {
+      \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+      \ 'javascript': ['eslint'],
+      \ 'ocaml': ['ocamlformat'],
+      \ 'reason': ['refmt'],
+      \ 'python': ['isort', 'yapf'],
+      \ }
+
+nmap <silent> K <Plug>(ale_hover)
+nmap <silent> gd <Plug>(ale_go_to_definition)
+nmap <Leader>f <Plug>(ale_fix)
+nmap <Leader>ä <Plug>(ale_next_wrap)
+nmap <Leader>ö <Plug>(ale_previous_wrap)
+
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+
+    return l:counts.total == 0 ? 'OK' : printf(
+    \   '%dW %dE',
+    \   all_non_errors,
+    \   all_errors
+    \)
+endfunction
 
 " NERDTree
 
@@ -178,7 +200,7 @@ set statusline=\ %t       "tail of the filename
 set statusline+=\%r       "read only flag
 set statusline+=\%m       "modified flag
 set statusline+=\ %y      "filetype
-"set statusline+=\ %=\%{LinterStatus()}
+set statusline+=\ %=\%{LinterStatus()}
 set statusline+=%=\ row\ %l/%L\ -\ %c "right lines + line
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -202,10 +224,6 @@ nnoremap Q <nop>
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
-
-" germanizm
-nnoremap <Leader>ä :cn<CR>
-nnoremap <Leader>ö :cp<CR>
 
 nnoremap <Leader>w :w<CR>
 

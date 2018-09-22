@@ -136,6 +136,7 @@ let g:ale_fixers = {
       \ 'python': ['isort', 'yapf'],
       \ }
 
+nmap <silent> <F4> <Plug>(ale_detail)
 nmap <silent> K <Plug>(ale_hover)
 nmap <silent> gd <Plug>(ale_go_to_definition)
 nmap <Leader>f <Plug>(ale_fix)

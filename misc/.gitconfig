@@ -20,7 +20,7 @@
 [mergetool]
   keepBackup = false
 [user]
-	name = sbl
+	name = Stephen Lumenta
 	email = stephen.lumenta@gmail.com
 [filter "media"]
 	required = true

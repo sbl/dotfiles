@@ -16,8 +16,8 @@ Plug 'lifepillar/vim-solarized8'
 
 " IDE
 
-"Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-fugitive'
+Plug 'vim-scripts/a.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'ajh17/VimCompletesMe'
 Plug 'w0rp/ale'
@@ -118,28 +118,30 @@ let g:python3_host_prog = '/usr/local/miniconda3/bin/python'
 
 " ale
 
-"let g:ale_linters_explicit = 1
+let g:ale_linters_explicit = 0
 let g:ale_completion_enabled = 1
 let g:ale_sign_error = '✖'
 let g:ale_sign_warning = '⚠'
-let g:ale_fix_on_save = 0
+let g:ale_fix_on_save = 1
 let g:ale_linters = {
-      \ 'javascript': ['eslint', 'flow-language-server'],
       \ 'ocaml': ['ols'],
+      \ 'reason': ['ols'],
+      \ 'python': ['mypy', 'pyls'],
       \}
 
 let g:ale_fixers = {
       \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-      \ 'javascript': ['eslint'],
       \ 'ocaml': ['ocamlformat'],
+      \ 'javascript': ['prettier'],
+      \ 'typescript': ['prettier'],
       \ 'reason': ['refmt'],
       \ 'python': ['isort', 'yapf'],
-      \ }
+      \}
 
 nmap <silent> <F4> <Plug>(ale_detail)
 nmap <silent> K <Plug>(ale_hover)
 nmap <silent> gd <Plug>(ale_go_to_definition)
-nmap <Leader>f <Plug>(ale_fix)
+"nmap <silent><Leader>f <Plug>(ale_fix)
 nmap <Leader>ä <Plug>(ale_next_wrap)
 nmap <Leader>ö <Plug>(ale_previous_wrap)
 

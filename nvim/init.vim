@@ -21,6 +21,10 @@ Plug 'vim-scripts/a.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'ajh17/VimCompletesMe'
 Plug 'w0rp/ale'
+Plug 'autozimu/LanguageClient-neovim', {
+      \ 'branch': 'next',
+      \ 'do': 'bash install.sh',
+      \ }
 
 " interface
 
@@ -110,40 +114,44 @@ hi VertSplit guibg=bg ctermbg=bg
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN SUPPORT
 
-" python support
-
-let g:loaded_python_provider = 1
-let g:python3_host_prog = '/usr/local/miniconda3/bin/python'
+" ale + lsp
 
 
-" ale
+let g:LanguageClient_serverCommands = {
+            \ 'cpp': ['cquery', '--log-file=/tmp/cq.log'],
+            \ 'c': ['cquery', '--log-file=/tmp/cq.log'],
+            \ 'python': ['pyls'],
+            \ }
 
-let g:ale_linters_explicit = 0
-let g:ale_completion_enabled = 1
+let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
+let g:LanguageClient_settingsPath = $HOME . '/.config/nvim/settings.json'
+
+nmap <silent> <F4> :copen<CR>
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
+let g:ale_linters_explicit = 1
+let g:ale_completion_enabled = 0
 let g:ale_sign_error = '✖'
 let g:ale_sign_warning = '⚠'
 let g:ale_fix_on_save = 1
+
 let g:ale_linters = {
-      \ 'ocaml': ['ols'],
-      \ 'reason': ['ols'],
-      \ 'python': ['mypy', 'pyls'],
+      \ 'python': ['flake8'],
       \}
 
 let g:ale_fixers = {
       \ '*': ['remove_trailing_lines', 'trim_whitespace'],
       \ 'ocaml': ['ocamlformat'],
+      \ 'cpp': ['clang-format'],
       \ 'javascript': ['prettier'],
       \ 'typescript': ['prettier'],
       \ 'reason': ['refmt'],
       \ 'python': ['isort', 'yapf'],
       \}
-
-nmap <silent> <F4> <Plug>(ale_detail)
-nmap <silent> K <Plug>(ale_hover)
-nmap <silent> gd <Plug>(ale_go_to_definition)
-"nmap <silent><Leader>f <Plug>(ale_fix)
-nmap <Leader>ä <Plug>(ale_next_wrap)
-nmap <Leader>ö <Plug>(ale_previous_wrap)
 
 function! LinterStatus() abort
     let l:counts = ale#statusline#Count(bufnr(''))
@@ -160,9 +168,7 @@ endfunction
 
 " NERDTree
 
-let NERDTreeIgnore=['\.pyc$']
 let g:NERDTreeMinimalUI = 1
-
 nnoremap <Leader>d :NERDTreeToggle<CR>
 
 " RAGTAG
@@ -192,6 +198,9 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
+
+" respect gitignore
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 nnoremap <c-p> :FZF<CR>
 nnoremap <Leader>t :BTags<CR>
@@ -256,13 +265,10 @@ endfunction
 au FileType make setl noexpandtab
 
 " faust
-au BufRead,BufNewFile *.dsp set filetype=faust
+au BufRead,BufNewFile *.{dsp,lib} set filetype=faust
 
 " markdown
 au BufRead,BufNewFile *.{md,markdown,txt} setf markdown | call s:setupWrapping()
-
-" javascript
-au FileType javascript nnoremap <F6>   :w<CR>:!node %:p<CR>
 
 " golang
 let g:go_fmt_command = "goimports"
@@ -277,15 +283,10 @@ augroup END
 
 " c
 au FileType c,cpp set nolist
-au FileType c,cpp set makeprg=make\ -C\ build
-au FileType c,cpp nnoremap <F5> :w<CR>:make<CR>
-au FileType c,cpp set tabstop=4
-au FileType c,cpp set shiftwidth=4
-au BufRead,BufNewFile *.h set filetype=c
-
-" python
-au FileType python map <buffer> <F6> :w<CR>:!python %:p<CR>
-let g:ultisnips_python_quoting_style = 'single'
+au FileType c,cpp set makeprg=cmake\ --build\ build\ --config\ Debug
+au FileType c,cpp nnoremap <F7> :w<CR>:make<CR>
+au FileType c,cpp set tabstop=2
+au FileType c,cpp set shiftwidth=2
 
 " git
 autocmd Filetype gitcommit setlocal spell textwidth=72

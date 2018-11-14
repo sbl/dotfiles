@@ -28,4 +28,5 @@ alias ll='ls -alF'
 alias vi=nvim
 alias vim=nvim
 
-source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc
+# OPAM configuration
+source /Users/stephen/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true

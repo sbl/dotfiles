@@ -96,6 +96,12 @@ set shortmess+=c   " Shut off completion messages
 set vb " disable error bell
 set kp=:help    " I barely need a man output
 
+
+" per directory config
+
+set exrc
+set secure
+
 " colors
 
 let g:solarized_statusline="normal"

@@ -10,7 +10,6 @@ set -x VISUAL nvim
 set -x PAGER less
 
 set -x FZF_DEFAULT_COMMAND 'ag -g ""'
-set -x CONDA_LEFT_PROMPT 1
 
 # path
 # instead of setting paths via configs (less portable) use fish_user_paths

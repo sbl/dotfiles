@@ -41,6 +41,7 @@ Plug 'fatih/vim-go'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'leafgarland/typescript-vim'
+Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'rgrinberg/vim-ocaml'
 Plug 'reasonml-editor/vim-reason-plus'
 
@@ -132,6 +133,7 @@ let g:LanguageClient_serverCommands = {
 let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
 let g:LanguageClient_settingsPath = $HOME . '/.config/nvim/settings.json'
 
+
 nmap <silent> <F4> :copen<CR>
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 
@@ -148,12 +150,14 @@ let g:ale_fix_on_save = 1
 let g:ale_linters = {
       \ 'python': ['flake8'],
       \ 'javascript': ['flow'],
+      \ 'go': ['gobuild'],
       \}
 
 let g:ale_fixers = {
       \ '*': ['remove_trailing_lines', 'trim_whitespace'],
       \ 'ocaml': ['ocamlformat'],
       \ 'cpp': ['clang-format'],
+      \ 'go': ['gofmt', 'goimports'],
       \ 'javascript': ['prettier'],
       \ 'typescript': ['prettier'],
       \ 'reason': ['refmt'],
@@ -277,9 +281,6 @@ au BufRead,BufNewFile *.{dsp,lib} set filetype=faust
 " markdown
 au BufRead,BufNewFile *.{md,markdown,txt} setf markdown | call s:setupWrapping()
 
-" golang
-let g:go_fmt_command = "goimports"
-
 augroup go
   au!
   au FileType go setl nolist
@@ -292,8 +293,8 @@ augroup END
 au FileType c,cpp set nolist
 au FileType c,cpp set makeprg=cmake\ --build\ build\ --config\ Debug
 au FileType c,cpp nnoremap <F7> :w<CR>:make<CR>
-au FileType c,cpp set tabstop=2
-au FileType c,cpp set shiftwidth=2
+au FileType c,cpp set tabstop=4
+au FileType c,cpp set shiftwidth=4
 
 " git
 autocmd Filetype gitcommit setlocal spell textwidth=72

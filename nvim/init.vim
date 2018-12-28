@@ -16,8 +16,7 @@ Plug 'lifepillar/vim-solarized8'
 
 " IDE
 
-Plug 'tpope/vim-fugitive'
-Plug 'vim-scripts/a.vim'
+Plug 'Valloric/ListToggle'
 Plug 'junegunn/vim-peekaboo'
 Plug 'ajh17/VimCompletesMe'
 Plug 'w0rp/ale'
@@ -134,12 +133,12 @@ let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if yo
 let g:LanguageClient_settingsPath = $HOME . '/.config/nvim/settings.json'
 
 
-nmap <silent> <F4> :copen<CR>
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+nnoremap <silent> <leader>f :ALEFix<CR>
 
 let g:ale_linters_explicit = 1
 let g:ale_completion_enabled = 0
@@ -177,6 +176,8 @@ function! LinterStatus() abort
     \)
 endfunction
 
+let g:lt_quickfix_list_toggle_map = '<f4>'
+
 " NERDTree
 
 let g:NERDTreeMinimalUI = 1
@@ -188,6 +189,7 @@ let g:ragtag_global_maps = 1
 
 " COMPLETION
 
+au FileType c,cpp let b:vcm_tab_complete = "omni"
 let g:omni_sql_no_default_maps = 1
 
 " close preview window
@@ -255,9 +257,8 @@ nnoremap <Leader>w :w<CR>
 
 command! Make silent make | cw 5 | redraw!
 command! CD cd %:p:h
-command! Open silent !open %:p:h
+command! Open silent !open '%:p:h'
 command! Todo silent Ag TODO\\|FIXME\\|CHANGED\\|FIX
-command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
 command! Vimrc :e ~/.config/nvim/init.vim
 command! Date put=strftime('%Y-%m-%d - %H:%M')
 
@@ -271,6 +272,11 @@ endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " AUTO CMD / Filetype based modifications
+
+augroup quickfix
+    autocmd!
+    autocmd FileType qf setlocal wrap
+augroup END
 
 " make
 au FileType make setl noexpandtab

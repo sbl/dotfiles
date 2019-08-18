@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype off
 
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin('~/.vim/plugged')
 
 " core
 
@@ -34,15 +34,16 @@ Plug 'junegunn/fzf.vim'
 
 " language
 
-Plug 'dag/vim-fish'
-Plug 'junegunn/vader.vim'
+"Plug 'davidgranstrom/scnvim'
+Plug 'tbastos/vim-lua'
+"Plug 'junegunn/vader.vim'
 Plug 'fatih/vim-go'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'leafgarland/typescript-vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'rgrinberg/vim-ocaml'
-Plug 'reasonml-editor/vim-reason-plus'
+"Plug 'rgrinberg/vim-ocaml'
+"Plug 'reasonml-editor/vim-reason-plus'
 
 call plug#end()
 
@@ -54,7 +55,7 @@ filetype indent on
 " GENERAL
 
 " reload when saving this
-autocmd! BufWritePost init.vim source ~/.config/nvim/init.vim
+autocmd! BufWritePost .vimrc source ~/.vimrc
 
 set history=10000
 set wildmode=list:longest,full
@@ -105,11 +106,12 @@ set secure
 " colors
 
 let g:solarized_statusline="normal"
+set t_Co=16
 set t_8f=^[[38;2;%lu;%lu;%lum
 set t_8b=^[[48;2;%lu;%lu;%lum
 set termguicolors
 set background=dark
-colorscheme solarized8_flat
+colorscheme solarized8
 
 set mouse=a
 set clipboard=unnamed
@@ -122,15 +124,15 @@ hi VertSplit guibg=bg ctermbg=bg
 
 " ale + lsp
 
-
 let g:LanguageClient_serverCommands = {
-            \ 'cpp': ['cquery', '--log-file=/tmp/cq.log'],
-            \ 'c': ['cquery', '--log-file=/tmp/cq.log'],
-            \ 'python': ['pyls'],
-            \ }
+    \ 'cpp': ['cquery', '--log-file=/tmp/cq.log'],
+    \ 'c': ['cquery', '--log-file=/tmp/cq.log'],
+    \ 'python': ['pyls'],
+    \ }
 
 let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
-let g:LanguageClient_settingsPath = $HOME . '/.config/nvim/settings.json'
+let g:LanguageClient_settingsPath = $HOME . '/.vim/settings.json'
+let g:LanguageClient_serverStderr = '/tmp/clangd.stderr'
 
 
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
@@ -155,6 +157,7 @@ let g:ale_linters = {
 let g:ale_fixers = {
       \ '*': ['remove_trailing_lines', 'trim_whitespace'],
       \ 'ocaml': ['ocamlformat'],
+      \ 'c': ['clang-format'],
       \ 'cpp': ['clang-format'],
       \ 'go': ['gofmt', 'goimports'],
       \ 'javascript': ['prettier'],
@@ -259,7 +262,7 @@ command! Make silent make | cw 5 | redraw!
 command! CD cd %:p:h
 command! Open silent !open '%:p:h'
 command! Todo silent Ag TODO\\|FIXME\\|CHANGED\\|FIX
-command! Vimrc :e ~/.config/nvim/init.vim
+command! Vimrc :e ~/.vimrc
 command! Date put=strftime('%Y-%m-%d - %H:%M')
 
 " FUNCS
@@ -297,7 +300,6 @@ augroup END
 
 " c
 au FileType c,cpp set nolist
-au FileType c,cpp set makeprg=cmake\ --build\ build\ --config\ Debug
 au FileType c,cpp nnoremap <F7> :w<CR>:make<CR>
 au FileType c,cpp set tabstop=4
 au FileType c,cpp set shiftwidth=4

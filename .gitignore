@@ -7,10 +7,4 @@
 *.pyc
 tags
 
-# autoenv
-
-.autoenv.zsh
-.autoenv_leave.zsh
-.python-version
-vim/.vim/plugged
-fish/functions/fzf_key_bindings.fish
+vim/plugged

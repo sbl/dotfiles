@@ -5,8 +5,8 @@ set -x LANG en_US.UTF-8
 
 set -x GOPATH $HOME
 
-set -x EDITOR nvim
-set -x VISUAL nvim
+set -x EDITOR vim
+set -x VISUAL vim
 set -x PAGER less
 
 set -x FZF_DEFAULT_COMMAND 'ag -g ""'
@@ -24,8 +24,4 @@ bind \ee accept-autosuggestion # ctrl-e completes first suggestion
 
 alias l='ls -lFh'
 alias ll='ls -alF'
-alias vi=nvim
-alias vim=nvim
-
-# OPAM configuration
-source /Users/stephen/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
+alias vi=vim

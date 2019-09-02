@@ -1,2 +1,6 @@
+# ignore fzf install via vim
+
+functions/fzf_key_bindings.fish
+
 fishd.*
 fish_variables

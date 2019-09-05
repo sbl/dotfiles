@@ -12,7 +12,7 @@
   whitespace = warn
 [core]
   excludesfile = ~/.gitignore
-  editor = nvim
+  editor = vim
 [push]
   default = simple
 [merge]

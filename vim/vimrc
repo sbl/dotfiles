@@ -34,16 +34,12 @@ Plug 'junegunn/fzf.vim'
 
 " language
 
-"Plug 'davidgranstrom/scnvim'
 Plug 'tbastos/vim-lua'
-"Plug 'junegunn/vader.vim'
 Plug 'fatih/vim-go'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'leafgarland/typescript-vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
-"Plug 'rgrinberg/vim-ocaml'
-"Plug 'reasonml-editor/vim-reason-plus'
 
 call plug#end()
 
@@ -110,11 +106,12 @@ set t_Co=16
 set t_8f=^[[38;2;%lu;%lu;%lum
 set t_8b=^[[48;2;%lu;%lu;%lum
 " set termguicolors
-set background=dark
+set background=light
 colorscheme solarized8
 
 set mouse=a
-set clipboard=unnamed
+set clipboard^=unnamed,unnamedplus
+
 
 " make thin splits
 hi VertSplit guibg=bg ctermbg=bg

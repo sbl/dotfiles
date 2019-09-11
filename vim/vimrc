@@ -34,7 +34,6 @@ Plug 'junegunn/fzf.vim'
 
 " language
 
-Plug 'tbastos/vim-lua'
 Plug 'fatih/vim-go'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
@@ -127,8 +126,8 @@ let &t_EI = "\e[2 q"
 
 let g:LanguageClient_serverCommands = {
     \ 'python': ['pyls'],
-    \ 'javascript': ['flow-language-server', '--stdio',  '--try-flow-bin'],
-    \ 'javascript.jsx': ['flow-language-server', '--stdio',  '--try-flow-bin'],
+    \ 'javascript': ['flow', 'lsp'],
+    \ 'javascript.jsx': ['flow', 'lsp'],
     \ }
 
 let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
@@ -151,7 +150,6 @@ let g:ale_fix_on_save = 1
 
 let g:ale_linters = {
       \ 'python': ['flake8'],
-      \ 'javascript': ['flow'],
       \ 'go': ['gobuild'],
       \}
 

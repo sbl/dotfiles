@@ -19,11 +19,8 @@ Plug 'lifepillar/vim-solarized8'
 Plug 'Valloric/ListToggle'
 Plug 'junegunn/vim-peekaboo'
 Plug 'ajh17/VimCompletesMe'
-Plug 'w0rp/ale'
-Plug 'autozimu/LanguageClient-neovim', {
-      \ 'branch': 'next',
-      \ 'do': 'bash install.sh',
-      \ }
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
 
 " interface
 
@@ -38,7 +35,9 @@ Plug 'fatih/vim-go'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'leafgarland/typescript-vim'
+Plug 'rust-lang/rust.vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'supercollider/scvim'
 
 call plug#end()
 
@@ -105,7 +104,7 @@ set t_Co=16
 set t_8f=^[[38;2;%lu;%lu;%lum
 set t_8b=^[[48;2;%lu;%lu;%lum
 " set termguicolors
-set background=light
+set background=dark
 colorscheme solarized8
 
 set mouse=a
@@ -122,62 +121,9 @@ let &t_EI = "\e[2 q"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN SUPPORT
 
-" ale + lsp
+source $HOME/.vim/lsp.vim
 
-let g:LanguageClient_serverCommands = {
-    \ 'python': ['pyls'],
-    \ 'javascript': ['flow', 'lsp'],
-    \ 'javascript.jsx': ['flow', 'lsp'],
-    \ }
-
-let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
-let g:LanguageClient_settingsPath = $HOME . '/.vim/settings.json'
-let g:LanguageClient_serverStderr = '/tmp/clangd.stderr'
-
-
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-nnoremap <silent> <leader>f :ALEFix<CR>
-
-let g:ale_linters_explicit = 1
-let g:ale_completion_enabled = 0
-let g:ale_sign_error = '✖'
-let g:ale_sign_warning = '⚠'
-let g:ale_fix_on_save = 1
-
-let g:ale_linters = {
-      \ 'python': ['flake8'],
-      \ 'go': ['gobuild'],
-      \}
-
-let g:ale_fixers = {
-      \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-      \ 'ocaml': ['ocamlformat'],
-      \ 'c': ['clang-format'],
-      \ 'cpp': ['clang-format'],
-      \ 'go': ['gofmt', 'goimports'],
-      \ 'javascript': ['prettier'],
-      \ 'typescript': ['prettier'],
-      \ 'reason': ['refmt'],
-      \ 'python': ['isort', 'yapf'],
-      \}
-
-function! LinterStatus() abort
-    let l:counts = ale#statusline#Count(bufnr(''))
-
-    let l:all_errors = l:counts.error + l:counts.style_error
-    let l:all_non_errors = l:counts.total - l:all_errors
-
-    return l:counts.total == 0 ? 'OK' : printf(
-    \   '%dW %dE',
-    \   all_non_errors,
-    \   all_errors
-    \)
-endfunction
-
+let g:lt_location_list_toggle_map = '<f3>'
 let g:lt_quickfix_list_toggle_map = '<f4>'
 
 " NERDTree
@@ -191,11 +137,7 @@ let g:ragtag_global_maps = 1
 
 " COMPLETION
 
-au FileType c,cpp let b:vcm_tab_complete = "omni"
 let g:omni_sql_no_default_maps = 1
-
-" close preview window
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " fzf
 
@@ -227,7 +169,6 @@ set statusline=\ %t       "tail of the filename
 set statusline+=\%r       "read only flag
 set statusline+=\%m       "modified flag
 set statusline+=\ %y      "filetype
-set statusline+=\ %=\%{LinterStatus()}
 set statusline+=%=\ row\ %l/%L\ -\ %c "right lines + line
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -299,9 +240,13 @@ augroup END
 
 " c
 au FileType c,cpp set nolist
-au FileType c,cpp nnoremap <F7> :w<CR>:make<CR>
 au FileType c,cpp set tabstop=4
 au FileType c,cpp set shiftwidth=4
 
 " git
 autocmd Filetype gitcommit setlocal spell textwidth=72
+
+
+" supercollider
+
+let g:sclangTerm = "open -a iTerm.app"

@@ -16,11 +16,13 @@ Plug 'lifepillar/vim-solarized8'
 
 " IDE
 
+Plug 'tpope/vim-fugitive'
 Plug 'Valloric/ListToggle'
 Plug 'junegunn/vim-peekaboo'
 Plug 'ajh17/VimCompletesMe'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
+Plug 'dense-analysis/ale'
 
 " interface
 
@@ -31,10 +33,10 @@ Plug 'junegunn/fzf.vim'
 
 " language
 
-Plug 'fatih/vim-go'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'leafgarland/typescript-vim'
+Plug 'dag/vim-fish'
 Plug 'rust-lang/rust.vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'supercollider/scvim'
@@ -122,6 +124,27 @@ let &t_EI = "\e[2 q"
 " PLUGIN SUPPORT
 
 source $HOME/.vim/lsp.vim
+
+" ale
+
+let g:ale_fix_on_save = 1
+let g:ale_disable_lsp = 1
+let g:ale_linters_explicit = 1
+
+let g:ale_linters = {
+      \   'javascript': ['eslint'],
+      \}
+
+let g:ale_fixers = {
+      \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+      \   'cpp': ['clang-format'],
+      \   'python': ['isort', 'yapf'],
+      \   'css': ['prettier'],
+      \   'javascript': ['prettier'],
+      \   'typescript': ['prettier'],
+      \   'typescriptreact': ['prettier'],
+      \}
+
 
 let g:lt_location_list_toggle_map = '<f3>'
 let g:lt_quickfix_list_toggle_map = '<f4>'
@@ -230,18 +253,19 @@ au BufRead,BufNewFile *.{dsp,lib} set filetype=faust
 " markdown
 au BufRead,BufNewFile *.{md,markdown,txt} setf markdown | call s:setupWrapping()
 
-augroup go
-  au!
-  au FileType go setl nolist
-  au FileType go nmap <F6> <Plug>(go-run)
-  au FileType go nmap <F12> <Plug>(go-test)
-  au Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
-augroup END
+" python
+au FileType python set wrap!
+au FileType python set nowrap
+au FileType python set tw=0
 
 " c
 au FileType c,cpp set nolist
 au FileType c,cpp set tabstop=4
 au FileType c,cpp set shiftwidth=4
+
+" go
+au FileType go setl nolist
+au Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
 
 " git
 autocmd Filetype gitcommit setlocal spell textwidth=72

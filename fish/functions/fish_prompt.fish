@@ -28,5 +28,12 @@ function fish_prompt
 
   _print_in_color "\n"(_pwd_with_tilde) blue
   _print_in_color "\n♩" (_prompt_color_for_status $last_status)
-  printf '%s ' (__fish_git_prompt)
+
+  # big repos git slow down the shell
+  set BIG_REPOS '.*sbl/bruits'
+  if string match -q -r $BIG_REPOS $PWD
+    printf '%s '
+  else
+    printf '%s ' (__fish_git_prompt)
+  end
 end

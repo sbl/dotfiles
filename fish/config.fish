@@ -5,11 +5,15 @@ set -x LANG en_US.UTF-8
 
 set -x GOPATH $HOME
 
-set -x EDITOR vim
-set -x VISUAL vim
+set -x EDITOR nvim
+set -x VISUAL nvim
 set -x PAGER less
 
 set -x FZF_DEFAULT_COMMAND 'ag -g ""'
+
+
+#set -x CTEST_OUTPUT_ON_FAILURE 1
+set -x CMAKE_EXPORT_COMPILE_COMMANDS 1
 
 # path
 # instead of setting paths via configs (less portable) use fish_user_paths
@@ -24,4 +28,6 @@ bind \ee accept-autosuggestion # ctrl-e completes first suggestion
 
 alias l='ls -lFh'
 alias ll='ls -alF'
-alias vi=vim
+
+alias vim=nvim
+alias vi=nvim

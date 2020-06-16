@@ -30,7 +30,7 @@ function fish_prompt
   _print_in_color "\n♩" (_prompt_color_for_status $last_status)
 
   # big repos git slow down the shell
-  set BIG_REPOS '.*sbl/bruits'
+  set BIG_REPOS 'xxx'
   if string match -q -r $BIG_REPOS $PWD
     printf '%s '
   else

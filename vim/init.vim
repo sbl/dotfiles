@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype off
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 " core
 
@@ -13,15 +13,13 @@ Plug 'tpope/vim-endwise'
 Plug 'vim-scripts/matchit.zip'
 Plug 'scrooloose/nerdcommenter'
 Plug 'lifepillar/vim-solarized8'
+Plug 'ayu-theme/ayu-vim'
 
 " IDE
 
-Plug 'tpope/vim-fugitive'
-Plug 'Valloric/ListToggle'
-Plug 'junegunn/vim-peekaboo'
-Plug 'ajh17/VimCompletesMe'
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
+"Plug 'junegunn/vim-peekaboo'
+Plug 'tpope/vim-dispatch'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'dense-analysis/ale'
 
 " interface
@@ -37,9 +35,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'leafgarland/typescript-vim'
 Plug 'dag/vim-fish'
-Plug 'rust-lang/rust.vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'supercollider/scvim'
 
 call plug#end()
 
@@ -50,8 +46,8 @@ filetype indent on
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GENERAL
 
-" reload when saving this
-autocmd! BufWritePost .vimrc source ~/.vimrc
+" reload config on buffer write
+autocmd! BufWritePost $HOME/.config/nvim/init.vim source $HOME/.config/nvim/init.vim
 
 set history=10000
 set wildmode=list:longest,full
@@ -68,14 +64,17 @@ set wildignore+=*/tmp/*,*/cache/*,*/dist/*,*.so,*.swp,*.zip,*.pyc
 
 set nonumber
 set foldcolumn=0
+set foldmethod=syntax
+set nofoldenable
 set nowrap
 
 " display hidden characters
 set listchars=tab:▸\ ,nbsp:•,trail:…
 set list
 
-" comment formatting help
+" wrapping and line length
 set tw=78
+set linebreak
 set shiftwidth=2
 set softtabstop=2
 set tabstop=2
@@ -101,20 +100,12 @@ set secure
 
 " colors
 
-let g:solarized_statusline="normal"
-set t_Co=16
-set t_8f=^[[38;2;%lu;%lu;%lum
-set t_8b=^[[48;2;%lu;%lu;%lum
-" set termguicolors
-set background=dark
-colorscheme solarized8
+set termguicolors
+let ayucolor="light"
+colorscheme ayu
 
 set mouse=a
 set clipboard^=unnamed,unnamedplus
-
-
-" make thin splits
-hi VertSplit guibg=bg ctermbg=bg
 
 " switch curson in insert mode
 let &t_SI = "\e[6 q"
@@ -123,31 +114,8 @@ let &t_EI = "\e[2 q"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN SUPPORT
 
-source $HOME/.vim/lsp.vim
-
-" ale
-
-let g:ale_fix_on_save = 1
-let g:ale_disable_lsp = 1
-let g:ale_linters_explicit = 1
-
-let g:ale_linters = {
-      \   'javascript': ['eslint'],
-      \}
-
-let g:ale_fixers = {
-      \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-      \   'cpp': ['clang-format'],
-      \   'python': ['isort', 'yapf'],
-      \   'css': ['prettier'],
-      \   'javascript': ['prettier'],
-      \   'typescript': ['prettier'],
-      \   'typescriptreact': ['prettier'],
-      \}
-
-
-let g:lt_location_list_toggle_map = '<f3>'
-let g:lt_quickfix_list_toggle_map = '<f4>'
+" ALE
+source $HOME/.config/nvim/ale.vim
 
 " NERDTree
 
@@ -179,20 +147,28 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
+" netrw
+let g:netrw_silent=1
+
 " respect gitignore
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 nnoremap <c-p> :FZF<CR>
 nnoremap <Leader>t :BTags<CR>
 
+" dispatch
+let g:dispatch_no_maps = 1
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Poor mans statusline
 
-set statusline=\ %t       "tail of the filename
-set statusline+=\%r       "read only flag
-set statusline+=\%m       "modified flag
-set statusline+=\ %y      "filetype
-set statusline+=%=\ row\ %l/%L\ -\ %c "right lines + line
+set statusline=\ %t       " tail of the filename
+set statusline+=\%r       " read only flag
+set statusline+=\%m       " modified flag
+set statusline+=\ %y      " filetype
+
+"set statusline+=\ %{AleStatus()} " ale
+set statusline+=%=\ row\ %l/%L\ -\ %c " right lines + line
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " KEY MAPPINGS
@@ -221,11 +197,11 @@ nnoremap <Leader>w :w<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM COMMANDS
 
-command! Make silent make | cw 5 | redraw!
 command! CD cd %:p:h
 command! Open silent !open '%:p:h'
-command! Todo silent Ag TODO\\|FIXME\\|CHANGED\\|FIX
-command! Vimrc :e ~/.vimrc
+command! Todo silent Ag "TODO|FIXME|CHANGED|FIX"
+command! Vimrc :e ~/.config/nvim/init.vim
+command! Fish :e ~/.config/fish/config.fish
 command! Date put=strftime('%Y-%m-%d - %H:%M')
 
 " FUNCS
@@ -260,8 +236,8 @@ au FileType python set tw=0
 
 " c
 au FileType c,cpp set nolist
-au FileType c,cpp set tabstop=4
-au FileType c,cpp set shiftwidth=4
+au FileType c,cpp set tabstop=2
+au FileType c,cpp set shiftwidth=2
 
 " go
 au FileType go setl nolist
@@ -270,7 +246,14 @@ au Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
 " git
 autocmd Filetype gitcommit setlocal spell textwidth=72
 
-
 " supercollider
 
-let g:sclangTerm = "open -a iTerm.app"
+let g:scnvim_scdoc = 1
+let g:scnvim_no_mappings = 1
+au FileType supercollider nmap <buffer> <leader>p <Plug>(scnvim-postwindow-clear)
+au FileType supercollider nmap <buffer> <leader>l <Plug>(scnvim-recompile)
+au FileType supercollider nmap <buffer> <F5> <Plug>(scnvim-send-block)
+au FileType supercollider nmap <buffer> <F6> <Plug>(scnvim-send-line)
+au FileType supercollider nmap <buffer> <F12> <Plug>(scnvim-hard-stop)
+au FileType supercollider set tabstop=2
+au FileType supercollider set shiftwidth=2

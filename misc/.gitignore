@@ -5,3 +5,7 @@ tags
 
 .clangd/
 compile_commands.json
+
+# misc
+
+.exercism/*

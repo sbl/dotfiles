@@ -17,8 +17,6 @@ Plug 'ayu-theme/ayu-vim'
 
 " IDE
 
-"Plug 'junegunn/vim-peekaboo'
-Plug 'tpope/vim-dispatch'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'dense-analysis/ale'
 
@@ -101,7 +99,7 @@ set secure
 " colors
 
 set termguicolors
-let ayucolor="light"
+let ayucolor="mirage"
 colorscheme ayu
 
 set mouse=a
@@ -155,9 +153,6 @@ let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 nnoremap <c-p> :FZF<CR>
 nnoremap <Leader>t :BTags<CR>
-
-" dispatch
-let g:dispatch_no_maps = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Poor mans statusline
@@ -234,26 +229,9 @@ au FileType python set wrap!
 au FileType python set nowrap
 au FileType python set tw=0
 
-" c
-au FileType c,cpp set nolist
-au FileType c,cpp set tabstop=2
-au FileType c,cpp set shiftwidth=2
-
 " go
 au FileType go setl nolist
 au Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
 
 " git
 autocmd Filetype gitcommit setlocal spell textwidth=72
-
-" supercollider
-
-let g:scnvim_scdoc = 1
-let g:scnvim_no_mappings = 1
-au FileType supercollider nmap <buffer> <leader>p <Plug>(scnvim-postwindow-clear)
-au FileType supercollider nmap <buffer> <leader>l <Plug>(scnvim-recompile)
-au FileType supercollider nmap <buffer> <F5> <Plug>(scnvim-send-block)
-au FileType supercollider nmap <buffer> <F6> <Plug>(scnvim-send-line)
-au FileType supercollider nmap <buffer> <F12> <Plug>(scnvim-hard-stop)
-au FileType supercollider set tabstop=2
-au FileType supercollider set shiftwidth=2

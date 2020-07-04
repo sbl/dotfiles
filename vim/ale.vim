@@ -3,10 +3,10 @@
 let g:ale_sign_error = '✖'
 let g:ale_sign_warning = '⚠'
 
-let g:ale_set_balloons = 1
+let g:ale_close_preview_on_insert = 1
 
 " neovim only
-let g:ale_virtualtext_cursor = 1
+let g:ale_virtualtext_cursor = 0
 
 let g:ale_fix_on_save = 1
 let g:ale_disable_lsp = 0
@@ -17,8 +17,9 @@ let g:ale_linters = {
       \   'cpp': ['clangd'],
       \   'go': ['gopls'],
       \   'lua': ['luacheck'],
-      \   'javascript': ['eslint'],
-      \   'python': ['pyls'],
+      \   'javascript': [],
+      \   'typescript': ['tsserver'],
+      \   'python': ['pyls', 'mypy'],
       \}
 
 let g:ale_fixers = {
@@ -27,7 +28,7 @@ let g:ale_fixers = {
       \   'cpp': ['clang-format'],
       \   'go': ['gofmt'],
       \   'javascript': ['prettier'],
-      \   'python': ['isort', 'yapf'],
+      \   'python': ['isort', 'black'],
       \   'scss': ['prettier'],
       \   'typescript': ['prettier'],
       \   'typescriptreact': ['prettier'],
@@ -35,13 +36,19 @@ let g:ale_fixers = {
 
 
 " keys
+nmap <f3> :lopen<CR>
+
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option({
 \ 'smart_case': v:true,
 \ 'sources': {
-\   '_': ['ale'],
+\   '_': ['ale', 'buffer'],
 \ },
 \ })
+
+
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
 nmap <leader>ö <Plug>(ale_previous)
 nmap <leader>ä <Plug>(ale_next)

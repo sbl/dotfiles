@@ -1,5 +1,7 @@
--- norns globals
-new_globals = {
+-- vi: set filetype=lua :
+
+globals = {
+-- norns
   "_norns",
   "_path",
   "arc",
@@ -22,7 +24,6 @@ new_globals = {
   "util",
 
 -- crow
-
   "adsr",
   "ar",
   "input",
@@ -34,3 +35,5 @@ new_globals = {
   "ramp",
   "to",
 }
+
+std = "+busted"

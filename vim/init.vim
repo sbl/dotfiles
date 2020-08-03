@@ -17,23 +17,24 @@ Plug 'ayu-theme/ayu-vim'
 
 " IDE
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'dense-analysis/ale'
+Plug 'neovim/nvim-lsp'
+Plug 'nvim-lua/diagnostic-nvim'
+Plug 'nvim-lua/completion-nvim'
 
 " interface
 
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'junegunn/goyo.vim'
-Plug 'scrooloose/nerdtree'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " language
 
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'leafgarland/typescript-vim'
 Plug 'dag/vim-fish'
-Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'fatih/vim-go'
+Plug 'leafgarland/typescript-vim'
+Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript'
 
 call plug#end()
 
@@ -58,7 +59,7 @@ set showcmd     "show incomplete cmds down the bottom
 set smartcase   "be smart when searching
 set nohlsearch
 set ignorecase
-set wildignore+=*/tmp/*,*/cache/*,*/dist/*,*.so,*.swp,*.zip,*.pyc
+set wildignore+=*/tmp/*,*/cache/*,*/dist/*,*.so,*.o,*.swp,*.zip,*.pyc
 
 set nonumber
 set foldcolumn=0
@@ -90,7 +91,6 @@ set shortmess+=c   " Shut off completion messages
 set vb " disable error bell
 set kp=:help    " I barely need a man output
 
-
 " per directory config
 
 set exrc
@@ -99,8 +99,11 @@ set secure
 " colors
 
 set termguicolors
-let ayucolor="mirage"
-colorscheme ayu
+let ayucolor="light"
+set background=light
+colorscheme solarized8_flat
+
+hi VertSplit guifg=#eee8d5	 guibg=none
 
 set mouse=a
 set clipboard^=unnamed,unnamedplus
@@ -110,23 +113,33 @@ let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Poor mans statusline
+
+set statusline=\ %t       " tail of the filename
+set statusline+=\%r       " read only flag
+set statusline+=\%m       " modified flag
+set statusline+=\ %y      " filetype
+
+set statusline+=%=\ row\ %l/%L\ -\ %c " right lines + line
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN SUPPORT
 
-" ALE
-source $HOME/.config/nvim/ale.vim
+" nvim-lsp
+lua require('lsp')
+
+" completion
+source <sfile>:h/init/completion.vim
 
 " NERDTree
 
 let g:NERDTreeMinimalUI = 1
+let NERDTreeRespectWildIgnore=1
 nnoremap <Leader>d :NERDTreeToggle<CR>
 
 " RAGTAG
 
 let g:ragtag_global_maps = 1
-
-" COMPLETION
-
-let g:omni_sql_no_default_maps = 1
 
 " fzf
 
@@ -145,8 +158,6 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
-" netrw
-let g:netrw_silent=1
 
 " respect gitignore
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
@@ -154,19 +165,12 @@ let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 nnoremap <c-p> :FZF<CR>
 nnoremap <Leader>t :BTags<CR>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Poor mans statusline
-
-set statusline=\ %t       " tail of the filename
-set statusline+=\%r       " read only flag
-set statusline+=\%m       " modified flag
-set statusline+=\ %y      " filetype
-
-"set statusline+=\ %{AleStatus()} " ale
-set statusline+=%=\ row\ %l/%L\ -\ %c " right lines + line
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " KEY MAPPINGS
+
+" term
+tnoremap <Esc> <C-\><C-n>
 
 " open help in new tab
 cabbrev h tab help
@@ -199,16 +203,19 @@ command! Vimrc :e ~/.config/nvim/init.vim
 command! Fish :e ~/.config/fish/config.fish
 command! Date put=strftime('%Y-%m-%d - %H:%M')
 
-" FUNCS
-
-function! s:setupWrapping()
-  set wrap
-  set wrapmargin=2
-  set textwidth=78
-endfunction
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " AUTO CMD / Filetype based modifications
+" also see ftplugin folder
+
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    keepp %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+" remove trailing lines everywhere
+au BufWritePre * :call <SID>StripTrailingWhitespaces()
 
 augroup quickfix
     autocmd!
@@ -222,16 +229,8 @@ au FileType make setl noexpandtab
 au BufRead,BufNewFile *.{dsp,lib} set filetype=faust
 
 " markdown
-au BufRead,BufNewFile *.{md,markdown,txt} setf markdown | call s:setupWrapping()
-
-" python
-au FileType python set wrap!
-au FileType python set nowrap
-au FileType python set tw=0
-
-" go
-au FileType go setl nolist
-au Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+au BufRead,BufNewFile *.{md,markdown,txt} setf markdown
+au Filetype markdown setlocal spell textwidth=72
 
 " git
 autocmd Filetype gitcommit setlocal spell textwidth=72

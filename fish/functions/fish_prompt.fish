@@ -26,14 +26,12 @@ end
 function fish_prompt
   set -l last_status $status
 
+  if set -q VIRTUAL_ENV
+    echo -n -s (set_color -b green white) "(" (basename "$VIRTUAL_ENV") ")" (set_color normal) " "
+end
+
   _print_in_color "\n"(_pwd_with_tilde) blue
   _print_in_color "\n♩" (_prompt_color_for_status $last_status)
 
-  # big repos git slow down the shell
-  set BIG_REPOS 'xxx'
-  if string match -q -r $BIG_REPOS $PWD
-    printf '%s '
-  else
-    printf '%s ' (__fish_git_prompt)
-  end
+  printf '%s ' (__fish_git_prompt)
 end

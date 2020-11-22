@@ -9,11 +9,14 @@ set -x EDITOR nvim
 set -x VISUAL nvim
 set -x PAGER less
 
-set -x FZF_DEFAULT_COMMAND 'ag -g ""'
-
+set -x FZF_DEFAULT_COMMAND "rg --files --hidden --follow --glob '!.git'"
 
 #set -x CTEST_OUTPUT_ON_FAILURE 1
 set -x CMAKE_EXPORT_COMPILE_COMMANDS 1
+
+# LLVM
+#set -gx LDFLAGS "-L/usr/local/opt/llvm/lib"
+#set -gx CPPFLAGS "-I/usr/local/opt/llvm/include -I/usr/local/include"
 
 # path
 # instead of setting paths via configs (less portable) use fish_user_paths

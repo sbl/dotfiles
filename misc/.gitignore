@@ -1,11 +1,19 @@
 .DS_Store
-.vscode
 
-tags
+# clang
 
 .clangd/
 compile_commands.json
+.cache/
 
-# misc
 
-.exercism/*
+# python
+__pycache__
+.venv
+
+# misc - mostly local development stuff
+
+.envrc
+.exrc
+.nvimrc
+tags

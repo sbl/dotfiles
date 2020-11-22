@@ -7,4 +7,7 @@
 *.pyc
 tags
 
-vim/plugged
+vim/plugged/*
+!vim/plugged/vim-lilypond
+
+fish/conf.d/

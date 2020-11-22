@@ -12,29 +12,40 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-endwise'
 Plug 'vim-scripts/matchit.zip'
 Plug 'scrooloose/nerdcommenter'
+
+" colors
+
 Plug 'lifepillar/vim-solarized8'
-Plug 'ayu-theme/ayu-vim'
+Plug 'arcticicestudio/nord-vim'
 
 " IDE
 
-Plug 'neovim/nvim-lsp'
-Plug 'nvim-lua/diagnostic-nvim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'nathunsmitty/nvim-ale-diagnostic'
 Plug 'nvim-lua/completion-nvim'
+Plug 'dense-analysis/ale'
 
 " interface
 
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree'
 Plug 'junegunn/goyo.vim'
+Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
 " language
 
 Plug 'dag/vim-fish'
 Plug 'fatih/vim-go'
 Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
+Plug 'sersorrel/vim-lilypond'
+Plug 'cespare/vim-toml'
+Plug 'rust-lang/rust.vim'
+Plug 'supercollider/scvim'
 
 call plug#end()
 
@@ -98,19 +109,12 @@ set secure
 
 " colors
 
-set termguicolors
-let ayucolor="light"
-set background=light
-colorscheme solarized8_flat
-
-hi VertSplit guifg=#eee8d5	 guibg=none
+"set termguicolors
+"colorscheme solarized8_flat
+colorscheme nord
 
 set mouse=a
 set clipboard^=unnamed,unnamedplus
-
-" switch curson in insert mode
-let &t_SI = "\e[6 q"
-let &t_EI = "\e[2 q"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Poor mans statusline
@@ -125,11 +129,10 @@ set statusline+=%=\ row\ %l/%L\ -\ %c " right lines + line
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN SUPPORT
 
-" nvim-lsp
-lua require('lsp')
-
-" completion
+source <sfile>:h/init/ale.vim
+source <sfile>:h/init/lsp.vim
 source <sfile>:h/init/completion.vim
+
 
 " NERDTree
 
@@ -157,10 +160,6 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
-
-
-" respect gitignore
-let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 nnoremap <c-p> :FZF<CR>
 nnoremap <Leader>t :BTags<CR>
@@ -192,6 +191,8 @@ nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
 nnoremap <Leader>w :w<CR>
+nnoremap <Leader>b :bd<CR>
+nnoremap <leader>l :lopen<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM COMMANDS
@@ -206,16 +207,6 @@ command! Date put=strftime('%Y-%m-%d - %H:%M')
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " AUTO CMD / Filetype based modifications
 " also see ftplugin folder
-
-fun! <SID>StripTrailingWhitespaces()
-    let l = line(".")
-    let c = col(".")
-    keepp %s/\s\+$//e
-    call cursor(l, c)
-endfun
-
-" remove trailing lines everywhere
-au BufWritePre * :call <SID>StripTrailingWhitespaces()
 
 augroup quickfix
     autocmd!

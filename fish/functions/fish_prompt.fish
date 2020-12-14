@@ -1,6 +1,6 @@
-set __fish_git_prompt_show_informative_status 'yes'
-set __fish_git_prompt_showcolorhints 'yes'
-set __fish_git_prompt_char_stateseparator '|'
+set -g __fish_git_prompt_show_informative_status 'yes'
+set -g __fish_git_prompt_showcolorhints 'yes'
+set -g __fish_git_prompt_char_stateseparator '|'
 
 function _pwd_with_tilde
   echo $PWD | sed 's|^'$HOME'\(.*\)$|~\1|'
@@ -28,7 +28,7 @@ function fish_prompt
 
   if set -q VIRTUAL_ENV
     echo -n -s (set_color -b green white) "(" (basename "$VIRTUAL_ENV") ")" (set_color normal) " "
-end
+  end
 
   _print_in_color "\n"(_pwd_with_tilde) blue
   _print_in_color "\n♩" (_prompt_color_for_status $last_status)

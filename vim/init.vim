@@ -21,31 +21,33 @@ Plug 'arcticicestudio/nord-vim'
 " IDE
 
 Plug 'neovim/nvim-lspconfig'
-Plug 'nathunsmitty/nvim-ale-diagnostic'
 Plug 'nvim-lua/completion-nvim'
-Plug 'dense-analysis/ale'
 
 " interface
 
 Plug 'scrooloose/nerdtree'
 Plug 'junegunn/goyo.vim'
-Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
 " language
 
+Plug 'cespare/vim-toml'
 Plug 'dag/vim-fish'
 Plug 'fatih/vim-go'
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'mxw/vim-jsx'
+
+Plug 'vim-python/python-syntax'
+Plug 'psf/black', { 'branch': 'stable', 'for': 'python' }
+
 Plug 'pangloss/vim-javascript'
-Plug 'sersorrel/vim-lilypond'
-Plug 'cespare/vim-toml'
-Plug 'rust-lang/rust.vim'
-Plug 'supercollider/scvim'
+Plug 'leafgarland/typescript-vim'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'prettier/vim-prettier', {
+      \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']}
+
+"Plug 'sersorrel/vim-lilypond'
+"Plug 'rust-lang/rust.vim'
+"Plug 'supercollider/scvim'
 
 call plug#end()
 
@@ -55,6 +57,8 @@ filetype indent on
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GENERAL
+
+let g:python3_host_prog = "$HOME/.virtualenvs/neovim/bin/python"
 
 " reload config on buffer write
 autocmd! BufWritePost $HOME/.config/nvim/init.vim source $HOME/.config/nvim/init.vim
@@ -109,7 +113,7 @@ set secure
 
 " colors
 
-"set termguicolors
+set termguicolors
 "colorscheme solarized8_flat
 colorscheme nord
 
@@ -129,10 +133,8 @@ set statusline+=%=\ row\ %l/%L\ -\ %c " right lines + line
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN SUPPORT
 
-source <sfile>:h/init/ale.vim
 source <sfile>:h/init/lsp.vim
 source <sfile>:h/init/completion.vim
-
 
 " NERDTree
 
@@ -147,22 +149,28 @@ let g:ragtag_global_maps = 1
 " fzf
 
 let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+      \ { 'fg':      ['fg', 'Normal'],
+      \ 'bg':      ['bg', 'Normal'],
+      \ 'hl':      ['fg', 'Comment'],
+      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+      \ 'hl+':     ['fg', 'Statement'],
+      \ 'info':    ['fg', 'PreProc'],
+      \ 'border':  ['fg', 'Ignore'],
+      \ 'prompt':  ['fg', 'Conditional'],
+      \ 'pointer': ['fg', 'Exception'],
+      \ 'marker':  ['fg', 'Keyword'],
+      \ 'spinner': ['fg', 'Label'],
+      \ 'header':  ['fg', 'Comment'] }
 
 nnoremap <c-p> :FZF<CR>
 nnoremap <Leader>t :BTags<CR>
+
+" prettier
+
+let g:prettier#autoformat_require_pragma = 0
+let g:prettier#autoformat_config_present = 1
+let g:prettier#exec_cmd_async = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -199,18 +207,20 @@ nnoremap <leader>l :lopen<CR>
 
 command! CD cd %:p:h
 command! Open silent !open '%:p:h'
-command! Todo silent Ag "TODO|FIXME|CHANGED|FIX"
+command! Todo silent rg "TODO|FIXME|CHANGED|FIX"
 command! Vimrc :e ~/.config/nvim/init.vim
 command! Fish :e ~/.config/fish/config.fish
 command! Date put=strftime('%Y-%m-%d - %H:%M')
+
+command! Format lua vim.lsp.buf.formatting()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " AUTO CMD / Filetype based modifications
 " also see ftplugin folder
 
 augroup quickfix
-    autocmd!
-    autocmd FileType qf setlocal wrap
+  autocmd!
+  autocmd FileType qf setlocal wrap
 augroup END
 
 " make

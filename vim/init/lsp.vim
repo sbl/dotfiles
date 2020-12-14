@@ -1,5 +1,11 @@
 let g:vimsyn_embed= 'l'
 
+sign define LspDiagnosticsSignError text=✘ texthl=LspDiagnosticsSignError linehl= numhl=
+sign define LspDiagnosticsSignWarning text=‼ texthl=LspDiagnosticsSignWarning linehl= numhl=
+sign define LspDiagnosticsSignInformation text=ℹ texthl=LspDiagnosticsSignInformation linehl= numhl=
+sign define LspDiagnosticsSignHint text=H texthl=LspDiagnosticsSignHint linehl= numhl=
+
+
 " ----------------------------------------------------------------
 
 lua << EOF
@@ -15,12 +21,9 @@ local function on_attach_config(client, bufnr)
 
   local keymap_opts = { noremap=true, silent=true }
 
-
-  -- let ALE handle diagnostics for now
-
-  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>l',     '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', keymap_opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ö',     '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', keymap_opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ä',     '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', keymap_opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>l',     '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', keymap_opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ö',     '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', keymap_opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ä',     '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', keymap_opts)
 
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd',     '<cmd>lua vim.lsp.buf.definition()<CR>', keymap_opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD',     '<cmd>lua vim.lsp.buf.implementation()<CR>', keymap_opts)
@@ -36,7 +39,7 @@ end
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
-    underline = false,
+    underline = true,
     virtual_text = false,
     signs = true,
     update_in_insert = true,
@@ -51,7 +54,6 @@ nvim_lsp.gopls.setup{ on_attach = on_attach_config }
 nvim_lsp.html.setup{ on_attach = on_attach_config }
 nvim_lsp.jsonls.setup{ on_attach = on_attach_config }
 nvim_lsp.pyright.setup{ on_attach = on_attach_config }
-nvim_lsp.sumneko_lua.setup{ on_attach = on_attach_config }
 nvim_lsp.tsserver.setup{ on_attach = on_attach_config }
 
 EOF

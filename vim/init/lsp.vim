@@ -1,10 +1,16 @@
 let g:vimsyn_embed= 'l'
 
+
+" signing
+
 sign define LspDiagnosticsSignError text=✘ texthl=LspDiagnosticsSignError linehl= numhl=
 sign define LspDiagnosticsSignWarning text=‼ texthl=LspDiagnosticsSignWarning linehl= numhl=
 sign define LspDiagnosticsSignInformation text=ℹ texthl=LspDiagnosticsSignInformation linehl= numhl=
 sign define LspDiagnosticsSignHint text=H texthl=LspDiagnosticsSignHint linehl= numhl=
 
+" formatting where supported
+
+autocmd BufWritePre *.{c,cpp,h,hpp} lua vim.lsp.buf.formatting_sync(nil, 1000)
 
 " ----------------------------------------------------------------
 
@@ -33,6 +39,7 @@ local function on_attach_config(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'i', '<c-k>',  '<cmd>lua vim.lsp.buf.signature_help()<CR>', keymap_opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'g0',     '<cmd>lua vim.lsp.buf.document_symbol()<CR>', keymap_opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<f2>',   '<cmd>lua vim.lsp.buf.rename()<CR>', keymap_opts)
+
 end
 
 -- diagnostic config

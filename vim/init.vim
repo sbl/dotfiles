@@ -20,6 +20,7 @@ Plug 'arcticicestudio/nord-vim'
 
 " IDE
 
+Plug 'editorconfig/editorconfig-vim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 
@@ -29,25 +30,29 @@ Plug 'scrooloose/nerdtree'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'airblade/vim-gitgutter'
 
-" language
+" languages
 
 Plug 'cespare/vim-toml'
 Plug 'dag/vim-fish'
 Plug 'fatih/vim-go'
+Plug 'JuliaEditorSupport/julia-vim'
+Plug 'ziglang/zig.vim'
+Plug 'sersorrel/vim-lilypond'
+Plug 'davidgranstrom/scnvim', { 'do': {-> scnvim#install() } }
 
 Plug 'vim-python/python-syntax'
 Plug 'psf/black', { 'branch': 'stable', 'for': 'python' }
 
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'prettier/vim-prettier', {
+      \ 'do': 'yarn install',
       \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']}
 
-"Plug 'sersorrel/vim-lilypond'
-"Plug 'rust-lang/rust.vim'
-"Plug 'supercollider/scvim'
 
 call plug#end()
 
@@ -67,7 +72,6 @@ set history=10000
 set wildmode=list:longest,full
 set autoread
 
-let mapleader = ","
 let g:mapleader = ","
 
 set showcmd     "show incomplete cmds down the bottom
@@ -142,6 +146,10 @@ let g:NERDTreeMinimalUI = 1
 let NERDTreeRespectWildIgnore=1
 nnoremap <Leader>d :NERDTreeToggle<CR>
 
+" gitgutter
+
+let g:gitgutter_enabled = 0
+
 " RAGTAG
 
 let g:ragtag_global_maps = 1
@@ -169,8 +177,8 @@ nnoremap <Leader>t :BTags<CR>
 " prettier
 
 let g:prettier#autoformat_require_pragma = 0
-let g:prettier#autoformat_config_present = 1
 let g:prettier#exec_cmd_async = 1
+let g:prettier#autoformat_config_present = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -231,7 +239,7 @@ au BufRead,BufNewFile *.{dsp,lib} set filetype=faust
 
 " markdown
 au BufRead,BufNewFile *.{md,markdown,txt} setf markdown
-au Filetype markdown setlocal spell textwidth=72
+au Filetype markdown setlocal textwidth=72
 
 " git
 autocmd Filetype gitcommit setlocal spell textwidth=72

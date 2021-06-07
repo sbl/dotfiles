@@ -40,6 +40,7 @@ Plug 'dag/vim-fish'
 Plug 'gmoe/vim-soul'
 Plug 'fatih/vim-go'
 Plug 'elixir-editors/vim-elixir'
+Plug 'mhinz/vim-mix-format'
 Plug 'JuliaEditorSupport/julia-vim'
 Plug 'ziglang/zig.vim'
 Plug 'gmoe/vim-soul'
@@ -178,6 +179,10 @@ let g:prettier#autoformat_require_pragma = 0
 let g:prettier#exec_cmd_async = 1
 let g:prettier#autoformat_config_present = 1
 
+
+" mix-format
+let g:mix_format_on_save = 1
+let g:mix_format_silent_errors = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " KEY MAPPINGS

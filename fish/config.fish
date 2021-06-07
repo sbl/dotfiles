@@ -14,14 +14,17 @@ set -x FZF_DEFAULT_COMMAND "rg --files --hidden --follow --glob '!.git'"
 #set -x CTEST_OUTPUT_ON_FAILURE 1
 set -x CMAKE_EXPORT_COMPILE_COMMANDS 1
 
-# LLVM
-#set -gx LDFLAGS "-L/usr/local/opt/llvm/lib"
-#set -gx CPPFLAGS "-I/usr/local/opt/llvm/include -I/usr/local/include"
+set -x AWS_CREDENTIALS_PATH $HOME/.phrase/config.json
 
-# path
-# instead of setting paths via configs (less portable) use fish_user_paths
-# http://fishshell.com/docs/current/tutorial.html#tut_path
-# > set -U fish_user_paths /usr/local/bin $fish_user_paths
+# LLVM
+if test "arm64" = (uname -m)
+  set -px LDFLAGS "-L/opt/homebrew/lib"
+  set -px CPPFLAGS "-I/opt/homebrew/include"
+else
+  set -gx LDFLAGS "-L/usr/local/opt/llvm/lib"
+  set -gx CPPFLAGS "-I/usr/local/opt/llvm/include -I/usr/local/include"
+end
+
 
 # key bindings
 

@@ -22,7 +22,8 @@ Plug 'arcticicestudio/nord-vim'
 
 Plug 'editorconfig/editorconfig-vim'
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
+Plug 'hrsh7th/nvim-compe'
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " interface
 
@@ -36,19 +37,14 @@ Plug 'airblade/vim-gitgutter'
 
 Plug 'cespare/vim-toml'
 Plug 'dag/vim-fish'
+Plug 'gmoe/vim-soul'
 Plug 'fatih/vim-go'
+Plug 'elixir-editors/vim-elixir'
 Plug 'JuliaEditorSupport/julia-vim'
 Plug 'ziglang/zig.vim'
-Plug 'sersorrel/vim-lilypond'
-Plug 'davidgranstrom/scnvim', { 'do': {-> scnvim#install() } }
-
-Plug 'vim-python/python-syntax'
+Plug 'gmoe/vim-soul'
+Plug 'fatih/vim-go'
 Plug 'psf/black', { 'branch': 'stable', 'for': 'python' }
-
-Plug 'pangloss/vim-javascript'
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'maxmellon/vim-jsx-pretty'
 Plug 'prettier/vim-prettier', {
       \ 'do': 'yarn install',
       \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']}
@@ -78,7 +74,7 @@ set showcmd     "show incomplete cmds down the bottom
 set smartcase   "be smart when searching
 set nohlsearch
 set ignorecase
-set wildignore+=*/tmp/*,*/cache/*,*/dist/*,*.so,*.o,*.swp,*.zip,*.pyc
+set wildignore+=*/tmp/*,*/cache/*,*/_build/dist/*,*.so,*.o,*.swp,*.zip,*.pyc,*.d
 
 set nonumber
 set foldcolumn=0
@@ -137,8 +133,10 @@ set statusline+=%=\ row\ %l/%L\ -\ %c " right lines + line
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN SUPPORT
 
-source <sfile>:h/init/lsp.vim
-source <sfile>:h/init/completion.vim
+lua require('lsp')
+lua require('completion')
+"lua require('treesitter')
+
 
 " NERDTree
 
@@ -220,26 +218,21 @@ command! Vimrc :e ~/.config/nvim/init.vim
 command! Fish :e ~/.config/fish/config.fish
 command! Date put=strftime('%Y-%m-%d - %H:%M')
 
-command! Format lua vim.lsp.buf.formatting()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " AUTO CMD / Filetype based modifications
 " also see ftplugin folder
+
+au BufRead,BufNewFile *.{dsp,lib} set filetype=faust
+au BufRead,BufNewFile *.{md,markdown,txt} setf markdown
+au BufRead,BufNewFile CMakeLists.txt setf cmake
+au BufRead,BufNewFile .prettierrc setf json
 
 augroup quickfix
   autocmd!
   autocmd FileType qf setlocal wrap
 augroup END
 
-" make
 au FileType make setl noexpandtab
-
-" faust
-au BufRead,BufNewFile *.{dsp,lib} set filetype=faust
-
-" markdown
-au BufRead,BufNewFile *.{md,markdown,txt} setf markdown
-au Filetype markdown setlocal textwidth=72
-
-" git
-autocmd Filetype gitcommit setlocal spell textwidth=72
+au Filetype markdown setlocal textwidth=72 wrap
+au Filetype gitcommit setlocal spell textwidth=72

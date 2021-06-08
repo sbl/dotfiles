@@ -44,10 +44,16 @@ nvim_lsp.pyright.setup{ on_attach = on_attach_config }
 nvim_lsp.tsserver.setup{ on_attach = on_attach_config }
 
 -- https://www.mitchellhanberg.com/how-to-set-up-neovim-for-elixir-development/
-local path_to_elixirls = "/Users/sbl/src/elixir-ls/language_server.sh"
+local path_to_elixirls = vim.fn.expand("~/src/elixir-ls/release/language_server.sh")
 nvim_lsp.elixirls.setup({
   cmd = {path_to_elixirls},
-  on_attach = on_attach_config
+  on_attach = on_attach_config,
+  settings = {
+    elixirLS = {
+      dialyzerEnabled = false,
+      fetchDeps = false,
+    }
+  }
 })
 
 -- vim escape hatch for config

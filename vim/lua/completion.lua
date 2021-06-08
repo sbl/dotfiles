@@ -63,18 +63,10 @@ _G.s_tab_complete = function()
 end
 
 local set_keymap = vim.api.nvim_set_keymap
-local opts = {expr = true, silent = true}
 
 set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
 set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
 set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 
-set_keymap('i', '<C-e>',      'compe#close(\'<C-e>\')', opts)
--- FIXME: https://github.com/hrsh7th/nvim-compe/issues/361
---set_keymap('i', '<CR>',      'compe#confirm(\'<CR>\')', opts)
---set_keymap("i", "<C-y>", "compe#confirm('<C-y>')", {expr = true})
---set_keymap("i", "<CR>", "<C-y>", {})
---set_keymap('i', '<C-Space>',      'compe#complete()', opts)
---set_keymap('i', '<C-f>',      "compe#scroll({'delta': +4})", opts)
---set_keymap('i', '<C-d>',      "compe#scroll({'delta': -4})", opts)
+set_keymap('i', '<C-e>', 'compe#close(\'<C-e>\')', {expr = true, silent = true})

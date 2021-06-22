@@ -23,7 +23,7 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
-" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " interface
 
@@ -31,20 +31,11 @@ Plug 'scrooloose/nerdtree'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'airblade/vim-gitgutter'
 
 " languages
 
-Plug 'cespare/vim-toml'
-Plug 'dag/vim-fish'
-Plug 'gmoe/vim-soul'
-Plug 'fatih/vim-go'
-Plug 'elixir-editors/vim-elixir'
-Plug 'mhinz/vim-mix-format'
-Plug 'JuliaEditorSupport/julia-vim'
-Plug 'ziglang/zig.vim'
-Plug 'gmoe/vim-soul'
-Plug 'fatih/vim-go'
+"Plug 'elixir-editors/vim-elixir'
+"Plug 'mhinz/vim-mix-format'
 Plug 'psf/black', { 'branch': 'stable', 'for': 'python' }
 Plug 'prettier/vim-prettier', {
       \ 'do': 'yarn install',
@@ -136,7 +127,7 @@ set statusline+=%=\ row\ %l/%L\ -\ %c " right lines + line
 
 lua require('lsp')
 lua require('completion')
-"lua require('treesitter')
+lua require('treesitter')
 
 
 " NERDTree
@@ -144,10 +135,6 @@ lua require('completion')
 let g:NERDTreeMinimalUI = 1
 let NERDTreeRespectWildIgnore=1
 nnoremap <Leader>d :NERDTreeToggle<CR>
-
-" gitgutter
-
-let g:gitgutter_enabled = 0
 
 " RAGTAG
 

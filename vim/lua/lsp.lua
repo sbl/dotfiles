@@ -50,7 +50,7 @@ nvim_lsp.elixirls.setup({
   on_attach = on_attach_config,
   settings = {
     elixirLS = {
-      dialyzerEnabled = false,
+      dialyzerEnabled = true,
       fetchDeps = false,
     }
   }

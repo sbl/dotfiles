@@ -13,7 +13,8 @@ local function on_attach_config(client, bufnr)
   buf_set_keymap('n', '<leader>ä',     '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', keymap_opts)
 
   buf_set_keymap('n', 'gd',     '<cmd>lua vim.lsp.buf.definition()<CR>', keymap_opts)
-  buf_set_keymap('n', 'gD',     '<cmd>lua vim.lsp.buf.implementation()<CR>', keymap_opts)
+  buf_set_keymap('n', 'gD',     '<cmd>lua vim.lsp.buf.declaration()<CR>', keymap_opts)
+  buf_set_keymap('n', 'gi',     '<cmd>lua vim.lsp.buf.implementation()<CR>', keymap_opts)
   buf_set_keymap('n', 'gr',     '<cmd>lua vim.lsp.buf.references()<CR>', keymap_opts)
   buf_set_keymap('n', 'K',      '<cmd>lua vim.lsp.buf.hover()<CR>', keymap_opts)
   buf_set_keymap('n', '<c-k>',  '<cmd>lua vim.lsp.buf.signature_help()<CR>', keymap_opts)
@@ -43,18 +44,6 @@ nvim_lsp.jsonls.setup{ on_attach = on_attach_config }
 nvim_lsp.pyright.setup{ on_attach = on_attach_config }
 nvim_lsp.tsserver.setup{ on_attach = on_attach_config }
 
--- https://www.mitchellhanberg.com/how-to-set-up-neovim-for-elixir-development/
-local path_to_elixirls = vim.fn.expand("~/src/elixir-ls/release/language_server.sh")
-nvim_lsp.elixirls.setup({
-  cmd = {path_to_elixirls},
-  on_attach = on_attach_config,
-  settings = {
-    elixirLS = {
-      dialyzerEnabled = true,
-      fetchDeps = false,
-    }
-  }
-})
 
 -- vim escape hatch for config
 vim.cmd([[

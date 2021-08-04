@@ -25,6 +25,9 @@ else
   set -gx CPPFLAGS "-I/usr/local/opt/llvm/include -I/usr/local/include"
 end
 
+# rbenv
+#status --is-interactive; and source (rbenv init -|psub)
+
 
 # key bindings
 

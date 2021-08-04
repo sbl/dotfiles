@@ -5,7 +5,6 @@ call plug#begin('~/.config/nvim/plugged')
 
 " core
 
-Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -16,7 +15,7 @@ Plug 'scrooloose/nerdcommenter'
 " colors
 
 Plug 'lifepillar/vim-solarized8'
-Plug 'arcticicestudio/nord-vim'
+Plug 'shaunsingh/nord.nvim'
 
 " IDE
 
@@ -34,12 +33,15 @@ Plug 'junegunn/fzf.vim'
 
 " languages
 
-"Plug 'elixir-editors/vim-elixir'
-"Plug 'mhinz/vim-mix-format'
 Plug 'psf/black', { 'branch': 'stable', 'for': 'python' }
 Plug 'prettier/vim-prettier', {
       \ 'do': 'yarn install',
       \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']}
+
+" let's, see those could be replaced with a tree-sitter setup
+Plug 'dag/vim-fish'
+Plug 'fatih/vim-go'
+Plug 'ziglang/zig.vim'
 
 
 call plug#end()
@@ -106,7 +108,7 @@ set secure
 " colors
 
 set termguicolors
-"colorscheme solarized8_flat
+let g:nord_borders = v:true
 colorscheme nord
 
 set mouse=a

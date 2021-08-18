@@ -38,8 +38,8 @@ Plug 'prettier/vim-prettier', {
       \ 'do': 'yarn install',
       \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']}
 
-" let's, see those could be replaced with a tree-sitter setup
 Plug 'dag/vim-fish'
+Plug 'sersorrel/vim-lilypond'
 Plug 'fatih/vim-go'
 Plug 'ziglang/zig.vim'
 
@@ -109,6 +109,7 @@ set secure
 
 set termguicolors
 let g:nord_borders = v:true
+let g:nord_borders = v:true
 colorscheme nord
 
 set mouse=a
@@ -168,10 +169,6 @@ let g:prettier#autoformat_require_pragma = 0
 let g:prettier#exec_cmd_async = 1
 let g:prettier#autoformat_config_present = 1
 
-
-" mix-format
-let g:mix_format_on_save = 1
-let g:mix_format_silent_errors = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " KEY MAPPINGS

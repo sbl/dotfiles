@@ -40,7 +40,7 @@ Plug 'prettier/vim-prettier', {
 
 Plug 'dag/vim-fish'
 Plug 'sersorrel/vim-lilypond'
-Plug 'fatih/vim-go'
+"Plug 'fatih/vim-go'
 Plug 'ziglang/zig.vim'
 
 
@@ -223,6 +223,8 @@ augroup quickfix
   autocmd!
   autocmd FileType qf setlocal wrap
 augroup END
+
+au FileType go setl nolist
 
 au FileType make setl noexpandtab
 au Filetype markdown setlocal textwidth=72 wrap

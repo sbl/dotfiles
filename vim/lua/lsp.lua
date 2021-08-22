@@ -20,7 +20,7 @@ local function on_attach_config(client, bufnr)
   buf_set_keymap('n', '<c-k>',  '<cmd>lua vim.lsp.buf.signature_help()<CR>', keymap_opts)
   buf_set_keymap('i', '<c-k>',  '<cmd>lua vim.lsp.buf.signature_help()<CR>', keymap_opts)
   buf_set_keymap('n', 'g0',     '<cmd>lua vim.lsp.buf.document_symbol()<CR>', keymap_opts)
-  buf_set_keymap('n', '<f2>',   '<cmd>lua vim.lsp.buf.rename()<CR>', keymap_opts)
+  buf_set_keymap('n', '<F2>',   '<cmd>lua vim.lsp.buf.rename()<CR>', keymap_opts)
 end
 
 -- diagnostic config
@@ -38,11 +38,54 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 
 nvim_lsp.clangd.setup{ on_attach = on_attach_config }
 nvim_lsp.cmake.setup{ on_attach = on_attach_config }
-nvim_lsp.gopls.setup{ on_attach = on_attach_config }
+nvim_lsp.gopls.setup{ 
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+    },
+  },
+  on_attach = on_attach_config }
 nvim_lsp.html.setup{ on_attach = on_attach_config }
 nvim_lsp.jsonls.setup{ on_attach = on_attach_config }
 nvim_lsp.pyright.setup{ on_attach = on_attach_config }
 nvim_lsp.tsserver.setup{ on_attach = on_attach_config }
+
+
+
+-- go helpers
+
+function goimports(timeoutms)
+  local context = { source = { organizeImports = true } }
+  vim.validate { context = { context, "t", true } }
+
+  local params = vim.lsp.util.make_range_params()
+  params.context = context
+
+  -- See the implementation of the textDocument/codeAction callback
+  -- (lua/vim/lsp/handler.lua) for how to do this properly.
+  local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, timeout_ms)
+  if not result or next(result) == nil then return end
+  local actions = result[1].result
+  if not actions then return end
+  local action = actions[1]
+
+  -- textDocument/codeAction can return either Command[] or CodeAction[]. If it
+  -- is a CodeAction, it can have either an edit, a command or both. Edits
+  -- should be executed first.
+  if action.edit or type(action.command) == "table" then
+    if action.edit then
+      vim.lsp.util.apply_workspace_edit(action.edit)
+    end
+    if type(action.command) == "table" then
+      vim.lsp.buf.execute_command(action.command)
+    end
+  else
+    vim.lsp.buf.execute_command(action)
+  end
+end
 
 
 -- vim escape hatch for config
@@ -57,7 +100,12 @@ sign define LspDiagnosticsSignHint text=H texthl=LspDiagnosticsSignHint linehl= 
 " formatting where supported
 
 autocmd BufWritePre *.{c,cc,cpp,h,hpp} lua vim.lsp.buf.formatting_sync(nil, 1000)
+
+autocmd BufWritePre *.go lua vim.lsp.buf.formatting()
+autocmd BufWritePre *.go lua goimports(1000)
+
 command! A :ClangdSwitchSourceHeader
+
 command! Format lua vim.lsp.buf.formatting()
 ]])
 

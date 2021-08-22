@@ -101,7 +101,7 @@ sign define LspDiagnosticsSignHint text=H texthl=LspDiagnosticsSignHint linehl= 
 
 autocmd BufWritePre *.{c,cc,cpp,h,hpp} lua vim.lsp.buf.formatting_sync(nil, 1000)
 
-autocmd BufWritePre *.go lua vim.lsp.buf.formatting()
+autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync()
 autocmd BufWritePre *.go lua goimports(1000)
 
 command! A :ClangdSwitchSourceHeader

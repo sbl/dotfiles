@@ -1,5 +1,14 @@
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained",
+  ensure_installed = {
+    "c",
+    "cpp",
+    "fish",
+    "go",
+    "julia",
+    "lua",
+    "python",
+    "zig",
+  },
   highlight = {
     enable = true,
   },
@@ -26,5 +35,5 @@ set foldexpr=nvim_treesitter#foldexpr()
 au BufRead,BufNewFile *.fish set filetype=fish
 au BufRead,BufNewFile *.jl set filetype=julia
 au BufRead,BufNewFile *.zig set filetype=zig
-au BufRead,BufNewFile *.zir set filetype=zig
+au BufRead,BufNewFile *.zir set filetype=zir
 ]])

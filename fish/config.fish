@@ -22,7 +22,9 @@ if test "arm64" = (uname -m)
   set -px CPPFLAGS "-I/opt/homebrew/include"
 else
   set -gx LDFLAGS "-L/usr/local/opt/llvm/lib"
+  set -gx LDFLAGS "-L/usr/local/lib"
   set -gx CPPFLAGS "-I/usr/local/opt/llvm/include -I/usr/local/include"
+  set -gx CFLAGS "-I/usr/local/opt/llvm/include -I/usr/local/include"
 end
 
 # rbenv

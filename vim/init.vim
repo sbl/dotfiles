@@ -26,7 +26,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " interface
 
-Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdtree'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -40,7 +40,6 @@ Plug 'prettier/vim-prettier', {
 
 Plug 'dag/vim-fish'
 Plug 'sersorrel/vim-lilypond'
-"Plug 'fatih/vim-go'
 Plug 'ziglang/zig.vim'
 
 
@@ -68,7 +67,7 @@ set showcmd     "show incomplete cmds down the bottom
 set smartcase   "be smart when searching
 set nohlsearch
 set ignorecase
-set wildignore+=*/tmp/*,*/cache/*,*/_build/dist/*,*.so,*.o,*.swp,*.zip,*.pyc,*.d
+set wildignore+=*/tmp/*,*/cache/*,*.so,*.o,*.swp,*.zip,*.pyc,*.d
 
 set nonumber
 set foldcolumn=0
@@ -111,6 +110,7 @@ set termguicolors
 let g:nord_borders = v:true
 let g:nord_borders = v:true
 colorscheme nord
+"set background=light
 
 set mouse=a
 set clipboard^=unnamed,unnamedplus
@@ -133,10 +133,10 @@ lua require('completion')
 lua require('treesitter')
 
 
-" NERDTree
+" nerdtree
 
 let g:NERDTreeMinimalUI = 1
-let NERDTreeRespectWildIgnore=1
+let g:NERDTreeRespectWildIgnore = 1
 nnoremap <Leader>d :NERDTreeToggle<CR>
 
 " RAGTAG

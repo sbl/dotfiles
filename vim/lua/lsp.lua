@@ -38,7 +38,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 
 nvim_lsp.clangd.setup{ on_attach = on_attach_config }
 nvim_lsp.cmake.setup{ on_attach = on_attach_config }
-nvim_lsp.gopls.setup{ 
+nvim_lsp.gopls.setup{
   settings = {
     gopls = {
       analyses = {
@@ -49,9 +49,10 @@ nvim_lsp.gopls.setup{
   },
   on_attach = on_attach_config }
 nvim_lsp.html.setup{ on_attach = on_attach_config }
-nvim_lsp.jsonls.setup{ on_attach = on_attach_config }
+--nvim_lsp.jsonls.setup{ on_attach = on_attach_config }
 nvim_lsp.pyright.setup{ on_attach = on_attach_config }
 nvim_lsp.tsserver.setup{ on_attach = on_attach_config }
+nvim_lsp.zls.setup{ on_attach = on_attach_config }
 
 
 

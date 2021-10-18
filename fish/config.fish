@@ -18,8 +18,9 @@ set -x AWS_CREDENTIALS_PATH $HOME/.phrase/config.json
 
 # LLVM
 if test "arm64" = (uname -m)
-  set -px LDFLAGS "-L/opt/homebrew/lib"
-  set -px CPPFLAGS "-I/opt/homebrew/include"
+  set -px LDFLAGS "-L/opt/homebrew/lib -L/usr/local/lib"
+  set -px CPPFLAGS "-I/opt/homebrew/include -I/usr/local/include"
+  set -px CFLAGS "-I/opt/homebrew/include -I/usr/local/include"
 else
   set -gx LDFLAGS "-L/usr/local/opt/llvm/lib"
   set -gx LDFLAGS "-L/usr/local/lib"

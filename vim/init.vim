@@ -1,4 +1,4 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype off
 
 call plug#begin('~/.config/nvim/plugged')
@@ -21,8 +21,13 @@ Plug 'shaunsingh/nord.nvim'
 
 Plug 'editorconfig/editorconfig-vim'
 Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-compe'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'L3MON4D3/LuaSnip'
+Plug 'saadparwaiz1/cmp_luasnip'
 
 " interface
 
@@ -136,6 +141,7 @@ lua require('treesitter')
 " nerdtree
 
 let g:NERDTreeMinimalUI = 1
+let NERDTreeIgnore=['zig-cache$', 'zig-out$', '__pycache__']
 let g:NERDTreeRespectWildIgnore = 1
 nnoremap <Leader>d :NERDTreeToggle<CR>
 

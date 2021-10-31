@@ -7,6 +7,7 @@ require'nvim-treesitter.configs'.setup {
     "julia",
     "lua",
     "python",
+    "supercollider",
     "zig",
   },
   highlight = {

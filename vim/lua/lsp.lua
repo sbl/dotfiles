@@ -1,5 +1,6 @@
 -- nvim-lsp config
 local nvim_lsp = require('lspconfig')
+local cmp_capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- use the attach callback to configure completion and key mappings
 
@@ -36,8 +37,13 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 
 -- register and configure all servers
 
-nvim_lsp.clangd.setup{ on_attach = on_attach_config }
-nvim_lsp.cmake.setup{ on_attach = on_attach_config }
+local standardSetup = {
+  on_attach = on_attach_config,
+  capabilities = cmp_capabilities,
+}
+
+nvim_lsp.clangd.setup(standardSetup)
+nvim_lsp.cmake.setup(standardSetup)
 nvim_lsp.gopls.setup{
   settings = {
     gopls = {
@@ -48,11 +54,11 @@ nvim_lsp.gopls.setup{
     },
   },
   on_attach = on_attach_config }
-nvim_lsp.html.setup{ on_attach = on_attach_config }
+nvim_lsp.html.setup(standardSetup)
 --nvim_lsp.jsonls.setup{ on_attach = on_attach_config }
-nvim_lsp.pyright.setup{ on_attach = on_attach_config }
-nvim_lsp.tsserver.setup{ on_attach = on_attach_config }
-nvim_lsp.zls.setup{ on_attach = on_attach_config }
+nvim_lsp.pyright.setup(standardSetup)
+nvim_lsp.tsserver.setup(standardSetup)
+nvim_lsp.zls.setup(standardSetup)
 
 
 

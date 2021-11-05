@@ -55,8 +55,25 @@ nvim_lsp.gopls.setup{
   },
   on_attach = on_attach_config }
 nvim_lsp.html.setup(standardSetup)
---nvim_lsp.jsonls.setup{ on_attach = on_attach_config }
+nvim_lsp.jsonls.setup(standardSetup)
 nvim_lsp.pyright.setup(standardSetup)
+nvim_lsp.rust_analyzer.setup({
+    on_attach=on_attach_config,
+    settings = {
+        ["rust-analyzer"] = {
+            assist = {
+                importGranularity = "module",
+                importPrefix = "by_self",
+            },
+            cargo = {
+                loadOutDirsFromCheck = true
+            },
+            procMacro = {
+                enable = true
+            },
+        }
+    }
+})
 nvim_lsp.tsserver.setup(standardSetup)
 nvim_lsp.zls.setup(standardSetup)
 

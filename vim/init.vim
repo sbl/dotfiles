@@ -45,6 +45,7 @@ Plug 'prettier/vim-prettier', {
 
 Plug 'dag/vim-fish'
 Plug 'sersorrel/vim-lilypond'
+Plug 'rust-lang/rust.vim'
 Plug 'ziglang/zig.vim'
 
 

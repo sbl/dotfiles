@@ -1,4 +1,4 @@
-vim.o.completeopt = 'menu,menuone,noselect'
+vim.o.completeopt = 'menuone,noselect'
 
 
 local has_words_before = function()
@@ -9,7 +9,6 @@ end
 -- Setup nvim-cmp.
 local cmp = require'cmp'
 local luasnip = require('luasnip')
-
 
 cmp.setup({
   snippet = {
@@ -54,7 +53,7 @@ cmp.setup({
   },
 
   completion = {
-    --autocomplete = false,
+    autocomplete = false,
   },
 
   sources = cmp.config.sources({

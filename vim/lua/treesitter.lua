@@ -4,12 +4,13 @@ require'nvim-treesitter.configs'.setup {
     "cpp",
     "fish",
     "go",
+    "javascript",
     "julia",
     "lua",
     "python",
     "rust",
     "supercollider",
-    "zig",
+    "typescript",
   },
   highlight = {
     enable = true,
@@ -36,6 +37,4 @@ set foldexpr=nvim_treesitter#foldexpr()
 
 au BufRead,BufNewFile *.fish set filetype=fish
 au BufRead,BufNewFile *.jl set filetype=julia
-au BufRead,BufNewFile *.zig set filetype=zig
-au BufRead,BufNewFile *.zir set filetype=zir
 ]])

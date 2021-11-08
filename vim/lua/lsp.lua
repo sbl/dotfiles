@@ -75,8 +75,6 @@ nvim_lsp.rust_analyzer.setup({
     }
 })
 nvim_lsp.tsserver.setup(standardSetup)
-nvim_lsp.zls.setup(standardSetup)
-
 
 
 -- go helpers

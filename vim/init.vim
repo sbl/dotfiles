@@ -46,7 +46,6 @@ Plug 'prettier/vim-prettier', {
 Plug 'dag/vim-fish'
 Plug 'sersorrel/vim-lilypond'
 Plug 'rust-lang/rust.vim'
-Plug 'ziglang/zig.vim'
 
 
 call plug#end()
@@ -142,7 +141,7 @@ lua require('treesitter')
 " nerdtree
 
 let g:NERDTreeMinimalUI = 1
-let NERDTreeIgnore=['zig-cache$', 'zig-out$', '__pycache__']
+let NERDTreeIgnore=['__pycache__']
 let g:NERDTreeRespectWildIgnore = 1
 nnoremap <Leader>d :NERDTreeToggle<CR>
 

@@ -12,6 +12,10 @@ compile_commands.json
 zig-cache/
 zig-out/
 
+# rust
+
+target/
+
 # python
 __pycache__
 .venv

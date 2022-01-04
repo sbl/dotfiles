@@ -9,9 +9,9 @@ local function on_attach_config(client, bufnr)
 
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
-  buf_set_keymap('n', '<leader>l',     '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', keymap_opts)
-  buf_set_keymap('n', '<leader>ö',     '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', keymap_opts)
-  buf_set_keymap('n', '<leader>ä',     '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', keymap_opts)
+  buf_set_keymap('n', '<leader>l',     '<cmd>lua vim.diagnostic.set_loclist()<CR>', keymap_opts)
+  buf_set_keymap('n', '<leader>ö',     '<cmd>lua vim.diagnostic.goto_prev()<CR>', keymap_opts)
+  buf_set_keymap('n', '<leader>ä',     '<cmd>lua vim.diagnostic.goto_next()<CR>', keymap_opts)
 
   buf_set_keymap('n', 'gd',     '<cmd>lua vim.lsp.buf.definition()<CR>', keymap_opts)
   buf_set_keymap('n', 'gD',     '<cmd>lua vim.lsp.buf.declaration()<CR>', keymap_opts)
@@ -74,6 +74,28 @@ nvim_lsp.rust_analyzer.setup({
         }
     }
 })
+require'lspconfig'.sumneko_lua.setup {
+  on_attach=on_attach_config,
+  settings = {
+    Lua = {
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = {
+          'vim',
+          'init',
+          'clock',
+          'engine',
+          'screen',
+        },
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+
+    }
+  }
+}
 nvim_lsp.tsserver.setup(standardSetup)
 
 

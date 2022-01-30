@@ -31,7 +31,6 @@ end
 # rbenv
 #status --is-interactive; and source (rbenv init -|psub)
 
-
 # key bindings
 
 bind \ee accept-autosuggestion # ctrl-e completes first suggestion

@@ -4,7 +4,7 @@ local cmp_capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.pro
 
 -- use the attach callback to configure completion and key mappings
 
-local function on_attach_config(client, bufnr)
+local function on_attach_config(_, bufnr)
   local keymap_opts = { noremap=true, silent=true }
 
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -74,19 +74,16 @@ nvim_lsp.rust_analyzer.setup({
         }
     }
 })
+
+
+local lua_globals = { 'vim' }
 require'lspconfig'.sumneko_lua.setup {
   on_attach=on_attach_config,
   settings = {
     Lua = {
       diagnostics = {
         -- Get the language server to recognize the `vim` global
-        globals = {
-          'vim',
-          'init',
-          'clock',
-          'engine',
-          'screen',
-        },
+        globals = lua_globals,
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
@@ -101,7 +98,7 @@ nvim_lsp.tsserver.setup(standardSetup)
 
 -- go helpers
 
-function goimports(timeoutms)
+function goimports(timeout_ms)
   local context = { source = { organizeImports = true } }
   vim.validate { context = { context, "t", true } }
 

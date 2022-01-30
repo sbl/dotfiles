@@ -26,8 +26,10 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/nvim-cmp'
+
 Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'rafamadriz/friendly-snippets'
 
 " interface
 
@@ -46,6 +48,7 @@ Plug 'prettier/vim-prettier', {
 Plug 'dag/vim-fish'
 Plug 'sersorrel/vim-lilypond'
 Plug 'rust-lang/rust.vim'
+Plug 'davidgranstrom/scnvim'
 
 
 call plug#end()
@@ -112,10 +115,13 @@ set secure
 " colors
 
 set termguicolors
+
+let g:nord_contrast = v:true
 let g:nord_borders = v:true
-let g:nord_borders = v:true
+let g:nord_disable_background = v:true
+let g:nord_italic = v:false
+
 colorscheme nord
-"set background=light
 
 set mouse=a
 set clipboard^=unnamed,unnamedplus

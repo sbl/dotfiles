@@ -9,19 +9,19 @@ local function on_attach_config(_, bufnr)
 
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
-  buf_set_keymap('n', '<leader>l',     '<cmd>lua vim.diagnostic.set_loclist()<CR>', keymap_opts)
   buf_set_keymap('n', '<leader>ö',     '<cmd>lua vim.diagnostic.goto_prev()<CR>', keymap_opts)
   buf_set_keymap('n', '<leader>ä',     '<cmd>lua vim.diagnostic.goto_next()<CR>', keymap_opts)
 
-  buf_set_keymap('n', 'gd',     '<cmd>lua vim.lsp.buf.definition()<CR>', keymap_opts)
-  buf_set_keymap('n', 'gD',     '<cmd>lua vim.lsp.buf.declaration()<CR>', keymap_opts)
-  buf_set_keymap('n', 'gi',     '<cmd>lua vim.lsp.buf.implementation()<CR>', keymap_opts)
-  buf_set_keymap('n', 'gr',     '<cmd>lua vim.lsp.buf.references()<CR>', keymap_opts)
-  buf_set_keymap('n', 'K',      '<cmd>lua vim.lsp.buf.hover()<CR>', keymap_opts)
-  buf_set_keymap('n', '<c-k>',  '<cmd>lua vim.lsp.buf.signature_help()<CR>', keymap_opts)
-  buf_set_keymap('i', '<c-k>',  '<cmd>lua vim.lsp.buf.signature_help()<CR>', keymap_opts)
-  buf_set_keymap('n', 'g0',     '<cmd>lua vim.lsp.buf.document_symbol()<CR>', keymap_opts)
-  buf_set_keymap('n', '<F2>',   '<cmd>lua vim.lsp.buf.rename()<CR>', keymap_opts)
+  buf_set_keymap('n', '<leader>a',  '<cmd>lua vim.lsp.buf.code_action()<CR>', keymap_opts)
+  buf_set_keymap('n', 'gd',         '<cmd>lua vim.lsp.buf.definition()<CR>', keymap_opts)
+  buf_set_keymap('n', 'gD',         '<cmd>lua vim.lsp.buf.declaration()<CR>', keymap_opts)
+  buf_set_keymap('n', 'gi',         '<cmd>lua vim.lsp.buf.implementation()<CR>', keymap_opts)
+  buf_set_keymap('n', 'gr',         '<cmd>lua vim.lsp.buf.references()<CR>', keymap_opts)
+  buf_set_keymap('n', 'K',          '<cmd>lua vim.lsp.buf.hover()<CR>', keymap_opts)
+  buf_set_keymap('n', '<c-k>',      '<cmd>lua vim.lsp.buf.signature_help()<CR>', keymap_opts)
+  buf_set_keymap('i', '<c-k>',      '<cmd>lua vim.lsp.buf.signature_help()<CR>', keymap_opts)
+  buf_set_keymap('n', 'g0',         '<cmd>lua vim.lsp.buf.document_symbol()<CR>', keymap_opts)
+  buf_set_keymap('n', '<F2>',       '<cmd>lua vim.lsp.buf.rename()<CR>', keymap_opts)
 end
 
 -- diagnostic config
@@ -100,7 +100,7 @@ nvim_lsp.eslint.setup(standardSetup)
 
 -- go helpers
 
-function goimports(timeout_ms)
+local function goimports(timeout_ms)
   local context = { source = { organizeImports = true } }
   vim.validate { context = { context, "t", true } }
 
@@ -109,7 +109,7 @@ function goimports(timeout_ms)
 
   -- See the implementation of the textDocument/codeAction callback
   -- (lua/vim/lsp/handler.lua) for how to do this properly.
-  local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, timeoutms)
+  local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, timeout_ms)
   if not result or next(result) == nil then return end
   local actions = result[1].result
   if not actions then return end
@@ -129,6 +129,7 @@ function goimports(timeout_ms)
     vim.lsp.buf.execute_command(action)
   end
 end
+_ = goimports
 
 
 -- vim escape hatch for config

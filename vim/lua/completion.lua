@@ -10,10 +10,13 @@ local cmp = require'cmp'
 local luasnip = require('luasnip')
 require("luasnip.loaders.from_vscode").load()
 
+
+--- CMP config
+
 cmp.setup({
   snippet = {
     expand = function(args)
-      luasnip.lsp_expand(args.body) -- For `luasnip` users.
+      luasnip.lsp_expand(args.body)
     end,
   },
 
@@ -27,8 +30,10 @@ cmp.setup({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
     }),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
-
+    ['<CR>'] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true
+    }),
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -57,10 +62,9 @@ cmp.setup({
     autocomplete = false,
   },
 
-  sources = cmp.config.sources({
+  sources = cmp.config.sources{
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
-  }, {
     { name = 'buffer' },
-  })
+  }
 })

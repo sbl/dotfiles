@@ -31,6 +31,7 @@ else
   set -gx LDFLAGS "-L/usr/local/lib"
   set -gx CPPFLAGS "-I/usr/local/opt/llvm/include -I/usr/local/include"
   set -gx CFLAGS "-I/usr/local/opt/llvm/include -I/usr/local/include"
+  set -gx CPATH /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include
 end
 
 # rbenv

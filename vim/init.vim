@@ -47,9 +47,8 @@ Plug 'prettier/vim-prettier', {
       \ 'do': 'yarn install',
       \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']}
 
-Plug 'dag/vim-fish'
 Plug 'sersorrel/vim-lilypond'
-Plug 'davidgranstrom/scnvim'
+Plug 'mattn/vim-goimports'
 
 
 call plug#end()

@@ -14,8 +14,6 @@ set -x FZF_DEFAULT_COMMAND "rg --files --hidden --follow --glob '!.git'"
 set -x CTEST_OUTPUT_ON_FAILURE 1
 set -x CMAKE_EXPORT_COMPILE_COMMANDS 1
 
-set -x AWS_CREDENTIALS_PATH $HOME/.phrase/config.json
-
 # LLVM
 if test "arm64" = (uname -m)
   set -pgx LDFLAGS "-L/opt/homebrew/lib -L/usr/local/lib"

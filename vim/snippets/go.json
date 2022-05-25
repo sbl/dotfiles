@@ -136,7 +136,7 @@
   },
   "log.Printf": {
     "prefix": "lf",
-    "body": "log.Printf(\"$1\", ${2:var})",
+    "body": "log.Printf(\"${1:%v}\\n\", ${2:var})",
     "description": "Snippet for log.Printf()"
   },
   "log variable content": {

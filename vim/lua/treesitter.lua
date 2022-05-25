@@ -5,7 +5,6 @@ require'nvim-treesitter.configs'.setup {
     "fish",
     "go",
     "javascript",
-    "julia",
     "lua",
     "python",
     "rust",
@@ -49,7 +48,4 @@ require'nvim-treesitter.configs'.setup {
 vim.cmd([[
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
-
-au BufRead,BufNewFile *.fish set filetype=fish
-au BufRead,BufNewFile *.jl set filetype=julia
 ]])

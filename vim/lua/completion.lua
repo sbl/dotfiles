@@ -8,8 +8,13 @@ end
 -- Setup nvim-cmp.
 local cmp = require'cmp'
 local luasnip = require('luasnip')
-require("luasnip.loaders.from_vscode").load()
+require("luasnip.loaders.from_vscode").lazy_load({
+  paths = {
+        vim.fn.stdpath('config') .. '/snippets',
+  }
+})
 
+vim.api.nvim_create_user_command("LuaSnipEdit", require("luasnip.loaders").edit_snippet_files, {})
 
 --- CMP config
 
@@ -69,7 +74,7 @@ cmp.setup({
   }
 })
 
-function leave_snippet()
+local function leave_snippet()
     if
         --((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i') and
         luasnip.session.current_nodes[vim.api.nvim_get_current_buf()]
@@ -79,7 +84,7 @@ function leave_snippet()
     end
 end
 
--- stop snippets when you leave to normal mode
-vim.api.nvim_command([[
-    autocmd ModeChanged * lua leave_snippet()
-]])
+vim.api.nvim_create_autocmd("ModeChanged", {
+  pattern = { "*" },
+  callback = leave_snippet
+})

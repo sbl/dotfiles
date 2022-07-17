@@ -76,6 +76,8 @@ nvim_lsp.rust_analyzer.setup({
 })
 nvim_lsp.tsserver.setup{}
 
+nvim_lsp.zls.setup(standardSetup)
+
 
 
 local lua_globals = { 'vim' }
@@ -97,7 +99,6 @@ require'lspconfig'.sumneko_lua.setup {
 }
 
 nvim_lsp.eslint.setup(standardSetup)
---nvim_lsp.tsserver.setup(standardSetup)
 
 
 -- vim escape hatch for config

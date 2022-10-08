@@ -1,11 +1,10 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype off
 
 call plug#begin('~/.config/nvim/plugged')
 
 " core
 
-Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -16,39 +15,42 @@ Plug 'scrooloose/nerdcommenter'
 " colors
 
 Plug 'lifepillar/vim-solarized8'
-Plug 'arcticicestudio/nord-vim'
+Plug 'shaunsingh/nord.nvim'
 
 " IDE
 
 Plug 'editorconfig/editorconfig-vim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+
 Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-compe'
-" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+
+Plug 'L3MON4D3/LuaSnip'
+Plug 'saadparwaiz1/cmp_luasnip'
 
 " interface
 
-Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdtree'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'airblade/vim-gitgutter'
+Plug 'pbogut/fzf-mru.vim'
 
 " languages
 
-Plug 'cespare/vim-toml'
-Plug 'dag/vim-fish'
-Plug 'gmoe/vim-soul'
-Plug 'fatih/vim-go'
-Plug 'elixir-editors/vim-elixir'
-Plug 'mhinz/vim-mix-format'
-Plug 'JuliaEditorSupport/julia-vim'
-Plug 'ziglang/zig.vim'
-Plug 'gmoe/vim-soul'
-Plug 'fatih/vim-go'
 Plug 'psf/black', { 'branch': 'stable', 'for': 'python' }
 Plug 'prettier/vim-prettier', {
       \ 'do': 'yarn install',
       \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']}
+
+Plug 'davidgranstrom/scnvim'
+Plug 'sersorrel/vim-lilypond'
+Plug 'mattn/vim-goimports'
+Plug 'ziglang/zig.vim'
 
 
 call plug#end()
@@ -75,11 +77,12 @@ set showcmd     "show incomplete cmds down the bottom
 set smartcase   "be smart when searching
 set nohlsearch
 set ignorecase
-set wildignore+=*/tmp/*,*/cache/*,*/_build/dist/*,*.so,*.o,*.swp,*.zip,*.pyc,*.d
+set wildignore+=*/tmp/*,*/cache/*,*.so,*.o,*.swp,*.zip,*.pyc,*.d
 
 set nonumber
 set foldcolumn=0
-set foldmethod=syntax
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 set nofoldenable
 set nowrap
 
@@ -115,7 +118,12 @@ set secure
 " colors
 
 set termguicolors
-"colorscheme solarized8_flat
+
+let g:nord_contrast = v:true
+let g:nord_borders = v:true
+let g:nord_disable_background = v:true
+let g:nord_italic = v:false
+
 colorscheme nord
 
 set mouse=a
@@ -134,20 +142,18 @@ set statusline+=%=\ row\ %l/%L\ -\ %c " right lines + line
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN SUPPORT
 
+lua require('supercollider')
 lua require('lsp')
 lua require('completion')
-"lua require('treesitter')
+lua require('treesitter')
 
 
-" NERDTree
+" nerdtree
 
 let g:NERDTreeMinimalUI = 1
-let NERDTreeRespectWildIgnore=1
+let NERDTreeIgnore=['__pycache__', 'zig-cache', 'zig-out']
+let g:NERDTreeRespectWildIgnore = 1
 nnoremap <Leader>d :NERDTreeToggle<CR>
-
-" gitgutter
-
-let g:gitgutter_enabled = 0
 
 " RAGTAG
 
@@ -178,11 +184,8 @@ nnoremap <Leader>t :BTags<CR>
 let g:prettier#autoformat_require_pragma = 0
 let g:prettier#exec_cmd_async = 1
 let g:prettier#autoformat_config_present = 1
+let g:prettier#quickfix_enabled = 0
 
-
-" mix-format
-let g:mix_format_on_save = 1
-let g:mix_format_silent_errors = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " KEY MAPPINGS
@@ -210,7 +213,6 @@ nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
 nnoremap <Leader>w :w<CR>
-nnoremap <Leader>b :bd<CR>
 nnoremap <leader>l :lopen<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -237,6 +239,8 @@ augroup quickfix
   autocmd!
   autocmd FileType qf setlocal wrap
 augroup END
+
+au FileType go setl nolist
 
 au FileType make setl noexpandtab
 au Filetype markdown setlocal textwidth=72 wrap

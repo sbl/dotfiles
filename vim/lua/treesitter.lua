@@ -1,26 +1,38 @@
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained",
+  ensure_installed = {
+    "c",
+    "cpp",
+    "fish",
+    "go",
+    "html",
+    "javascript",
+    "lua",
+    "python",
+    "rust",
+    "supercollider",
+    "typescript",
+    "zig",
+  },
   highlight = {
-    disable = true,
-    enable = {
-      "go",
-      "fish",
-      "javascript",
-      "julia",
-      "python",
-      "toml",
-      "typescript",
-      "zig",
-    },
+    enable = true,
   },
   indent = {
-    disable = true,
-    enable = {
-      "fish",
-      "julia",
-      "toml",
-      "zig",
-      }
+    enable = false,
+  },
+  textobjects = {
+    select = {
+      enable = true,
+      -- Automatically jump forward to textobj, similar to targets.vim
+      lookahead = true,
+
+      keymaps = {
+        -- You can use the capture groups defined in textobjects.scm
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+      },
+    },
   },
   incremental_selection = {
     enable = true,
@@ -29,17 +41,12 @@ require'nvim-treesitter.configs'.setup {
       node_incremental = "grn",
       scope_incremental = "grc",
       node_decremental = "grm",
-      },
+    },
   },
-  textobjects = { enable = true },
 }
+
 
 vim.cmd([[
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
-
-au BufRead,BufNewFile *.fish set filetype=fish
-au BufRead,BufNewFile *.jl set filetype=julia
-au BufRead,BufNewFile *.zig set filetype=zig
-au BufRead,BufNewFile *.zir set filetype=zir
 ]])

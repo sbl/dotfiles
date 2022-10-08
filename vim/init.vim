@@ -38,6 +38,7 @@ Plug 'preservim/nerdtree'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'pbogut/fzf-mru.vim'
 
 " languages
 
@@ -79,7 +80,8 @@ set wildignore+=*/tmp/*,*/cache/*,*.so,*.o,*.swp,*.zip,*.pyc,*.d
 
 set nonumber
 set foldcolumn=0
-set foldmethod=syntax
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 set nofoldenable
 set nowrap
 
@@ -139,6 +141,7 @@ set statusline+=%=\ row\ %l/%L\ -\ %c " right lines + line
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN SUPPORT
 
+lua require('supercollider')
 lua require('lsp')
 lua require('completion')
 lua require('treesitter')
@@ -147,7 +150,7 @@ lua require('treesitter')
 " nerdtree
 
 let g:NERDTreeMinimalUI = 1
-let NERDTreeIgnore=['__pycache__']
+let NERDTreeIgnore=['__pycache__', 'zig-cache', 'zig-out']
 let g:NERDTreeRespectWildIgnore = 1
 nnoremap <Leader>d :NERDTreeToggle<CR>
 
@@ -209,7 +212,6 @@ nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
 nnoremap <Leader>w :w<CR>
-nnoremap <Leader>b :bd<CR>
 nnoremap <leader>l :lopen<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

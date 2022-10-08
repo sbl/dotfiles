@@ -4,6 +4,7 @@ require'nvim-treesitter.configs'.setup {
     "cpp",
     "fish",
     "go",
+    "html",
     "javascript",
     "lua",
     "python",
@@ -14,6 +15,10 @@ require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
     --disable = {"javascript", "typescript"}
+    "zig",
+  },
+  highlight = {
+    enable = true,
   },
   indent = {
     enable = false,

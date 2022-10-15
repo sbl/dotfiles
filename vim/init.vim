@@ -145,7 +145,6 @@ set statusline+=%=\ row\ %l/%L\ -\ %c " right lines + line
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN SUPPORT
 
-lua require('supercollider')
 lua require('lsp')
 lua require('completion')
 lua require('treesitter')

@@ -28,6 +28,7 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 
+
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
 
@@ -36,7 +37,7 @@ Plug 'saadparwaiz1/cmp_luasnip'
 
 " interface
 
-Plug 'preservim/nerdtree'
+Plug 'nvim-tree/nvim-tree.lua'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -88,6 +89,9 @@ set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 set nofoldenable
 set nowrap
+
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
 
 " display hidden characters
 set listchars=tab:▸\ ,nbsp:•,trail:…
@@ -148,16 +152,10 @@ set statusline+=%=\ row\ %l/%L\ -\ %c " right lines + line
 lua require('lsp')
 lua require('completion')
 lua require('treesitter')
-lua << EOF
-  require("trouble").setup {}
-EOF
+lua require("trouble").setup { mode = "document_diagnostics" }
+lua require("nvim-tree").setup()
 
-" nerdtree
-
-let g:NERDTreeMinimalUI = 1
-let NERDTreeIgnore=['__pycache__', 'zig-cache', 'zig-out']
-let g:NERDTreeRespectWildIgnore = 1
-nnoremap <Leader>d :NERDTreeToggle<CR>
+nnoremap <Leader>d :NvimTreeToggle<CR>
 
 " RAGTAG
 
@@ -217,8 +215,7 @@ nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
 nnoremap <Leader>w :w<CR>
-nnoremap <leader>l :lopen<CR>
-nnoremap <leader>m :FZFMru<CR>
+nnoremap <leader>xx :TroubleToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM COMMANDS
@@ -228,6 +225,7 @@ command! Open silent !open '%:p:h'
 command! Todo silent rg "TODO|FIXME|CHANGED|FIX"
 command! Vimrc :e ~/.config/nvim/init.vim
 command! Fish :e ~/.config/fish/config.fish
+command! Mru :FZFMru
 command! Date put=strftime('%Y-%m-%d - %H:%M')
 
 

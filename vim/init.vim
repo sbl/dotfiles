@@ -27,7 +27,9 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
+
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'folke/trouble.nvim'
 
 Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
@@ -60,6 +62,8 @@ filetype indent on
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GENERAL
+
+
 
 let g:python3_host_prog = "$HOME/.virtualenvs/neovim/bin/python"
 
@@ -145,7 +149,9 @@ lua require('supercollider')
 lua require('lsp')
 lua require('completion')
 lua require('treesitter')
-
+lua << EOF
+  require("trouble").setup {}
+EOF
 
 " nerdtree
 
@@ -213,6 +219,7 @@ vnoremap <F1> <ESC>
 
 nnoremap <Leader>w :w<CR>
 nnoremap <leader>l :lopen<CR>
+nnoremap <leader>m :FZFMru<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM COMMANDS

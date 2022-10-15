@@ -79,7 +79,6 @@ nvim_lsp.tsserver.setup{}
 nvim_lsp.zls.setup(standardSetup)
 
 
-
 local lua_globals = { 'vim' }
 require'lspconfig'.sumneko_lua.setup {
   on_attach=on_attach_config,
@@ -100,21 +99,12 @@ require'lspconfig'.sumneko_lua.setup {
 
 nvim_lsp.eslint.setup(standardSetup)
 
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = { "*.{c,cc,cpp,h,hpp}" },
+  callback = vim.lsp.buf.formatting_sync
+})
 
--- vim escape hatch for config
-vim.cmd([[
-" signing
-
-sign define LspDiagnosticsSignError text=✘ texthl=LspDiagnosticsSignError linehl= numhl=
-sign define LspDiagnosticsSignWarning text=‼ texthl=LspDiagnosticsSignWarning linehl= numhl=
-sign define LspDiagnosticsSignInformation text=ℹ texthl=LspDiagnosticsSignInformation linehl= numhl=
-sign define LspDiagnosticsSignHint text=H texthl=LspDiagnosticsSignHint linehl= numhl=
-
-" formatting where supported
-
-autocmd BufWritePre *.{c,cc,cpp,h,hpp} lua vim.lsp.buf.formatting_sync(nil, 1000)
-autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync()
-
-command! Format lua vim.lsp.buf.formatting()
-]])
-
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = { "*.go" },
+  callback = vim.lsp.buf.formatting
+})

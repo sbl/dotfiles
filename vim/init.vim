@@ -39,9 +39,9 @@ Plug 'saadparwaiz1/cmp_luasnip'
 
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'junegunn/goyo.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'pbogut/fzf-mru.vim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+
 
 " languages
 
@@ -163,25 +163,8 @@ nnoremap <Leader>d :NvimTreeToggle<CR>
 
 let g:ragtag_global_maps = 1
 
-" fzf
-
-let g:fzf_colors =
-      \ { 'fg':      ['fg', 'Normal'],
-      \ 'bg':      ['bg', 'Normal'],
-      \ 'hl':      ['fg', 'Comment'],
-      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-      \ 'hl+':     ['fg', 'Statement'],
-      \ 'info':    ['fg', 'PreProc'],
-      \ 'border':  ['fg', 'Ignore'],
-      \ 'prompt':  ['fg', 'Conditional'],
-      \ 'pointer': ['fg', 'Exception'],
-      \ 'marker':  ['fg', 'Keyword'],
-      \ 'spinner': ['fg', 'Label'],
-      \ 'header':  ['fg', 'Comment'] }
-
-nnoremap <c-p> :FZF<CR>
-nnoremap <Leader>t :BTags<CR>
+nnoremap <c-p> :Telescope find_files<CR>
+nnoremap <Leader>t :Telescope lsp_document_symbols<CR>
 
 " prettier
 
@@ -227,7 +210,6 @@ command! Open silent !open '%:p:h'
 command! Todo silent rg "TODO|FIXME|CHANGED|FIX"
 command! Vimrc :e ~/.config/nvim/init.vim
 command! Fish :e ~/.config/fish/config.fish
-command! Mru :FZFMru
 command! Date put=strftime('%Y-%m-%d - %H:%M')
 
 

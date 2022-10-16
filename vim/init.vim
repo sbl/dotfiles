@@ -52,6 +52,7 @@ Plug 'prettier/vim-prettier', {
 
 Plug 'sersorrel/vim-lilypond'
 Plug 'mattn/vim-goimports'
+Plug 'simrat39/rust-tools.nvim'
 Plug 'ziglang/zig.vim'
 
 
@@ -84,6 +85,7 @@ set ignorecase
 set wildignore+=*/tmp/*,*/cache/*,*.so,*.o,*.swp,*.zip,*.pyc,*.d
 
 set nonumber
+set signcolumn=yes
 set foldcolumn=0
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()

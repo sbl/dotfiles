@@ -11,14 +11,11 @@ require'nvim-treesitter.configs'.setup {
     "rust",
     "supercollider",
     "typescript",
-  },
-  highlight = {
-    enable = true,
-    --disable = {"javascript", "typescript"}
     "zig",
   },
   highlight = {
     enable = true,
+    --disable = {"javascript", "typescript"}
   },
   indent = {
     enable = false,

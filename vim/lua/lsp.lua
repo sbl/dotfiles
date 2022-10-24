@@ -70,6 +70,7 @@ rt.setup({
   tools = {
     autoSetHints = true,
     inlay_hints = {
+      auto = false,
       show_parameter_hints = false,
       parameter_hints_prefix = "",
       other_hints_prefix = "",
@@ -97,8 +98,9 @@ rt.setup({
   },
 })
 
+
 nvim_lsp.tsserver.setup {}
-nvim_lsp.zls.setup(standardSetup)
+--nvim_lsp.zls.setup(standardSetup)
 
 local lua_globals = { 'vim' }
 require 'lspconfig'.sumneko_lua.setup {

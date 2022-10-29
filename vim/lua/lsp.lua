@@ -98,8 +98,7 @@ rt.setup({
   },
 })
 
-
-nvim_lsp.tsserver.setup {}
+--nvim_lsp.tsserver.setup {}
 --nvim_lsp.zls.setup(standardSetup)
 
 local lua_globals = { 'vim' }

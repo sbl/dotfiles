@@ -18,18 +18,21 @@ Plug 'lifepillar/vim-solarized8'
 Plug 'shaunsingh/nord.nvim'
 
 " IDE
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
+
 
 Plug 'editorconfig/editorconfig-vim'
+
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
 Plug 'neovim/nvim-lspconfig'
+
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 
-
-Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
 
 Plug 'L3MON4D3/LuaSnip'
@@ -37,6 +40,7 @@ Plug 'saadparwaiz1/cmp_luasnip'
 
 " interface
 
+Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'junegunn/goyo.vim'
 Plug 'nvim-lua/plenary.nvim'
@@ -64,8 +68,6 @@ filetype indent on
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GENERAL
-
-
 
 let g:python3_host_prog = "$HOME/.virtualenvs/neovim/bin/python"
 
@@ -151,11 +153,20 @@ set statusline+=%=\ row\ %l/%L\ -\ %c " right lines + line
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN SUPPORT
 
-lua require('lsp')
-lua require('completion')
-lua require('treesitter')
-lua require("trouble").setup { mode = "document_diagnostics" }
-lua require("nvim-tree").setup()
+lua << EOF
+  require("trouble").setup { mode = "document_diagnostics" }
+  require("nvim-tree").setup()
+  require("mason").setup {
+    ui = {
+      check_outdated_packages_on_open = false,
+    }
+  }
+  require("mason-lspconfig").setup { automatic_installation = true }
+
+  require('lsp')
+  require('completion')
+  require('treesitter')
+EOF
 
 nnoremap <Leader>d :NvimTreeToggle<CR>
 

@@ -6,11 +6,15 @@ local has_words_before = function()
 end
 
 -- Setup nvim-cmp.
-local cmp = require'cmp'
+local cmp = require('cmp')
+if not cmp then
+  return
+end
+
 local luasnip = require('luasnip')
 require("luasnip.loaders.from_vscode").lazy_load({
   paths = {
-        vim.fn.stdpath('config') .. '/snippets',
+    vim.fn.stdpath('config') .. '/snippets',
   }
 })
 
@@ -67,7 +71,7 @@ cmp.setup({
     autocomplete = false,
   },
 
-  sources = cmp.config.sources{
+  sources = cmp.config.sources {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
     { name = 'buffer' },
@@ -75,13 +79,12 @@ cmp.setup({
 })
 
 local function leave_snippet()
-    if
-        --((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i') and
-        luasnip.session.current_nodes[vim.api.nvim_get_current_buf()]
-        and not luasnip.session.jump_active
-    then
-        luasnip.unlink_current()
-    end
+  if --((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i') and
+  luasnip.session.current_nodes[vim.api.nvim_get_current_buf()]
+      and not luasnip.session.jump_active
+  then
+    luasnip.unlink_current()
+  end
 end
 
 vim.api.nvim_create_autocmd("ModeChanged", {

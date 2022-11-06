@@ -20,14 +20,13 @@ Plug 'shaunsingh/nord.nvim'
 " IDE
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
-
+Plug 'neovim/nvim-lspconfig'
+Plug 'jose-elias-alvarez/null-ls.nvim'
 
 Plug 'editorconfig/editorconfig-vim'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-
-Plug 'neovim/nvim-lspconfig'
 
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -46,16 +45,9 @@ Plug 'junegunn/goyo.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 
-
 " languages
 
-Plug 'psf/black', { 'branch': 'stable', 'for': 'python' }
-Plug 'prettier/vim-prettier', {
-      \ 'do': 'yarn install',
-      \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']}
-
 Plug 'sersorrel/vim-lilypond'
-Plug 'mattn/vim-goimports'
 Plug 'simrat39/rust-tools.nvim'
 Plug 'ziglang/zig.vim'
 
@@ -166,6 +158,17 @@ lua << EOF
   require('lsp')
   require('completion')
   require('treesitter')
+
+  local null_ls = require("null-ls")
+  null_ls.setup({
+  sources = {
+    null_ls.builtins.formatting.stylua,
+    null_ls.builtins.formatting.prettier,
+    null_ls.builtins.formatting.black,
+
+    null_ls.builtins.diagnostics.eslint,
+  },
+  })
 EOF
 
 nnoremap <Leader>d :NvimTreeToggle<CR>
@@ -176,14 +179,6 @@ let g:ragtag_global_maps = 1
 
 nnoremap <c-p> :Telescope find_files<CR>
 nnoremap <Leader>t :Telescope lsp_document_symbols<CR>
-
-" prettier
-
-let g:prettier#autoformat_require_pragma = 0
-let g:prettier#exec_cmd_async = 1
-let g:prettier#autoformat_config_present = 1
-let g:prettier#quickfix_enabled = 0
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " KEY MAPPINGS

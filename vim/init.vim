@@ -12,12 +12,8 @@ Plug 'tpope/vim-endwise'
 Plug 'vim-scripts/matchit.zip'
 Plug 'scrooloose/nerdcommenter'
 
-" colors
-
-Plug 'lifepillar/vim-solarized8'
-Plug 'shaunsingh/nord.nvim'
-
 " IDE
+
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'neovim/nvim-lspconfig'
@@ -39,7 +35,10 @@ Plug 'saadparwaiz1/cmp_luasnip'
 
 " interface
 
-Plug 'kyazdani42/nvim-web-devicons'
+Plug 'lifepillar/vim-solarized8'
+Plug 'shaunsingh/nord.nvim'
+
+Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'junegunn/goyo.vim'
 Plug 'nvim-lua/plenary.nvim'
@@ -47,10 +46,7 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 
 " languages
 
-Plug 'sersorrel/vim-lilypond'
 Plug 'simrat39/rust-tools.nvim'
-Plug 'ziglang/zig.vim'
-
 
 call plug#end()
 
@@ -86,8 +82,6 @@ set foldexpr=nvim_treesitter#foldexpr()
 set nofoldenable
 set nowrap
 
-let g:loaded_netrw = 1
-let g:loaded_netrwPlugin = 1
 
 " display hidden characters
 set listchars=tab:▸\ ,nbsp:•,trail:…
@@ -118,6 +112,11 @@ set kp=:help    " I barely need a man output
 set exrc
 set secure
 
+" netrw disable
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
+
+
 " colors
 
 set termguicolors
@@ -135,19 +134,16 @@ set clipboard^=unnamed,unnamedplus
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Poor mans statusline
 
-set statusline=\ %t       " tail of the filename
+set statusline=\ \ %t     " tail of the filename
 set statusline+=\%r       " read only flag
 set statusline+=\%m       " modified flag
 set statusline+=\ %y      " filetype
-
 set statusline+=%=\ row\ %l/%L\ -\ %c " right lines + line
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN SUPPORT
 
 lua << EOF
-  require("trouble").setup { mode = "document_diagnostics" }
-  require("nvim-tree").setup()
   require("mason").setup {
     ui = {
       check_outdated_packages_on_open = false,
@@ -156,29 +152,17 @@ lua << EOF
   require("mason-lspconfig").setup { automatic_installation = true }
 
   require('lsp')
+  require('nulls')
   require('completion')
+  require("trouble").setup { mode = "document_diagnostics" }
   require('treesitter')
-
-  local null_ls = require("null-ls")
-  null_ls.setup({
-  sources = {
-    null_ls.builtins.formatting.stylua,
-    null_ls.builtins.formatting.prettier,
-    null_ls.builtins.formatting.black,
-
-    null_ls.builtins.diagnostics.eslint,
-  },
-  })
+  require("nvim-tree").setup()
 EOF
-
-nnoremap <Leader>d :NvimTreeToggle<CR>
 
 " RAGTAG
 
 let g:ragtag_global_maps = 1
 
-nnoremap <c-p> :Telescope find_files<CR>
-nnoremap <Leader>t :Telescope lsp_document_symbols<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " KEY MAPPINGS
@@ -208,6 +192,10 @@ vnoremap <F1> <ESC>
 nnoremap <Leader>w :w<CR>
 nnoremap <leader>xx :TroubleToggle<CR>
 
+nnoremap <c-p> :Telescope find_files<CR>
+nnoremap <Leader>t :Telescope lsp_document_symbols<CR>
+nnoremap <Leader>d :NvimTreeToggle<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM COMMANDS
 
@@ -216,16 +204,13 @@ command! Open silent !open '%:p:h'
 command! Todo silent rg "TODO|FIXME|CHANGED|FIX"
 command! Vimrc :e ~/.config/nvim/init.vim
 command! Fish :e ~/.config/fish/config.fish
-command! Date put=strftime('%Y-%m-%d - %H:%M')
-
+command! Oldfiles :Telescope oldfiles
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " AUTO CMD / Filetype based modifications
 " also see ftplugin folder
 
-au BufRead,BufNewFile *.{dsp,lib} set filetype=faust
 au BufRead,BufNewFile *.{md,markdown,txt} setf markdown
-au BufRead,BufNewFile CMakeLists.txt setf cmake
 au BufRead,BufNewFile .prettierrc setf json
 
 augroup quickfix

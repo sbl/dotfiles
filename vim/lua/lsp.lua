@@ -47,7 +47,6 @@ local standardSetup = {
 
 nvim_lsp.clangd.setup(standardSetup)
 nvim_lsp.cmake.setup(standardSetup)
-nvim_lsp.eslint.setup(standardSetup)
 
 nvim_lsp.gopls.setup({
   settings = {
@@ -98,7 +97,7 @@ rt.setup({
   },
 })
 
-nvim_lsp.tsserver.setup({})
+nvim_lsp.tsserver.setup(standardSetup)
 --nvim_lsp.zls.setup(standardSetup)
 
 local lua_globals = { "vim" }
@@ -116,11 +115,4 @@ require("lspconfig").sumneko_lua.setup({
       },
     },
   },
-})
-
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = { "*.{c,cc,cpp,h,hpp,go,rs,py,lua,js,ts,jsx,tsx}" },
-  callback = function()
-    vim.lsp.buf.format(nil, 200)
-  end,
 })

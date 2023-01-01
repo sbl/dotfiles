@@ -5,14 +5,18 @@ null_ls.setup({
   sources = {
     null_ls.builtins.formatting.black,
     null_ls.builtins.formatting.clang_format,
+    null_ls.builtins.formatting.gofmt,
+    null_ls.builtins.formatting.goimports,
     null_ls.builtins.formatting.prettierd.with({
       disabled_filetypes = { "html" },
     }),
     null_ls.builtins.formatting.stylua,
+    null_ls.builtins.formatting.rustfmt,
 
     null_ls.builtins.diagnostics.eslint_d.with({
       disabled_filetypes = { "typescript", "typescriptreact" },
     }),
+    --null_ls.builtins.diagnostics.flake8,
   },
   -- you can reuse a shared lspconfig on_attach callback here
 

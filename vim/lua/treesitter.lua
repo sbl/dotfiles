@@ -3,6 +3,9 @@ require 'nvim-treesitter.configs'.setup {
   ensure_installed = {
     "c",
     "cpp",
+    "elixir",
+    "heex",
+    "eex",
     "fish",
     "go",
     "html",
@@ -19,8 +22,12 @@ require 'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
     --disable = {"javascript", "typescript"}
   },
+  -- see if it works?
   indent = {
-    enable = false,
+    enable = true,
+  },
+  endwise = {
+    enable = true,
   },
   textobjects = {
     select = {

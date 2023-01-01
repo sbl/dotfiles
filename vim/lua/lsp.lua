@@ -1,32 +1,39 @@
 -- nvim-lsp config
 local nvim_lsp = require("lspconfig")
-local cmp_capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local rt = require("rust-tools")
 
 -- use the attach callback to configure completion and key mappings
 
-local function on_attach_config(_, bufnr)
-  local keymap_opts = { noremap = true, silent = true }
+local function on_attach_config(client, bufnr)
+  local keymap_opts = { noremap = true, silent = true, buffer = bufnr }
 
   local function buf_set_keymap(...)
-    vim.api.nvim_buf_set_keymap(bufnr, ...)
+    vim.keymap.set(...)
   end
 
-  buf_set_keymap("n", "<leader>ö", "<cmd>lua vim.diagnostic.goto_prev()<CR>", keymap_opts)
-  buf_set_keymap("n", "<leader>ä", "<cmd>lua vim.diagnostic.goto_next()<CR>", keymap_opts)
+  buf_set_keymap("n", "<leader>ö", vim.diagnostic.goto_prev, keymap_opts)
+  buf_set_keymap("n", "<leader>ä", vim.diagnostic.goto_next, keymap_opts)
 
-  buf_set_keymap("n", "<leader>a", "<cmd>lua vim.lsp.buf.code_action()<CR>", keymap_opts)
-  buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", keymap_opts)
-  buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", keymap_opts)
-  buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", keymap_opts)
-  buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", keymap_opts)
-  buf_set_keymap("n", "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", keymap_opts)
-  buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", keymap_opts)
-  buf_set_keymap("n", "<c-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", keymap_opts)
-  buf_set_keymap("i", "<c-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", keymap_opts)
-  buf_set_keymap("n", "g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", keymap_opts)
-  buf_set_keymap("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<CR>", keymap_opts)
+  buf_set_keymap("n", "<leader>a", vim.lsp.buf.code_action, keymap_opts)
+  buf_set_keymap("n", "gd", vim.lsp.buf.definition, keymap_opts)
+  buf_set_keymap("n", "gD", vim.lsp.buf.declaration, keymap_opts)
+  buf_set_keymap("n", "gi", vim.lsp.buf.implementation, keymap_opts)
+  buf_set_keymap("n", "gr", vim.lsp.buf.references, keymap_opts)
+  buf_set_keymap("n", "gW", vim.lsp.buf.workspace_symbol, keymap_opts)
+  buf_set_keymap("n", "K", vim.lsp.buf.hover, keymap_opts)
+  buf_set_keymap("n", "<c-k>", vim.lsp.buf.signature_help, keymap_opts)
+  buf_set_keymap("i", "<c-k>", vim.lsp.buf.signature_help, keymap_opts)
+
+  buf_set_keymap("n", "<F2>", vim.lsp.buf.rename, keymap_opts)
+
+
+  -- ugly hack to utilize formatting with supported lsps - might overlap with
+  -- null-ls
+  if client.name == "elixirls" and client.server_capabilities.documentFormattingProvider then
+    vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
+  end
 end
 
 -- diagnostic config
@@ -47,6 +54,7 @@ local standardSetup = {
 
 nvim_lsp.clangd.setup(standardSetup)
 nvim_lsp.cmake.setup(standardSetup)
+nvim_lsp.elixirls.setup(standardSetup)
 
 nvim_lsp.gopls.setup({
   settings = {

@@ -8,9 +8,9 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-endwise'
 Plug 'vim-scripts/matchit.zip'
 Plug 'scrooloose/nerdcommenter'
+Plug 'RRethy/nvim-treesitter-endwise'
 
 " IDE
 
@@ -28,6 +28,7 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 
+Plug 'simrat39/symbols-outline.nvim'
 Plug 'folke/trouble.nvim'
 
 Plug 'L3MON4D3/LuaSnip'
@@ -144,19 +145,20 @@ set statusline+=%=\ row\ %l/%L\ -\ %c " right lines + line
 " PLUGIN SUPPORT
 
 lua << EOF
-  require("mason").setup {
+  require('mason').setup {
     ui = {
       check_outdated_packages_on_open = false,
     }
   }
-  require("mason-lspconfig").setup { automatic_installation = true }
+  require('mason-lspconfig').setup { automatic_installation = true }
 
+  require('symbols-outline').setup()
   require('lsp')
   require('nulls')
   require('completion')
-  require("trouble").setup { mode = "document_diagnostics" }
   require('treesitter')
-  require("nvim-tree").setup()
+  require("trouble").setup { mode = "document_diagnostics" }
+  require('nvim-tree').setup()
 EOF
 
 " RAGTAG
@@ -190,10 +192,9 @@ nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
 nnoremap <Leader>w :w<CR>
-nnoremap <leader>xx :TroubleToggle<CR>
 
 nnoremap <c-p> :Telescope find_files<CR>
-nnoremap <Leader>t :Telescope lsp_document_symbols<CR>
+nnoremap <Leader>t :SymbolsOutline<CR>
 nnoremap <Leader>d :NvimTreeToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

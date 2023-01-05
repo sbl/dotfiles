@@ -5,21 +5,20 @@ call plug#begin('~/.config/nvim/plugged')
 
 " core
 
-Plug 'tpope/vim-ragtag'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
 Plug 'vim-scripts/matchit.zip'
 Plug 'scrooloose/nerdcommenter'
+Plug 'machakann/vim-sandwich'
 Plug 'RRethy/nvim-treesitter-endwise'
 
 " IDE
+
+Plug 'mattn/emmet-vim'
+Plug 'editorconfig/editorconfig-vim'
 
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'jose-elias-alvarez/null-ls.nvim'
-
-Plug 'editorconfig/editorconfig-vim'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
@@ -41,7 +40,6 @@ Plug 'shaunsingh/nord.nvim'
 
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-tree/nvim-tree.lua'
-Plug 'junegunn/goyo.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 
@@ -158,13 +156,12 @@ lua << EOF
   require('completion')
   require('treesitter')
   require("trouble").setup { mode = "document_diagnostics" }
-  require('nvim-tree').setup()
+  require('nvim-tree').setup({
+    git = {
+      enable = true,
+    },
+  })
 EOF
-
-" RAGTAG
-
-let g:ragtag_global_maps = 1
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " KEY MAPPINGS
@@ -196,6 +193,8 @@ nnoremap <Leader>w :w<CR>
 nnoremap <c-p> :Telescope find_files<CR>
 nnoremap <Leader>t :SymbolsOutline<CR>
 nnoremap <Leader>d :NvimTreeToggle<CR>
+
+let g:user_emmet_leader_key='<C-X>'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM COMMANDS

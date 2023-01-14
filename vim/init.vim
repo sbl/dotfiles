@@ -5,7 +5,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 " core
 
-Plug 'vim-scripts/matchit.zip'
+Plug 'andymass/vim-matchup'
 Plug 'scrooloose/nerdcommenter'
 Plug 'machakann/vim-sandwich'
 Plug 'RRethy/nvim-treesitter-endwise'
@@ -188,8 +188,6 @@ inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
-nnoremap <Leader>w :w<CR>
-
 nnoremap <c-p> :Telescope find_files<CR>
 nnoremap <Leader>t :SymbolsOutline<CR>
 nnoremap <Leader>d :NvimTreeToggle<CR>
@@ -212,6 +210,7 @@ command! Oldfiles :Telescope oldfiles
 
 au BufRead,BufNewFile *.{md,markdown,txt} setf markdown
 au BufRead,BufNewFile .prettierrc setf json
+au BufRead,BufNewFile go.mod set ft=gomod
 
 augroup quickfix
   autocmd!

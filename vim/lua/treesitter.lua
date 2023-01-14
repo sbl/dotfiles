@@ -8,6 +8,7 @@ require 'nvim-treesitter.configs'.setup {
     "eex",
     "fish",
     "go",
+    "gomod",
     "html",
     "javascript",
     "lua",

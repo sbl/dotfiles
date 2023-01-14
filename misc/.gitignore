@@ -12,6 +12,10 @@ compile_commands.json
 zig-cache/
 zig-out/
 
+# elixir
+
+.elixir_ls/
+
 # rust
 
 target/

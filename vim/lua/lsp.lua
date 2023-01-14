@@ -27,13 +27,6 @@ local function on_attach_config(client, bufnr)
   buf_set_keymap("i", "<c-k>", vim.lsp.buf.signature_help, keymap_opts)
 
   buf_set_keymap("n", "<F2>", vim.lsp.buf.rename, keymap_opts)
-
-
-  -- ugly hack to utilize formatting with supported lsps - might overlap with
-  -- null-ls
-  if client.name == "elixirls" and client.server_capabilities.documentFormattingProvider then
-    vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
-  end
 end
 
 -- diagnostic config
@@ -54,8 +47,6 @@ local standardSetup = {
 
 nvim_lsp.clangd.setup(standardSetup)
 nvim_lsp.cmake.setup(standardSetup)
-nvim_lsp.elixirls.setup(standardSetup)
-
 nvim_lsp.gopls.setup({
   settings = {
     gopls = {

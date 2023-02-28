@@ -1,6 +1,17 @@
 local null_ls = require("null-ls")
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
+-- https://github.com/jose-elias-alvarez/null-ls.nvim/issues/428
+local notify = vim.notify
+vim.notify = function(msg, ...)
+  if msg:match("warning: multiple different client offset_encodings") then
+    return
+  end
+
+  notify(msg, ...)
+end
+
+-- setup
 null_ls.setup({
   sources = {
     null_ls.builtins.formatting.black,
@@ -15,9 +26,6 @@ null_ls.setup({
     null_ls.builtins.formatting.rustfmt,
 
     null_ls.builtins.diagnostics.staticcheck,
-    --null_ls.builtins.diagnostics.eslint_d.with({
-    --disabled_filetypes = { "typescript", "typescriptreact" },
-    --}),
     --null_ls.builtins.diagnostics.flake8,
   },
   -- you can reuse a shared lspconfig on_attach callback here

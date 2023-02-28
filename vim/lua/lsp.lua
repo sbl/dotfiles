@@ -2,11 +2,9 @@
 local nvim_lsp = require("lspconfig")
 local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-local rt = require("rust-tools")
-
 -- use the attach callback to configure completion and key mappings
 
-local function on_attach_config(client, bufnr)
+local function on_attach_config(_, bufnr)
   local keymap_opts = { noremap = true, silent = true, buffer = bufnr }
 
   local function buf_set_keymap(...)
@@ -47,6 +45,8 @@ local standardSetup = {
 
 nvim_lsp.clangd.setup(standardSetup)
 nvim_lsp.cmake.setup(standardSetup)
+nvim_lsp.eslint.setup(standardSetup)
+
 nvim_lsp.gopls.setup({
   settings = {
     gopls = {
@@ -64,6 +64,8 @@ nvim_lsp.jsonls.setup(standardSetup)
 nvim_lsp.pyright.setup(standardSetup)
 
 -- rust
+local rt = require("rust-tools")
+
 rt.setup({
   tools = {
     autoSetHints = true,
@@ -97,10 +99,10 @@ rt.setup({
 })
 
 nvim_lsp.tsserver.setup(standardSetup)
---nvim_lsp.zls.setup(standardSetup)
+nvim_lsp.zls.setup(standardSetup)
 
 local lua_globals = { "vim" }
-require("lspconfig").sumneko_lua.setup({
+require("lspconfig").lua_ls.setup({
   on_attach = on_attach_config,
   settings = {
     Lua = {

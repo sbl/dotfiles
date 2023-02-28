@@ -30,7 +30,7 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'simrat39/symbols-outline.nvim'
 Plug 'folke/trouble.nvim'
 
-Plug 'L3MON4D3/LuaSnip'
+Plug 'L3MON4D3/LuaSnip', {'tag': 'v1.2.*', 'do': 'make install_jsregexp'}
 Plug 'saadparwaiz1/cmp_luasnip'
 
 " interface

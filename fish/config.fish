@@ -25,14 +25,9 @@ if test "arm64" = (uname -m)
   set -pgx LDFLAGS "-L/opt/homebrew/opt/python@3.10/lib"
   set -pgx PKG_CONFIG_PATH "/opt/homebrew/opt/python@3.10/lib/pkgconfig"
 else
-  set -gx LDFLAGS "-L/usr/local/opt/llvm/lib"
-  set -gx LDFLAGS "-L/usr/local/lib"
-  set -gx CPPFLAGS "-I/usr/local/opt/llvm/include -I/usr/local/include"
-  set -gx CFLAGS "-I/usr/local/opt/llvm/include -I/usr/local/include"
+  set -gx LDFLAGS "-L/usr/local/opt/llvm@14/lib"
+  set -gx CPPFLAGS "-I/usr/local/opt/llvm@14/include"
 end
-
-# rbenv
-#status --is-interactive; and source (rbenv init -|psub)
 
 # key bindings
 

@@ -99,7 +99,7 @@ rt.setup({
 })
 
 nvim_lsp.tsserver.setup(standardSetup)
-nvim_lsp.zls.setup(standardSetup)
+--nvim_lsp.zls.setup(standardSetup)
 
 local lua_globals = { "vim" }
 require("lspconfig").lua_ls.setup({

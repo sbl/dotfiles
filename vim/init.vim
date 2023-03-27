@@ -35,13 +35,12 @@ Plug 'saadparwaiz1/cmp_luasnip'
 
 " interface
 
-Plug 'lifepillar/vim-solarized8'
 Plug 'shaunsingh/nord.nvim'
 
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
 
 " languages
 
@@ -114,7 +113,6 @@ set secure
 " netrw disable
 let g:loaded_netrw = 1
 let g:loaded_netrwPlugin = 1
-
 
 " colors
 

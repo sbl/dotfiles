@@ -12,7 +12,6 @@ Plug 'RRethy/nvim-treesitter-endwise'
 
 " IDE
 
-Plug 'mattn/emmet-vim'
 Plug 'editorconfig/editorconfig-vim'
 
 Plug 'williamboman/mason.nvim'
@@ -41,10 +40,6 @@ Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
-
-" languages
-
-Plug 'simrat39/rust-tools.nvim'
 
 call plug#end()
 
@@ -141,12 +136,16 @@ set statusline+=%=\ row\ %l/%L\ -\ %c " right lines + line
 " PLUGIN SUPPORT
 
 lua << EOF
-  require('mason').setup {
+  require('mason').setup({
     ui = {
       check_outdated_packages_on_open = false,
     }
-  }
-  require('mason-lspconfig').setup { automatic_installation = true }
+  })
+  require('mason-lspconfig').setup({
+    automatic_installation = {
+      exclude = { "zls" },
+    }
+  })
 
   require('symbols-outline').setup()
   require('lsp')
@@ -189,8 +188,6 @@ vnoremap <F1> <ESC>
 nnoremap <c-p> :Telescope find_files<CR>
 nnoremap <Leader>t :SymbolsOutline<CR>
 nnoremap <Leader>d :NvimTreeToggle<CR>
-
-let g:user_emmet_leader_key='<C-X>'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM COMMANDS

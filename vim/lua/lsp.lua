@@ -1,6 +1,9 @@
 -- nvim-lsp config
 local nvim_lsp = require("lspconfig")
-local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 -- use the attach callback to configure completion and key mappings
 
@@ -45,8 +48,8 @@ local standardSetup = {
 
 nvim_lsp.clangd.setup(standardSetup)
 nvim_lsp.cmake.setup(standardSetup)
+nvim_lsp.emmet_ls.setup(standardSetup)
 nvim_lsp.eslint.setup(standardSetup)
-
 nvim_lsp.gopls.setup({
   settings = {
     gopls = {
@@ -58,46 +61,10 @@ nvim_lsp.gopls.setup({
   },
   on_attach = on_attach_config,
 })
-
 nvim_lsp.html.setup(standardSetup)
 nvim_lsp.jsonls.setup(standardSetup)
 nvim_lsp.pyright.setup(standardSetup)
-
--- rust
-local rt = require("rust-tools")
-
-rt.setup({
-  tools = {
-    autoSetHints = true,
-    inlay_hints = {
-      auto = false,
-      show_parameter_hints = false,
-      parameter_hints_prefix = "",
-      other_hints_prefix = "",
-    },
-  },
-  server = {
-    on_attach = function(_, bufnr)
-      on_attach_config(_, bufnr)
-      -- Hover actions
-      vim.keymap.set("n", "K", rt.hover_actions.hover_actions, { buffer = bufnr })
-      -- Code action groups
-      vim.keymap.set("n", "<leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
-    end,
-
-    settings = {
-      -- to enable rust-analyzer settings visit:
-      -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
-      ["rust-analyzer"] = {
-        -- enable clippy on save
-        checkOnSave = {
-          command = "clippy",
-        },
-      },
-    },
-  },
-})
-
+nvim_lsp.tailwindcss.setup(standardSetup)
 nvim_lsp.tsserver.setup(standardSetup)
 --nvim_lsp.zls.setup(standardSetup)
 

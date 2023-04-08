@@ -12,8 +12,6 @@ Plug 'RRethy/nvim-treesitter-endwise'
 
 " IDE
 
-Plug 'editorconfig/editorconfig-vim'
-
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'neovim/nvim-lspconfig'

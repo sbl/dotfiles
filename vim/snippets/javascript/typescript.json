@@ -198,7 +198,7 @@
   "ava test": {
     "prefix": "test",
     "body": [
-      "test(\"${1:test}\", (t) => {",
+      "test(\"${1:test}\", () => {",
       "\t$0",
       "})"
     ],

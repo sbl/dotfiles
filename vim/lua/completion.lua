@@ -13,20 +13,6 @@ if not cmp then
 end
 
 local luasnip = require('luasnip')
-luasnip.config.set_config({
-  region_check_events = 'InsertEnter',
-  delete_check_events = 'InsertLeave',
-  history = false,
-  updateevents = "TextChanged,TextChangedI"
-})
-
-require("luasnip.loaders.from_vscode").lazy_load({
-  paths = {
-    vim.fn.stdpath('config') .. '/snippets',
-  }
-})
-
-vim.api.nvim_create_user_command("LuaSnipEdit", require("luasnip.loaders").edit_snippet_files, {})
 
 --- CMP config
 
@@ -50,8 +36,6 @@ cmp.setup({
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif luasnip.expand_or_locally_jumpable() then
-        luasnip.expand_or_jump()
       elseif has_words_before() then
         cmp.complete()
       else
@@ -62,8 +46,6 @@ cmp.setup({
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif luasnip.jumpable( -1) then
-        luasnip.jump( -1)
       else
         fallback()
       end
@@ -75,7 +57,7 @@ cmp.setup({
   },
   sources = cmp.config.sources {
     { name = 'nvim_lsp' },
-    { name = 'luasnip' },
+    --{ name = 'luasnip' },
     --{ name = 'buffer' },
   }
 })

@@ -201,6 +201,8 @@ command! Oldfiles :Telescope oldfiles
 " AUTO CMD / Filetype based modifications
 " also see ftplugin folder
 
+let g:zig_fmt_autosave = 0
+
 au BufRead,BufNewFile *.{md,markdown,txt} setf markdown
 au BufRead,BufNewFile .prettierrc setf json
 au BufRead,BufNewFile go.mod set ft=gomod

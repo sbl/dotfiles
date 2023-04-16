@@ -23,7 +23,6 @@ null_ls.setup({
       disabled_filetypes = { "html" },
     }),
     null_ls.builtins.formatting.stylua,
-    null_ls.builtins.formatting.rustfmt,
     null_ls.builtins.formatting.zigfmt,
 
     null_ls.builtins.diagnostics.staticcheck,

@@ -66,7 +66,7 @@ nvim_lsp.jsonls.setup(standardSetup)
 nvim_lsp.pyright.setup(standardSetup)
 nvim_lsp.tailwindcss.setup(standardSetup)
 nvim_lsp.tsserver.setup(standardSetup)
---nvim_lsp.zls.setup(standardSetup)
+nvim_lsp.zls.setup(standardSetup)
 
 local lua_globals = { "vim" }
 require("lspconfig").lua_ls.setup({

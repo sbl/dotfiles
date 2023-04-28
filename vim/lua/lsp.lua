@@ -1,9 +1,7 @@
 -- nvim-lsp config
 local nvim_lsp = require("lspconfig")
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- use the attach callback to configure completion and key mappings
 
@@ -64,6 +62,7 @@ nvim_lsp.gopls.setup({
 nvim_lsp.html.setup(standardSetup)
 nvim_lsp.jsonls.setup(standardSetup)
 nvim_lsp.pyright.setup(standardSetup)
+nvim_lsp.ruff_lsp.setup(standardSetup)
 nvim_lsp.tailwindcss.setup(standardSetup)
 nvim_lsp.tsserver.setup(standardSetup)
 nvim_lsp.zls.setup(standardSetup)

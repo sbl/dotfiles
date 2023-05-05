@@ -171,6 +171,10 @@ cabbrev h tab help
 " y$ -> Y Make Y behave like other capitals
 map Y y$
 
+" Make j/k visual down and up instead of whole lines
+map j gj
+map k gk
+
 " typo help
 cnoreabbrev W! w!
 cnoreabbrev Q! q!
@@ -187,6 +191,10 @@ vnoremap <F1> <ESC>
 
 imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
 let g:copilot_no_tab_map = v:true
+let g:copilot_filetypes = {
+      \ '*': v:false,
+      "\ 'python': v:true,
+      \ }
 
 nnoremap <c-p> :Telescope find_files<CR>
 nnoremap <Leader>t :SymbolsOutline<CR>

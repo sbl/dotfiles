@@ -45,7 +45,6 @@ local standardSetup = {
 }
 
 nvim_lsp.clangd.setup(standardSetup)
-nvim_lsp.cmake.setup(standardSetup)
 nvim_lsp.emmet_ls.setup(standardSetup)
 nvim_lsp.eslint.setup(standardSetup)
 nvim_lsp.gopls.setup({

@@ -14,18 +14,17 @@ require 'nvim-treesitter.configs'.setup {
     "lua",
     "python",
     "rust",
-    "supercollider",
     "typescript",
     "zig",
   },
   highlight = {
     enable = true,
-    additional_vim_regex_highlighting = false,
-    --disable = {"javascript", "typescript"}
+    additional_vim_regex_highlighting = true,
+    disable = { "javascript", "typescript" }
   },
-  -- see if it works?
   indent = {
     enable = true,
+    disable = { "javascript", "typescript" }
   },
   endwise = {
     enable = true,
@@ -35,7 +34,6 @@ require 'nvim-treesitter.configs'.setup {
       enable = true,
       -- Automatically jump forward to textobj, similar to targets.vim
       lookahead = true,
-
       keymaps = {
         -- You can use the capture groups defined in textobjects.scm
         ["af"] = "@function.outer",

@@ -30,8 +30,6 @@ Plug 'folke/trouble.nvim'
 Plug 'L3MON4D3/LuaSnip', {'tag': 'v1.2.*', 'do': 'make install_jsregexp'}
 Plug 'saadparwaiz1/cmp_luasnip'
 
-Plug 'github/copilot.vim'
-
 " interface
 
 Plug 'shaunsingh/nord.nvim'
@@ -40,6 +38,10 @@ Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
+
+" language
+
+Plug 'MaxMEllon/vim-jsx-pretty'
 
 call plug#end()
 
@@ -188,13 +190,6 @@ nnoremap Q <nop>
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
-
-imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
-let g:copilot_no_tab_map = v:true
-let g:copilot_filetypes = {
-      \ '*': v:false,
-      "\ 'python': v:true,
-      \ }
 
 nnoremap <c-p> :Telescope find_files<CR>
 nnoremap <Leader>t :SymbolsOutline<CR>

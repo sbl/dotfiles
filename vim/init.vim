@@ -52,8 +52,6 @@ filetype indent on
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GENERAL
 
-let g:python3_host_prog = "$HOME/.virtualenvs/neovim/bin/python"
-
 " reload config on buffer write
 autocmd! BufWritePost $HOME/.config/nvim/init.vim source $HOME/.config/nvim/init.vim
 

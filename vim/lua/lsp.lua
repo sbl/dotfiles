@@ -15,7 +15,6 @@ local function on_attach_config(_, bufnr)
   buf_set_keymap("n", "<leader>ö", vim.diagnostic.goto_prev, keymap_opts)
   buf_set_keymap("n", "<leader>ä", vim.diagnostic.goto_next, keymap_opts)
 
-  buf_set_keymap("n", "<leader>a", vim.lsp.buf.code_action, keymap_opts)
   buf_set_keymap("n", "gd", vim.lsp.buf.definition, keymap_opts)
   buf_set_keymap("n", "gD", vim.lsp.buf.declaration, keymap_opts)
   buf_set_keymap("n", "gi", vim.lsp.buf.implementation, keymap_opts)
@@ -25,6 +24,7 @@ local function on_attach_config(_, bufnr)
   buf_set_keymap("n", "<c-k>", vim.lsp.buf.signature_help, keymap_opts)
   buf_set_keymap("i", "<c-k>", vim.lsp.buf.signature_help, keymap_opts)
 
+  buf_set_keymap("n", "<leader>a", vim.lsp.buf.code_action, keymap_opts)
   buf_set_keymap("n", "<F2>", vim.lsp.buf.rename, keymap_opts)
 end
 

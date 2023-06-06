@@ -17,10 +17,11 @@ null_ls.setup({
   sources = {
     -- python
     null_ls.builtins.formatting.black,
+    null_ls.builtins.formatting.ruff, -- in addition to LSP
 
     null_ls.builtins.formatting.clang_format,
 
-    null_ls.builtins.diagnostics.staticcheck,
+    -- null_ls.builtins.diagnostics.staticcheck,
     null_ls.builtins.formatting.gofmt,
     null_ls.builtins.formatting.goimports,
 

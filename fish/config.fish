@@ -3,11 +3,11 @@
 set -x LC_ALL en_US.UTF-8
 set -x LANG en_US.UTF-8
 
-set -x GOPATH $HOME
-
 set -x EDITOR nvim
 set -x VISUAL nvim
 set -x PAGER less
+
+set -x GOPATH $HOME
 
 set -x FZF_DEFAULT_COMMAND "rg --files --hidden --follow --glob '!.git'"
 

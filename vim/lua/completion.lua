@@ -7,7 +7,9 @@ local has_words_before = function()
 end
 
 -- Setup nvim-cmp.
+local luasnip = require("luasnip")
 local cmp = require('cmp')
+
 
 --- CMP config
 
@@ -18,24 +20,28 @@ cmp.setup({
     ['<C-Space>'] = cmp.mapping(cmp.mapping.complete()),
     ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    ['<Tab>'] = function(fallback)
-      if not cmp.select_next_item() then
-        if vim.bo.buftype ~= 'prompt' and has_words_before() then
-          cmp.complete()
-        else
-          fallback()
-        end
+    ['<Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.expand_or_locally_jumpable() then
+        luasnip.expand_or_jump()
+      elseif vim.bo.buftype ~= 'prompt' and has_words_before() then
+        cmp.complete()
+      else
+        fallback()
       end
-    end,
-    ['<S-Tab>'] = function(fallback)
-      if not cmp.select_prev_item() then
-        if vim.bo.buftype ~= 'prompt' and has_words_before() then
-          cmp.complete()
-        else
-          fallback()
-        end
+    end, { "i", "s" }),
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.locally_jumpable(-1) then
+        luasnip.jump(-1)
+      elseif vim.bo.buftype ~= 'prompt' and has_words_before() then
+        cmp.complete()
+      else
+        fallback()
       end
-    end,
+    end, { "i", "s" }),
   }),
   completion = {
     autocomplete = false,

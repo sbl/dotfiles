@@ -15,7 +15,7 @@ Plug 'RRethy/nvim-treesitter-endwise'
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'neovim/nvim-lspconfig'
-Plug 'jose-elias-alvarez/null-ls.nvim'
+Plug 'nvimtools/none-ls.nvim'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
@@ -27,7 +27,7 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'simrat39/symbols-outline.nvim'
 Plug 'folke/trouble.nvim'
 
-Plug 'L3MON4D3/LuaSnip', {'tag': 'v1.2.*', 'do': 'make install_jsregexp'}
+Plug 'L3MON4D3/LuaSnip', {'do': 'make install_jsregexp'}
 Plug 'saadparwaiz1/cmp_luasnip'
 
 " interface
@@ -37,7 +37,7 @@ Plug 'shaunsingh/nord.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.4' }
 
 " language
 
@@ -146,6 +146,8 @@ lua << EOF
       exclude = { "zls" },
     }
   })
+
+  require("luasnip.loaders.from_snipmate").lazy_load()
 
   require('symbols-outline').setup()
   require('lsp')

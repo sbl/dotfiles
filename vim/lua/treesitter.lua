@@ -9,6 +9,7 @@ require 'nvim-treesitter.configs'.setup {
     "fish",
     "go",
     "gomod",
+    "gosum",
     "html",
     "javascript",
     "lua",

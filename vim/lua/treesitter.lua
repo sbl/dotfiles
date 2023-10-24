@@ -1,5 +1,5 @@
 require 'nvim-treesitter'
-require 'nvim-treesitter.configs'.setup {
+require 'nvim-treesitter.configs'.setup({
   ensure_installed = {
     "c",
     "cpp",
@@ -16,12 +16,13 @@ require 'nvim-treesitter.configs'.setup {
     "python",
     "rust",
     "typescript",
+    "vim",
     "zig",
   },
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = true,
-    disable = { "javascript", "typescript" }
+    disable = { "html", "javascript", "typescript" }
   },
   indent = {
     enable = true,
@@ -44,16 +45,4 @@ require 'nvim-treesitter.configs'.setup {
       },
     },
   },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "gnn",
-      node_incremental = "grn",
-      scope_incremental = "grc",
-      node_decremental = "grm",
-    },
-  },
-}
-
-vim.wo.foldmethod = "expr"
-vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
+})

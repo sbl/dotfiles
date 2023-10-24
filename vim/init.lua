@@ -3,7 +3,6 @@ local opt = vim.opt
 
 -- keep vim-pack initially
 vim.cmd([[
-
 filetype off
 
 call plug#begin('~/.config/nvim/plugged')
@@ -50,11 +49,12 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.4' }
 Plug 'MaxMEllon/vim-jsx-pretty'
 
 call plug#end()
+
+filetype = on
+filetype = plugin on
+filetype = indent on
 ]])
 
-opt.filetype = "on"
-opt.filetype.plugin = "on"
-opt.filetype.indent = "on"
 
 ----------------------------------------------------------------
 -- GENERAL
@@ -157,7 +157,6 @@ require('nvim-tree').setup({
   },
 })
 
-
 -----------------------------------------------------------------
 -- KEY MAPPINGS
 -- https://github.com/nanotee/nvim-lua-guide#defining-mappings
@@ -183,7 +182,6 @@ vim.keymap.set("n", "Q", "<nop>", { noremap = true, silent = true })
 
 vim.keymap.set({ "i", "n", "v" }, "<F1>", "<nop>")
 
-
 vim.keymap.set("n", "<c-p>", require 'telescope.builtin'.find_files, { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>t", ":SymbolsOutline<cr>", { silent = true, noremap = true })
 vim.keymap.set("n", "<leader>d", ":NvimTreeToggle<cr>", { silent = true, noremap = true })
@@ -195,7 +193,7 @@ vim.cmd([[
 command! CD cd %:p:h
 command! Open silent !open '%:p:h'
 command! Todo silent rg "TODO|FIXME|CHANGED|FIX"
-command! Vimrc :e ~/.config/nvim/init.vim
+command! Vimrc :e ~/.config/nvim/init.lua
 command! Fish :e ~/.config/fish/config.fish
 command! Oldfiles :Telescope oldfiles
 ]])

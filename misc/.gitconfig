@@ -13,7 +13,6 @@
 [core]
   excludesfile = ~/.gitignore
   editor = nvim
-	pager = delta --line-numbers --dark
 [push]
   default = simple
 [merge]
@@ -40,5 +39,3 @@
 	process = git-lfs filter-process
 [init]
 	defaultBranch = main
-[delta]
-	side-by-side = true

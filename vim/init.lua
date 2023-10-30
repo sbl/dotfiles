@@ -3,8 +3,6 @@ local opt = vim.opt
 
 -- keep vim-pack initially
 vim.cmd([[
-filetype off
-
 call plug#begin('~/.config/nvim/plugged')
 
 " core
@@ -36,8 +34,10 @@ Plug 'saadparwaiz1/cmp_luasnip'
 
 " interface
 
-Plug 'nvim-lualine/lualine.nvim'
 Plug 'shaunsingh/nord.nvim'
+
+Plug 'sindrets/diffview.nvim'
+Plug 'lewis6991/gitsigns.nvim'
 
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-tree/nvim-tree.lua'
@@ -49,10 +49,6 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.4' }
 Plug 'MaxMEllon/vim-jsx-pretty'
 
 call plug#end()
-
-filetype = on
-filetype = plugin on
-filetype = indent on
 ]])
 
 
@@ -130,7 +126,16 @@ opt.mouse = "a"
 opt.clipboard = { "unnamed", "unnamedplus" }
 
 -----------------------------------------------------------------
+-- Status Line
+
+opt.statusline = " %t"
+    .. "%r%m %y"            -- read, mod, type
+    .. "%= row %l/%L - %c " -- right line
+
+-----------------------------------------------------------------
 -- PLUGIN SUPPORT
+
+require('gitsigns').setup()
 
 require('mason').setup({
   ui = {
@@ -206,54 +211,18 @@ local autocmd = vim.api.nvim_create_autocmd
 
 vim.g.zig_fmt_autosave = 0
 
+-- reload on save
 autocmd({ "BufWritePost" }, {
   pattern = HOME .. "/.config/nvim/init.lua",
   command = "source " .. HOME .. "/.config/nvim/init.lua"
 })
 
-autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = "*.{md,markdown,txt}",
-  command = "setf markdown"
-})
-autocmd({ "BufRead", "BufNewFile" }, { pattern = ".prettierrc", command = "setf json" })
-
-
-autocmd({ "BufRead", "BufNewFile" }, {
-  group = "filetypedetect",
-  pattern = "go.mod",
-  command = "setf gomod"
-})
-
-autocmd({ "BufRead", "BufNewFile" }, {
-  group = "filetypedetect",
-  pattern = "*.tmpl",
-  command = "setf gohtmltmpl"
-})
-
-autocmd({ "BufRead", "BufNewFile" }, {
-  group = "filetypedetect",
-  pattern = "*.tmpl",
-  command = "setf gohtmltmpl"
-})
+autocmd({ "BufRead", "BufNewFile" }, { pattern = "*.{md,markdown,txt}", command = "set ft=markdown" })
+autocmd({ "BufRead", "BufNewFile" }, { pattern = "go.mod", command = "set ft=gomod" })
 
 local quickfix = vim.api.nvim_create_augroup('quickfix', { clear = true })
-autocmd("FileType", {
-  group = quickfix,
-  pattern = "qf",
-  command = "setlocal wrap"
-})
+autocmd("FileType", { group = quickfix, pattern = "qf", command = "setlocal wrap" })
 
-autocmd("FileType", {
-  pattern = "go",
-  command = "setl nolist"
-})
-
-autocmd("FileType", {
-  pattern = "make",
-  command = "setl noexpandtab"
-})
-
-autocmd("FileType", {
-  pattern = "markdown",
-  command = "setlocal textwidth=72 wrap"
-})
+autocmd("FileType", { pattern = "go", command = "setl nolist" })
+autocmd("FileType", { pattern = "make", command = "setl noexpandtab" })
+autocmd("FileType", { pattern = "markdown", command = "setlocal textwidth=72 wrap" })

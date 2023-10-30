@@ -15,6 +15,17 @@ snippet ife "if error not nil, return wrapped"
 	$0
 
 
+snippet test "test snippet"
+	func Test${1:Name}(t *testing.T) {
+		$0
+	}
+
+snippet ass "assertion"
+	func Test${1:Name}(t *testing.T) {
+		$0
+	}
+	
+
 snippet ir "if error not nil, return err"
 	if err != nil {
 		return err

@@ -46,6 +46,7 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.4' }
 
 " language
 
+Plug 'simrat39/rust-tools.nvim'
 Plug 'MaxMEllon/vim-jsx-pretty'
 
 call plug#end()

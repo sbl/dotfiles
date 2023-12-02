@@ -22,6 +22,7 @@ target/
 
 # python
 __pycache__
+*.egg-info/
 .venv
 
 # misc - mostly local development stuff
@@ -30,4 +31,3 @@ __pycache__
 .exrc
 .nvimrc
 tags
-.vscode

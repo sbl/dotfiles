@@ -136,8 +136,6 @@ opt.statusline = " %t"
 -----------------------------------------------------------------
 -- PLUGIN SUPPORT
 
-require('gitsigns').setup()
-
 require('mason').setup({
   ui = {
     check_outdated_packages_on_open = false,
@@ -149,7 +147,7 @@ require('mason-lspconfig').setup({
   }
 })
 
-require("luasnip.loaders.from_snipmate").lazy_load()
+--require("luasnip.loaders.from_snipmate").lazy_load()
 
 require('symbols-outline').setup()
 require('lsp')
@@ -157,9 +155,13 @@ require('nulls')
 require('completion')
 require('treesitter')
 require("trouble").setup { mode = "document_diagnostics" }
+require('gitsigns').setup({ signcolumn = false })
 require('nvim-tree').setup({
   git = {
     enable = true,
+  },
+  filters = {
+    custom = { ".git" },
   },
 })
 

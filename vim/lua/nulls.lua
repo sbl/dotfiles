@@ -15,18 +15,12 @@ end
 -- setup
 null_ls.setup({
   sources = {
-    -- python
-    null_ls.builtins.formatting.black,
-    null_ls.builtins.formatting.ruff, -- in addition to LSP
-    --null_ls.builtins.formatting.clang_format,
-
     null_ls.builtins.formatting.gofmt,
     null_ls.builtins.formatting.goimports,
-
     null_ls.builtins.formatting.prettierd,
+    null_ls.builtins.formatting.ruff, --python formatting in addition to ruff-LSP
     null_ls.builtins.formatting.rustfmt,
     null_ls.builtins.formatting.stylua,
-    --null_ls.builtins.formatting.zigfmt,
 
   },
   -- you can reuse a shared lspconfig on_attach callback here

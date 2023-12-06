@@ -18,7 +18,6 @@ null_ls.setup({
     null_ls.builtins.formatting.gofmt,
     null_ls.builtins.formatting.goimports,
     null_ls.builtins.formatting.prettierd,
-    null_ls.builtins.formatting.ruff, --python formatting in addition to ruff-LSP
     null_ls.builtins.formatting.rustfmt,
     null_ls.builtins.formatting.stylua,
 

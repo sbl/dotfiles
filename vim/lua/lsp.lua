@@ -60,7 +60,11 @@ nvim_lsp.gopls.setup({
 nvim_lsp.html.setup(standardSetup)
 nvim_lsp.jsonls.setup(standardSetup)
 nvim_lsp.pyright.setup(standardSetup)
+
 nvim_lsp.ruff_lsp.setup(standardSetup)
+local autocmd = vim.api.nvim_create_autocmd
+autocmd({ "BufWritePre" }, { pattern = "*.py", command = "lua vim.lsp.buf.format()" })
+
 nvim_lsp.tailwindcss.setup(standardSetup)
 nvim_lsp.tsserver.setup(standardSetup)
 nvim_lsp.zls.setup(standardSetup)

@@ -42,7 +42,7 @@ Plug 'lewis6991/gitsigns.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.4' }
+Plug 'nvim-telescope/telescope.nvim'
 
 " language
 
@@ -147,7 +147,7 @@ require('mason-lspconfig').setup({
   }
 })
 
---require("luasnip.loaders.from_snipmate").lazy_load()
+-- require("luasnip.loaders.from_snipmate").lazy_load()
 
 require('symbols-outline').setup()
 require('lsp')
@@ -212,7 +212,6 @@ command! Oldfiles :Telescope oldfiles
 
 local autocmd = vim.api.nvim_create_autocmd
 
-vim.g.zig_fmt_autosave = 0
 
 -- reload on save
 autocmd({ "BufWritePost" }, {
@@ -222,6 +221,8 @@ autocmd({ "BufWritePost" }, {
 
 autocmd({ "BufRead", "BufNewFile" }, { pattern = "*.{md,markdown,txt}", command = "set ft=markdown" })
 autocmd({ "BufRead", "BufNewFile" }, { pattern = "go.mod", command = "set ft=gomod" })
+
+
 
 local quickfix = vim.api.nvim_create_augroup('quickfix', { clear = true })
 autocmd("FileType", { group = quickfix, pattern = "qf", command = "setlocal wrap" })

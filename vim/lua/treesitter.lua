@@ -2,6 +2,7 @@ require 'nvim-treesitter'
 require 'nvim-treesitter.configs'.setup({
   ensure_installed = {
     "c",
+    "cmake",
     "cpp",
     "elixir",
     "heex",
@@ -17,6 +18,7 @@ require 'nvim-treesitter.configs'.setup({
     "rust",
     "typescript",
     "vim",
+    "vimdoc",
     "zig",
   },
   highlight = {

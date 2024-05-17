@@ -11,6 +11,7 @@ local function on_attach_config(_, bufnr)
     vim.keymap.set(...)
   end
 
+  -- "]d" and "[d" in Normal mode
   buf_set_keymap("n", "<leader>ö", vim.diagnostic.goto_prev, keymap_opts)
   buf_set_keymap("n", "<leader>ä", vim.diagnostic.goto_next, keymap_opts)
 
@@ -19,7 +20,6 @@ local function on_attach_config(_, bufnr)
   buf_set_keymap("n", "gi", vim.lsp.buf.implementation, keymap_opts)
   buf_set_keymap("n", "gr", vim.lsp.buf.references, keymap_opts)
   buf_set_keymap("n", "gW", vim.lsp.buf.workspace_symbol, keymap_opts)
-  buf_set_keymap("n", "K", vim.lsp.buf.hover, keymap_opts)
   buf_set_keymap("n", "<c-k>", vim.lsp.buf.signature_help, keymap_opts)
   buf_set_keymap("i", "<c-k>", vim.lsp.buf.signature_help, keymap_opts)
 
@@ -44,7 +44,6 @@ local standardSetup = {
 }
 
 nvim_lsp.clangd.setup(standardSetup)
-nvim_lsp.emmet_ls.setup(standardSetup)
 nvim_lsp.eslint.setup(standardSetup)
 nvim_lsp.gopls.setup({
   settings = {
@@ -56,6 +55,7 @@ nvim_lsp.gopls.setup({
     },
   },
   on_attach = on_attach_config,
+  capabilities = cmp_capabilities
 })
 nvim_lsp.html.setup(standardSetup)
 nvim_lsp.jsonls.setup(standardSetup)
@@ -65,15 +65,16 @@ nvim_lsp.ruff_lsp.setup(standardSetup)
 local autocmd = vim.api.nvim_create_autocmd
 autocmd({ "BufWritePre" }, { pattern = "*.py", command = "lua vim.lsp.buf.format()" })
 
-nvim_lsp.tailwindcss.setup(standardSetup)
+--nvim_lsp.tailwindcss.setup(standardSetup)
 nvim_lsp.tsserver.setup(standardSetup)
-nvim_lsp.zls.setup(standardSetup)
+--nvim_lsp.zls.setup(standardSetup)
 
 -- lua
 
 local lua_globals = { "vim" }
 require("lspconfig").lua_ls.setup({
   on_attach = on_attach_config,
+  capabilities = cmp_capabilities,
   settings = {
     Lua = {
       diagnostics = {
@@ -91,35 +92,35 @@ require("lspconfig").lua_ls.setup({
 -- rust
 -- rust-tools automatically configures rust-analyzer
 
-local rt = require("rust-tools")
-rt.setup({
-  tools = {
-    autoSetHints = true,
-    inlay_hints = {
-      auto = false,
-      show_parameter_hints = false,
-      parameter_hints_prefix = "",
-      other_hints_prefix = "",
-    },
-  },
-  server = {
-    on_attach = function(_, bufnr)
-      on_attach_config(_, bufnr)
-      -- Hover actions
-      vim.keymap.set("n", "K", rt.hover_actions.hover_actions, { buffer = bufnr })
-      -- Code action groups
-      vim.keymap.set("n", "<leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
-    end,
+--local rt = require("rust-tools")
+--rt.setup({
+  --tools = {
+    --autoSetHints = true,
+    --inlay_hints = {
+      --auto = false,
+      --show_parameter_hints = false,
+      --parameter_hints_prefix = "",
+      --other_hints_prefix = "",
+    --},
+  --},
+  --server = {
+    --on_attach = function(_, bufnr)
+      --on_attach_config(_, bufnr)
+      ---- Hover actions
+      --vim.keymap.set("n", "K", rt.hover_actions.hover_actions, { buffer = bufnr })
+      ---- Code action groups
+      --vim.keymap.set("n", "<leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+    --end,
 
-    settings = {
-      -- to enable rust-analyzer settings visit:
-      -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
-      ["rust-analyzer"] = {
-        -- enable clippy on save
-        checkOnSave = {
-          command = "clippy",
-        },
-      },
-    },
-  },
-})
+    --settings = {
+      ---- to enable rust-analyzer settings visit:
+      ---- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+      --["rust-analyzer"] = {
+        ---- enable clippy on save
+        --checkOnSave = {
+          --command = "clippy",
+        --},
+      --},
+    --},
+  --},
+--})

@@ -8,7 +8,6 @@ call plug#begin('~/.config/nvim/plugged')
 " core
 
 Plug 'andymass/vim-matchup'
-Plug 'scrooloose/nerdcommenter'
 Plug 'machakann/vim-sandwich'
 Plug 'RRethy/nvim-treesitter-endwise'
 
@@ -31,10 +30,9 @@ Plug 'folke/trouble.nvim'
 
 Plug 'L3MON4D3/LuaSnip', {'do': 'make install_jsregexp'}
 Plug 'saadparwaiz1/cmp_luasnip'
+" Plug 'github/copilot.vim'
 
 " interface
-
-Plug 'shaunsingh/nord.nvim'
 
 Plug 'sindrets/diffview.nvim'
 Plug 'lewis6991/gitsigns.nvim'
@@ -46,7 +44,7 @@ Plug 'nvim-telescope/telescope.nvim'
 
 " language
 
-Plug 'simrat39/rust-tools.nvim'
+Plug 'windwp/nvim-ts-autotag'
 Plug 'MaxMEllon/vim-jsx-pretty'
 
 call plug#end()
@@ -108,21 +106,9 @@ opt.kp = ":help"          -- I barely need a man output
 opt.exrc = true
 opt.secure = true
 
--- netrw disable
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
--- colors
+-- ui
 
 opt.termguicolors = true
-
-vim.g.nord_contrast = true
-vim.g.nord_borders = true
-vim.g.nord_disable_background = true
-vim.g.nord_italic = false
-
-vim.cmd("colorscheme nord")
-
 opt.mouse = "a"
 opt.clipboard = { "unnamed", "unnamedplus" }
 
@@ -147,7 +133,8 @@ require('mason-lspconfig').setup({
   }
 })
 
--- require("luasnip.loaders.from_snipmate").lazy_load()
+require("luasnip.loaders.from_snipmate").lazy_load()
+require('nvim-ts-autotag').setup()
 
 require('symbols-outline').setup()
 require('lsp')
@@ -219,14 +206,11 @@ autocmd({ "BufWritePost" }, {
   command = "source " .. HOME .. "/.config/nvim/init.lua"
 })
 
-autocmd({ "BufRead", "BufNewFile" }, { pattern = "*.{md,markdown,txt}", command = "set ft=markdown" })
+autocmd({ "BufRead", "BufNewFile" }, { pattern = "*.{md,markdown}", command = "set ft=markdown" })
 autocmd({ "BufRead", "BufNewFile" }, { pattern = "go.mod", command = "set ft=gomod" })
-
-
 
 local quickfix = vim.api.nvim_create_augroup('quickfix', { clear = true })
 autocmd("FileType", { group = quickfix, pattern = "qf", command = "setlocal wrap" })
 
 autocmd("FileType", { pattern = "go", command = "setl nolist" })
 autocmd("FileType", { pattern = "make", command = "setl noexpandtab" })
-autocmd("FileType", { pattern = "markdown", command = "setlocal textwidth=72 wrap" })

@@ -21,13 +21,14 @@ if test "arm64" = (uname -m)
   set -pgx CFLAGS "-I/opt/homebrew/include -I/usr/local/include"
 
   set -gx CPATH /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include
-
-  set -pgx LDFLAGS "-L/opt/homebrew/opt/python@3.10/lib"
-  set -pgx PKG_CONFIG_PATH "/opt/homebrew/opt/python@3.10/lib/pkgconfig"
 else
   set -gx LDFLAGS "-L/usr/local/opt/llvm@14/lib"
   set -gx CPPFLAGS "-I/usr/local/opt/llvm@14/include"
 end
+
+
+source ~/.asdf/asdf.fish
+
 
 # key bindings
 
@@ -41,6 +42,3 @@ alias ll='ls -alF'
 alias vim=nvim
 alias vi=nvim
 
-# bun
-set --export BUN_INSTALL "$HOME/.bun"
-set --export PATH $BUN_INSTALL/bin $PATH

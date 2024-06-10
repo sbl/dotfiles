@@ -34,6 +34,8 @@ Plug 'saadparwaiz1/cmp_luasnip'
 
 " interface
 
+Plug 'gbprod/nord.nvim'
+
 Plug 'sindrets/diffview.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 
@@ -108,6 +110,7 @@ opt.secure = true
 
 -- ui
 
+vim.cmd [[colorscheme nord]]
 opt.termguicolors = true
 opt.mouse = "a"
 opt.clipboard = { "unnamed", "unnamedplus" }
@@ -134,7 +137,7 @@ require('mason-lspconfig').setup({
 })
 
 require("luasnip.loaders.from_snipmate").lazy_load()
-require('nvim-ts-autotag').setup()
+require('nvim-ts-autotag').setup{}
 
 require('symbols-outline').setup()
 require('lsp')

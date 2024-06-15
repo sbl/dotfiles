@@ -16,7 +16,8 @@ Plug 'RRethy/nvim-treesitter-endwise'
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvimtools/none-ls.nvim'
+
+Plug 'stevearc/conform.nvim' " formatting
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
@@ -34,10 +35,7 @@ Plug 'saadparwaiz1/cmp_luasnip'
 
 " interface
 
-Plug 'gbprod/nord.nvim'
-
-Plug 'sindrets/diffview.nvim'
-Plug 'lewis6991/gitsigns.nvim'
+Plug 'shaunsingh/nord.nvim'
 
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-tree/nvim-tree.lua'
@@ -111,7 +109,7 @@ opt.secure = true
 -- ui
 
 vim.cmd [[colorscheme nord]]
-opt.termguicolors = true
+-- opt.termguicolors = true
 opt.mouse = "a"
 opt.clipboard = { "unnamed", "unnamedplus" }
 
@@ -125,35 +123,8 @@ opt.statusline = " %t"
 -----------------------------------------------------------------
 -- PLUGIN SUPPORT
 
-require('mason').setup({
-  ui = {
-    check_outdated_packages_on_open = false,
-  }
-})
-require('mason-lspconfig').setup({
-  automatic_installation = {
-    exclude = { "zls" },
-  }
-})
+require('plugins')
 
-require("luasnip.loaders.from_snipmate").lazy_load()
-require('nvim-ts-autotag').setup{}
-
-require('symbols-outline').setup()
-require('lsp')
-require('nulls')
-require('completion')
-require('treesitter')
-require("trouble").setup { mode = "document_diagnostics" }
-require('gitsigns').setup({ signcolumn = false })
-require('nvim-tree').setup({
-  git = {
-    enable = true,
-  },
-  filters = {
-    custom = { ".git" },
-  },
-})
 
 -----------------------------------------------------------------
 -- KEY MAPPINGS

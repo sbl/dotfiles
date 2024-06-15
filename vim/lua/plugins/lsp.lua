@@ -63,9 +63,6 @@ nvim_lsp.pyright.setup(standardSetup)
 
 nvim_lsp.ruby_lsp.setup(standardSetup)
 nvim_lsp.ruff_lsp.setup(standardSetup)
-local autocmd = vim.api.nvim_create_autocmd
-autocmd({ "BufWritePre" }, { pattern = "*.py", command = "lua vim.lsp.buf.format()" })
-
 --nvim_lsp.tailwindcss.setup(standardSetup)
 nvim_lsp.tsserver.setup(standardSetup)
 --nvim_lsp.zls.setup(standardSetup)
@@ -89,39 +86,3 @@ require("lspconfig").lua_ls.setup({
     },
   },
 })
-
--- rust
--- rust-tools automatically configures rust-analyzer
-
---local rt = require("rust-tools")
---rt.setup({
-  --tools = {
-    --autoSetHints = true,
-    --inlay_hints = {
-      --auto = false,
-      --show_parameter_hints = false,
-      --parameter_hints_prefix = "",
-      --other_hints_prefix = "",
-    --},
-  --},
-  --server = {
-    --on_attach = function(_, bufnr)
-      --on_attach_config(_, bufnr)
-      ---- Hover actions
-      --vim.keymap.set("n", "K", rt.hover_actions.hover_actions, { buffer = bufnr })
-      ---- Code action groups
-      --vim.keymap.set("n", "<leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
-    --end,
-
-    --settings = {
-      ---- to enable rust-analyzer settings visit:
-      ---- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
-      --["rust-analyzer"] = {
-        ---- enable clippy on save
-        --checkOnSave = {
-          --command = "clippy",
-        --},
-      --},
-    --},
-  --},
---})

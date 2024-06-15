@@ -2,6 +2,7 @@ require('plugins.lsp')
 require('plugins.completion')
 require('plugins.treesitter')
 require('plugins.conform')
+require('plugins.lint')
 
 require('mason').setup({
   ui = {
@@ -15,7 +16,7 @@ require('mason-lspconfig').setup({
 })
 
 require("luasnip.loaders.from_snipmate").lazy_load()
-require('nvim-ts-autotag').setup{}
+require('nvim-ts-autotag').setup {}
 
 require('symbols-outline').setup()
 

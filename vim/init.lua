@@ -18,6 +18,7 @@ Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'neovim/nvim-lspconfig'
 
 Plug 'stevearc/conform.nvim' " formatting
+Plug 'mfussenegger/nvim-lint'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
@@ -124,7 +125,6 @@ opt.statusline = " %t"
 -- PLUGIN SUPPORT
 
 require('plugins')
-
 
 -----------------------------------------------------------------
 -- KEY MAPPINGS

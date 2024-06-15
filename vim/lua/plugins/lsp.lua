@@ -45,6 +45,14 @@ local standardSetup = {
 
 nvim_lsp.clangd.setup(standardSetup)
 nvim_lsp.eslint.setup(standardSetup)
+
+
+nvim_lsp.html.setup({
+  on_attach = on_attach_config,
+  capabilities = cmp_capabilities,
+  filetypes = { "html", "templ" },
+})
+
 nvim_lsp.gopls.setup({
   settings = {
     gopls = {
@@ -59,7 +67,8 @@ nvim_lsp.gopls.setup({
   on_attach = on_attach_config,
   capabilities = cmp_capabilities
 })
--- nvim_lsp.html.setup(standardSetup)
+nvim_lsp.templ.setup(standardSetup)
+
 nvim_lsp.jsonls.setup(standardSetup)
 nvim_lsp.pyright.setup(standardSetup)
 

@@ -186,5 +186,6 @@ autocmd({ "BufRead", "BufNewFile" }, { pattern = "go.mod", command = "set ft=gom
 local quickfix = vim.api.nvim_create_augroup('quickfix', { clear = true })
 autocmd("FileType", { group = quickfix, pattern = "qf", command = "setlocal wrap" })
 
+autocmd("FileType", { pattern = "templ", command = "setl nolist" })
 autocmd("FileType", { pattern = "go", command = "setl nolist" })
 autocmd("FileType", { pattern = "make", command = "setl noexpandtab" })

@@ -17,6 +17,7 @@ require 'nvim-treesitter.configs'.setup({
     "python",
     "ruby",
     "rust",
+    "templ",
     "typescript",
     "vim",
     "vimdoc",

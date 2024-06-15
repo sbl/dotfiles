@@ -25,6 +25,12 @@ snippet ir "if error not nil, return err"
 	}
 	${0}
 
+snippet ifp "if error not nil, panic"
+	if err != nil {
+		panic(err)
+	}
+	${0}
+
 snippet test "test snippet"
 	func Test${1:Name}(t *testing.T) {
 		$0

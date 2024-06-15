@@ -52,12 +52,14 @@ nvim_lsp.gopls.setup({
         unusedparams = true,
       },
       staticcheck = true,
+      experimentalTemplateSupport = true,
+      templateExtensions = { "tmpl", "gohtml" },
     },
   },
   on_attach = on_attach_config,
   capabilities = cmp_capabilities
 })
-nvim_lsp.html.setup(standardSetup)
+-- nvim_lsp.html.setup(standardSetup)
 nvim_lsp.jsonls.setup(standardSetup)
 nvim_lsp.pyright.setup(standardSetup)
 

@@ -27,9 +27,6 @@ else
 end
 
 
-source ~/.asdf/asdf.fish
-
-
 # key bindings
 
 bind \ee accept-autosuggestion # ctrl-e completes first suggestion

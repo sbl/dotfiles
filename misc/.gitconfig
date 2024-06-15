@@ -1,3 +1,6 @@
+[delta]
+  navigate = true
+  side-by-side = true
 [alias]
   co = checkout
   st = status
@@ -13,10 +16,14 @@
 [core]
   excludesfile = ~/.gitignore
   editor = nvim
+  pager = delta
+[interactive]
+  diffFilter = delta --color-only
 [push]
   default = simple
 [merge]
   tool = opendiff
+  conflictstyle = diff3
 [mergetool]
   keepBackup = false
 [user]
@@ -39,3 +46,5 @@
 	process = git-lfs filter-process
 [init]
 	defaultBranch = main
+[diff]
+    colorMoved = default

@@ -31,7 +31,9 @@ Plug 'simrat39/symbols-outline.nvim'
 Plug 'folke/trouble.nvim'
 
 Plug 'L3MON4D3/LuaSnip', {'do': 'make install_jsregexp'}
+Plug 'rafamadriz/friendly-snippets'
 Plug 'saadparwaiz1/cmp_luasnip'
+
 " Plug 'github/copilot.vim'
 
 " interface

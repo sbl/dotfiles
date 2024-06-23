@@ -18,9 +18,11 @@ require('mason-lspconfig').setup({
 require("luasnip.loaders.from_snipmate").lazy_load()
 require('nvim-ts-autotag').setup {}
 
-require('symbols-outline').setup()
+require("trouble").setup {
+  auto_close = true,
+  mode = "document_diagnostics",
+}
 
-require("trouble").setup { mode = "document_diagnostics" }
 require('nvim-tree').setup({
   git = {
     enable = true,

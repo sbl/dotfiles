@@ -27,7 +27,6 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 
-Plug 'simrat39/symbols-outline.nvim'
 Plug 'folke/trouble.nvim'
 
 Plug 'L3MON4D3/LuaSnip', {'do': 'make install_jsregexp'}
@@ -154,7 +153,7 @@ vim.keymap.set("n", "Q", "<nop>", { noremap = true, silent = true })
 vim.keymap.set({ "i", "n", "v" }, "<F1>", "<nop>")
 
 vim.keymap.set("n", "<c-p>", require 'telescope.builtin'.find_files, { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>t", ":SymbolsOutline<cr>", { silent = true, noremap = true })
+vim.keymap.set("n", "<leader>t", ":Trouble symbols<cr>", { silent = true, noremap = true })
 vim.keymap.set("n", "<leader>d", ":NvimTreeToggle<cr>", { silent = true, noremap = true })
 
 -----------------------------------------------------------------

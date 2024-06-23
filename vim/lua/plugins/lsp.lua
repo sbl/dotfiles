@@ -50,7 +50,7 @@ nvim_lsp.eslint.setup(standardSetup)
 nvim_lsp.html.setup({
   on_attach = on_attach_config,
   capabilities = cmp_capabilities,
-  filetypes = { "html", "templ" },
+  filetypes = { "html" },
 })
 
 nvim_lsp.gopls.setup({
@@ -60,13 +60,12 @@ nvim_lsp.gopls.setup({
         unusedparams = true,
       },
       staticcheck = true,
-      templateExtensions = { "tmpl", "html" },
+      templateExtensions = { "tmpl" },
     },
   },
   on_attach = on_attach_config,
   capabilities = cmp_capabilities
 })
-nvim_lsp.templ.setup(standardSetup)
 
 nvim_lsp.jsonls.setup(standardSetup)
 nvim_lsp.pyright.setup(standardSetup)

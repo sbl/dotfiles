@@ -3,9 +3,9 @@ vim.o.completeopt = 'menuone,noselect'
 -- Setup nvim-cmp.
 local cmp = require('cmp')
 
-require("luasnip.loaders.from_vscode").load {
-  exclude = "go",
-}
+-- require("luasnip.loaders.from_vscode").load {
+--   exclude = { "go", "html" },
+-- }
 
 --- CMP config
 
@@ -21,9 +21,9 @@ cmp.setup({
     ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
   }),
-  completion = {
-    autocomplete = false,
-  },
+  -- completion = {
+  --   autocomplete = false,
+  -- },
   snippet = {
     expand = function(args)
       require 'luasnip'.lsp_expand(args.body)

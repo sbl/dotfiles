@@ -29,8 +29,8 @@ Plug 'hrsh7th/cmp-buffer'
 
 Plug 'folke/trouble.nvim'
 
-Plug 'L3MON4D3/LuaSnip', {'do': 'make install_jsregexp'}
 Plug 'rafamadriz/friendly-snippets'
+Plug 'L3MON4D3/LuaSnip', {'do': 'make install_jsregexp'}
 Plug 'saadparwaiz1/cmp_luasnip'
 
 " Plug 'github/copilot.vim'
@@ -187,6 +187,5 @@ autocmd({ "BufRead", "BufNewFile" }, { pattern = "go.mod", command = "set ft=gom
 local quickfix = vim.api.nvim_create_augroup('quickfix', { clear = true })
 autocmd("FileType", { group = quickfix, pattern = "qf", command = "setlocal wrap" })
 
-autocmd("FileType", { pattern = "templ", command = "setl nolist" })
 autocmd("FileType", { pattern = "go", command = "setl nolist" })
 autocmd("FileType", { pattern = "make", command = "setl noexpandtab" })

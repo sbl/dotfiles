@@ -26,6 +26,7 @@ Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
 
 Plug 'folke/trouble.nvim'
 
@@ -33,7 +34,7 @@ Plug 'rafamadriz/friendly-snippets'
 Plug 'L3MON4D3/LuaSnip', {'do': 'make install_jsregexp'}
 Plug 'saadparwaiz1/cmp_luasnip'
 
-" Plug 'github/copilot.vim'
+"Plug 'github/copilot.vim'
 
 " interface
 
@@ -52,7 +53,6 @@ Plug 'MaxMEllon/vim-jsx-pretty'
 call plug#end()
 ]])
 
-
 ----------------------------------------------------------------
 -- GENERAL
 
@@ -64,7 +64,7 @@ opt.autoread = true
 
 vim.g.mapleader = ","
 
-opt.showcmd = true   -- show incomplete cmds down the bottom
+opt.showcmd = true -- show incomplete cmds down the bottom
 opt.smartcase = true --be smart when searching
 opt.hlsearch = false
 opt.ignorecase = true
@@ -77,10 +77,9 @@ opt.foldmethod = "expr"
 opt.foldenable = false
 opt.wrap = false
 
-
 -- display hidden characters
 opt.listchars = { tab = "▸ ", nbsp = "•", trail = "…" }
-opt.list = true
+opt.list = false
 
 -- wrapping and line length
 opt.tw = 78
@@ -89,7 +88,6 @@ opt.shiftwidth = 2
 opt.softtabstop = 2
 opt.tabstop = 2
 opt.expandtab = true
-
 
 opt.backup = false
 opt.swapfile = false
@@ -100,32 +98,36 @@ opt.splitbelow = true
 opt.splitright = true
 
 opt.shortmess:append("c") -- Shut off completion messages
-opt.vb = true             -- disable error bell
-opt.kp = ":help"          -- I barely need a man output
+opt.vb = true -- disable error bell
+opt.kp = ":help" -- I barely need a man output
 
 -- per directory config
 
 opt.exrc = true
 opt.secure = true
 
--- ui
-
-vim.cmd [[colorscheme nord]]
 -- opt.termguicolors = true
 opt.mouse = "a"
 opt.clipboard = { "unnamed", "unnamedplus" }
+
+-- ui
+
+vim.g.nord_italic = false
+vim.g.nord_borders = true
+
+require("nord").set()
 
 -----------------------------------------------------------------
 -- Status Line
 
 opt.statusline = " %t"
-    .. "%r%m %y"            -- read, mod, type
-    .. "%= row %l/%L - %c " -- right line
+	.. "%r%m %y" -- read, mod, type
+	.. "%= row %l/%L - %c " -- right line
 
 -----------------------------------------------------------------
 -- PLUGIN SUPPORT
 
-require('plugins')
+require("plugins")
 
 -----------------------------------------------------------------
 -- KEY MAPPINGS
@@ -152,7 +154,7 @@ vim.keymap.set("n", "Q", "<nop>", { noremap = true, silent = true })
 
 vim.keymap.set({ "i", "n", "v" }, "<F1>", "<nop>")
 
-vim.keymap.set("n", "<c-p>", require 'telescope.builtin'.find_files, { noremap = true, silent = true })
+vim.keymap.set("n", "<c-p>", require("telescope.builtin").find_files, { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>t", ":Trouble symbols<cr>", { silent = true, noremap = true })
 vim.keymap.set("n", "<leader>d", ":NvimTreeToggle<cr>", { silent = true, noremap = true })
 
@@ -168,24 +170,20 @@ command! Fish :e ~/.config/fish/config.fish
 command! Oldfiles :Telescope oldfiles
 ]])
 
-
 -----------------------------------------------------------------
 -- AUTO CMD / Filetype based modifications
 
 local autocmd = vim.api.nvim_create_autocmd
 
-
 -- reload on save
 autocmd({ "BufWritePost" }, {
-  pattern = HOME .. "/.config/nvim/init.lua",
-  command = "source " .. HOME .. "/.config/nvim/init.lua"
+	pattern = HOME .. "/.config/nvim/init.lua",
+	command = "source " .. HOME .. "/.config/nvim/init.lua",
 })
 
 autocmd({ "BufRead", "BufNewFile" }, { pattern = "*.{md,markdown}", command = "set ft=markdown" })
 autocmd({ "BufRead", "BufNewFile" }, { pattern = "go.mod", command = "set ft=gomod" })
 
-local quickfix = vim.api.nvim_create_augroup('quickfix', { clear = true })
+local quickfix = vim.api.nvim_create_augroup("quickfix", { clear = true })
 autocmd("FileType", { group = quickfix, pattern = "qf", command = "setlocal wrap" })
-
-autocmd("FileType", { pattern = "go", command = "setl nolist" })
 autocmd("FileType", { pattern = "make", command = "setl noexpandtab" })

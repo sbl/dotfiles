@@ -35,6 +35,7 @@ bind \ee accept-autosuggestion # ctrl-e completes first suggestion
 
 alias l='ls -lFh'
 alias ll='ls -alF'
+alias ipy=~/.virtualenvs/obsidian/bin/ipython
 
 alias vim=nvim
 alias vi=nvim

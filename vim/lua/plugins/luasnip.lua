@@ -14,8 +14,11 @@ return {
 			local ls = require("luasnip")
 
 			require("luasnip.loaders.from_vscode").lazy_load({
-				exclude = { "go", "html" },
+				exclude = { "html" },
 			})
+
+			-- custom snippets in snipmate format
+			require("luasnip.loaders.from_snipmate").lazy_load()
 
 			-- keypmaps
 

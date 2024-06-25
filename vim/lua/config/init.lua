@@ -15,6 +15,9 @@ require("lazy").setup({
 		{ import = "plugins" },
 	},
 	install = { colorscheme = { "nord" } },
+	-- change_detection = {
+	-- 	enabled = false,
+	-- },
 })
 
 require("config.mappings")

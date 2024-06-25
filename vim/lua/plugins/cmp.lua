@@ -29,9 +29,9 @@ return {
 					["<C-e>"] = cmp.mapping.abort(),
 					["<CR>"] = cmp.mapping.confirm({ select = true }),
 				}),
-				-- completion = {
-				--   autocomplete = false,
-				-- },
+				completion = {
+					autocomplete = false,
+				},
 				snippet = {
 					expand = function(args)
 						require("luasnip").lsp_expand(args.body)

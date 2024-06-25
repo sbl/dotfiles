@@ -10,7 +10,7 @@ return {
 			-- Conform will run multiple formatters sequentially
 			go = { "goimports", "gofmt" },
 			html = { "prettierd" },
-			python = { "ruff_organize_imports" },
+			python = { "ruff_format", "ruff_organize_imports" },
 			-- Use a sub-list to run only the first available formatter
 			javascript = { "prettierd" },
 		},
@@ -20,6 +20,7 @@ return {
 			lsp_fallback = true,
 		},
 	},
+
 	init = function()
 		-- If you want the formatexpr, here is the place to set it
 		vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"

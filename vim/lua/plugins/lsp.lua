@@ -53,11 +53,27 @@ return {
 					update_in_insert = true,
 				})
 
+			local border = {
+				{ "┌", "FloatBorder" },
+				{ "─", "FloatBorder" },
+				{ "┐", "FloatBorder" },
+				{ "│", "FloatBorder" },
+				{ "┘", "FloatBorder" },
+				{ "─", "FloatBorder" },
+				{ "└", "FloatBorder" },
+				{ "│", "FloatBorder" },
+			}
+			local handlers = {
+				["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
+				["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+			}
+
 			-- register and configure all servers
 
 			local standardSetup = {
 				on_attach = on_attach_config,
 				capabilities = cmp_capabilities,
+				handlers = handlers,
 			}
 
 			nvim_lsp.clangd.setup(standardSetup)
@@ -81,6 +97,7 @@ return {
 				},
 				on_attach = on_attach_config,
 				capabilities = cmp_capabilities,
+				handlers = handlers,
 			})
 
 			nvim_lsp.jsonls.setup(standardSetup)

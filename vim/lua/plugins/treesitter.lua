@@ -57,21 +57,10 @@ return {
 				},
 			},
 		},
-	},
-
-	{
-		"nvim-treesitter/nvim-treesitter-textobjects",
-		lazy = true,
-		dependencies = { "nvim-treesitter/nvim-treesitter" },
-	},
-	{
-		"RRethy/nvim-treesitter-endwise",
-		lazy = true,
-		dependencies = { "nvim-treesitter/nvim-treesitter" },
-	},
-	{
-		"windwp/nvim-ts-autotag",
-		lazy = true,
-		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter-textobjects",
+			"RRethy/nvim-treesitter-endwise",
+			"windwp/nvim-ts-autotag",
+		},
 	},
 }

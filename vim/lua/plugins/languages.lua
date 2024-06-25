@@ -1,3 +1,6 @@
 return {
-    { 'MaxMEllon/vim-jsx-pretty'}
+	{
+		"MaxMEllon/vim-jsx-pretty",
+		ft = { "jsx", "tsx" },
+	},
 }

@@ -1,7 +1,7 @@
 return {
 	{
 		"mfussenegger/nvim-lint",
-		event = "BufReadPre",
+		event = "InsertEnter",
 		opts = {
 			linters_by_ft = {
 				python = { "ruff" },

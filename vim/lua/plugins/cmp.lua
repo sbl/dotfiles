@@ -6,7 +6,7 @@ return {
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 		},
-
+		event = "InsertEnter",
 		init = function()
 			vim.o.completeopt = "menuone,noselect"
 		end,

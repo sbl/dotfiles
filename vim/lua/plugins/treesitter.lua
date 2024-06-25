@@ -42,6 +42,9 @@ return {
 			endwise = {
 				enable = true,
 			},
+			matchup = {
+				enable = true,
+			},
 			textobjects = {
 				select = {
 					enable = true,
@@ -61,6 +64,7 @@ return {
 			"nvim-treesitter/nvim-treesitter-textobjects",
 			"RRethy/nvim-treesitter-endwise",
 			"windwp/nvim-ts-autotag",
+			{ "andymass/vim-matchup" },
 		},
 	},
 }

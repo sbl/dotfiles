@@ -67,7 +67,6 @@ return {
 
 			-- nvim_lsp.ruby_lsp.setup(standardSetup)
 			nvim_lsp.ruff_lsp.setup(standardSetup)
-			nvim_lsp.sourcekit.setup(standardSetup)
 			nvim_lsp.tsserver.setup(standardSetup)
 
 			-- lua

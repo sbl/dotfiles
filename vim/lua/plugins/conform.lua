@@ -5,14 +5,12 @@ return {
 
 	opts = {
 		formatters_by_ft = {
-			lua = { "stylua" },
 			css = { "prettierd" },
-			-- Conform will run multiple formatters sequentially
 			go = { "goimports", "gofmt" },
 			html = { "prettierd" },
-			python = { "ruff_format", "ruff_organize_imports" },
-			-- Use a sub-list to run only the first available formatter
 			javascript = { "prettierd" },
+			lua = { "stylua" },
+			python = { "ruff_format", "ruff_organize_imports" },
 		},
 
 		format_on_save = {

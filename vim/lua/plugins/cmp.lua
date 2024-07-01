@@ -30,7 +30,7 @@ return {
 					["<CR>"] = cmp.mapping.confirm({ select = true }),
 				}),
 				completion = {
-					autocomplete = false,
+					-- autocomplete = false,
 				},
 				snippet = {
 					expand = function(args)

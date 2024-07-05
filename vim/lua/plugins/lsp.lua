@@ -40,6 +40,7 @@ return {
 
 			nvim_lsp.clangd.setup(standardSetup)
 			nvim_lsp.eslint.setup(standardSetup)
+			nvim_lsp.elixirls.setup(standardSetup)
 
 			nvim_lsp.html.setup({
 				on_attach = on_attach_config,

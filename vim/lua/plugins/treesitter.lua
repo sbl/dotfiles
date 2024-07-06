@@ -3,7 +3,7 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		version = false, -- last release is way too old and doesn't work on Windows
 		build = ":TSUpdate",
-		event = "BufReadPre",
+		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			local configs = require("nvim-treesitter.configs")
 			configs.setup({
@@ -11,13 +11,13 @@ return {
 					"c",
 					"cmake",
 					"cpp",
-					"elixir",
-					"heex",
 					"eex",
+					"elixir",
 					"fish",
 					"go",
 					"gomod",
 					"gosum",
+					"heex",
 					"html",
 					"javascript",
 					"lua",

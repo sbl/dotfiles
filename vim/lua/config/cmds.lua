@@ -5,7 +5,7 @@ vim.cmd([[
 command! CD cd %:p:h
 command! Open silent !open '%:p:h'
 command! Todo silent rg "TODO|FIXME|CHANGED|FIX"
-command! Vimrc :e ~/.config/nvim/lua/plugins
+command! Vimrc :Telescope find_files search_dirs={"$HOME/.config/nvim"}
 command! Fish :e ~/.config/fish/config.fish
 command! Oldfiles :Telescope oldfiles
 ]])

@@ -8,7 +8,7 @@ return {
 			vim.g.nord_borders = true
 		end,
 		config = function()
-			require("nord").set()
+			-- require("nord").set()
 		end,
 	},
 

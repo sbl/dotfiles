@@ -11,7 +11,7 @@ require("lazy").setup({
 	spec = {
 		{ import = "plugins" },
 	},
-	install = { colorscheme = { "nord" } },
+	install = { colorscheme = { "default" } },
 	change_detection = {
 		notify = false,
 	},

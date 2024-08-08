@@ -48,6 +48,8 @@ return {
 				filetypes = { "html" },
 			})
 
+			nvim_lsp.gleam.setup(standardSetup)
+
 			nvim_lsp.gopls.setup({
 				settings = {
 					gopls = {

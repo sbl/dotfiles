@@ -22,7 +22,7 @@ autocmd({ "BufWritePost" }, {
 	command = "source " .. HOME .. "/.config/nvim/init.lua",
 })
 
-autocmd({ "BufRead", "BufNewFile" }, { pattern = "*.{md,markdown}", command = "set ft=markdown" })
+autocmd({ "BufRead", "BufNewFile" }, { pattern = "*.{md,markdown}", command = "setlocal ft=markdown wrap" })
 autocmd({ "BufRead", "BufNewFile" }, { pattern = "go.mod", command = "set ft=gomod" })
 
 local quickfix = vim.api.nvim_create_augroup("quickfix", { clear = true })

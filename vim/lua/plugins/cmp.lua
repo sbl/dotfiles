@@ -5,6 +5,7 @@ return {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
+			"zbirenbaum/copilot-cmp",
 		},
 		event = "InsertEnter",
 		init = function()
@@ -38,9 +39,10 @@ return {
 					end,
 				},
 				sources = cmp.config.sources({
+					{ name = "copilot", group_index = 2 },
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
-					{ name = "buffer" },
+					-- { name = "buffer" },
 					{ name = "path" },
 				}),
 			})

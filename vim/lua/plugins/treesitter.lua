@@ -17,6 +17,7 @@ return {
 					"go",
 					"gomod",
 					"gosum",
+					"gotmpl",
 					"heex",
 					"html",
 					"javascript",

@@ -7,7 +7,7 @@ return {
 		formatters_by_ft = {
 			css = { "prettierd" },
 			go = { "goimports", "gofmt" },
-			html = { "prettierd" },
+			-- html = { "prettierd" },
 			javascript = { "prettierd" },
 			lua = { "stylua" },
 			python = { "ruff_format", "ruff_organize_imports" },

@@ -15,6 +15,7 @@ zig-out/
 # elixir
 
 .elixir_ls/
+_build/
 
 # rust
 

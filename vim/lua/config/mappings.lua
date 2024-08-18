@@ -21,3 +21,6 @@ vim.keymap.set("", "k", "gk")
 vim.keymap.set("n", "Q", "<nop>", { noremap = true, silent = true })
 
 vim.keymap.set({ "i", "n", "v" }, "<F1>", "<nop>")
+
+-- use ctrl-c as esc
+vim.keymap.set({ "i", "t" }, "<C-c>", "<Esc>", { noremap = true, silent = true })

@@ -39,18 +39,9 @@ return {
 						ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
 					}),
 				},
-				completion = {
-					-- autocomplete = false,
-				},
-				snippet = {
-					expand = function(args)
-						require("luasnip").lsp_expand(args.body)
-					end,
-				},
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
-					{ name = "luasnip" },
-					{ name = "buffer" },
+					-- { name = "buffer" },
 					{ name = "path" },
 				}),
 			})

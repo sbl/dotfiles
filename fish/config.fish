@@ -11,8 +11,7 @@ set -x GOPATH $HOME
 
 set -x FZF_DEFAULT_COMMAND "rg --files --hidden --follow --glob '!.git'"
 
-set -x CTEST_OUTPUT_ON_FAILURE 1
-set -x CMAKE_EXPORT_COMPILE_COMMANDS 1
+set -g -x PIP_REQUIRE_VIRTUALENV true
 
 # LLVM
 if test "arm64" = (uname -m)
@@ -26,7 +25,6 @@ else
   set -gx CPPFLAGS "-I/usr/local/opt/llvm@14/include"
 end
 
-
 # key bindings
 
 bind \ee accept-autosuggestion # ctrl-e completes first suggestion
@@ -35,8 +33,9 @@ bind \ee accept-autosuggestion # ctrl-e completes first suggestion
 
 alias l='ls -lFh'
 alias ll='ls -alF'
-alias ipy=~/.virtualenvs/obsidian/bin/ipython
 
 alias vim=nvim
 alias vi=nvim
 
+# asdf
+source /opt/homebrew/opt/asdf/libexec/asdf.fish

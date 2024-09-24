@@ -52,7 +52,6 @@ opt.secure = true
 opt.mouse = "a"
 opt.clipboard = { "unnamed", "unnamedplus" }
 
-opt.statusline = " %t"
+opt.statusline = "%{expand('%:.')}"
 	.. "%r%m %y" -- read, mod, type
 	.. "%= row %l/%L - %c " -- right line
-

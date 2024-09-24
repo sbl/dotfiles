@@ -8,11 +8,7 @@ return {
 			"hrsh7th/cmp-nvim-lsp",
 		},
 		config = function()
-			require("mason-lspconfig").setup({
-				automatic_installation = {
-					exclude = { "zls" },
-				},
-			})
+			require("mason-lspconfig").setup()
 			local nvim_lsp = require("lspconfig")
 			local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
@@ -48,29 +44,23 @@ return {
 				filetypes = { "html" },
 			})
 
-			nvim_lsp.gleam.setup(standardSetup)
-
-			nvim_lsp.gopls.setup({
+			nvim_lsp.gopls.setup(vim.tbl_extend("force", standardSetup, {
 				settings = {
 					gopls = {
 						analyses = {
 							unusedparams = true,
 						},
 						staticcheck = true,
-						templateExtensions = { "tmpl" },
 					},
 				},
-				on_attach = on_attach_config,
-				capabilities = cmp_capabilities,
-				handlers = handlers,
-			})
+			}))
 
 			nvim_lsp.jsonls.setup(standardSetup)
 			nvim_lsp.pyright.setup(standardSetup)
 
-			-- nvim_lsp.ruby_lsp.setup(standardSetup)
 			nvim_lsp.ruff_lsp.setup(standardSetup)
-			nvim_lsp.tsserver.setup(standardSetup)
+			nvim_lsp.ts_ls.setup(standardSetup)
+			nvim_lsp.tailwindcss.setup(standardSetup)
 
 			-- lua
 

@@ -1,6 +1,11 @@
 return {
 	{
 		"MaxMEllon/vim-jsx-pretty",
-		ft = { "jsx", "tsx" },
+		ft = {
+			"jsx",
+			"tsx",
+			"javascriptreact",
+			"typescriptreact",
+		},
 	},
 }

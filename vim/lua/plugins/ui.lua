@@ -11,7 +11,7 @@ return {
 					enable = true,
 				},
 				filters = {
-					custom = { ".git" },
+					custom = { "^\\.git" },
 				},
 			})
 		end,

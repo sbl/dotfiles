@@ -7,6 +7,6 @@ return {
 	cmd = "Trouble",
 
 	keys = {
-		{ "<leader>t", "<cmd>:Trouble symbols<cr>", { silent = true, noremap = true } },
+		{ "<leader>t", "<cmd>:Trouble symbols focus<cr>", { silent = true, noremap = true } },
 	},
 }

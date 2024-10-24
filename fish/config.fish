@@ -37,5 +37,3 @@ alias ll='ls -alF'
 alias vim=nvim
 alias vi=nvim
 
-# asdf
-source /opt/homebrew/opt/asdf/libexec/asdf.fish

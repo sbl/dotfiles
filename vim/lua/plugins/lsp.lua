@@ -1,5 +1,4 @@
 return {
-
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
@@ -36,7 +35,6 @@ return {
 
 			nvim_lsp.clangd.setup(standardSetup)
 			nvim_lsp.eslint.setup(standardSetup)
-			nvim_lsp.elixirls.setup(standardSetup)
 
 			nvim_lsp.html.setup({
 				on_attach = on_attach_config,
@@ -59,8 +57,11 @@ return {
 			nvim_lsp.pyright.setup(standardSetup)
 
 			nvim_lsp.ruff_lsp.setup(standardSetup)
-			nvim_lsp.ts_ls.setup(standardSetup)
-			nvim_lsp.tailwindcss.setup(standardSetup)
+			nvim_lsp.rust_analyzer.setup(standardSetup)
+			-- nvim_lsp.ts_ls.setup(standardSetup)
+			-- nvim_lsp.tailwindcss.setup(standardSetup)
+
+			nvim_lsp.zls.setup(standardSetup)
 
 			-- lua
 

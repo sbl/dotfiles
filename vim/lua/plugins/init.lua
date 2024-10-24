@@ -11,7 +11,6 @@ return {
 			require("nord").set()
 		end,
 	},
-
 	{
 		"williamboman/mason.nvim",
 		opts = {

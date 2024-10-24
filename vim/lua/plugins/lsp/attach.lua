@@ -40,4 +40,12 @@ M.handlers = {
 	["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
 }
 
+-- Add border to the diagnostic popup window
+vim.diagnostic.config({
+	virtual_text = {
+		prefix = "■ ", -- Could be '●', '▎', 'x', '■', , 
+	},
+	float = { border = border },
+})
+
 return M

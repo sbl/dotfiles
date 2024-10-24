@@ -17,6 +17,7 @@
   default = simple
 [merge]
   tool = opendiff
+  conflictstyle = diff3
 [mergetool]
   keepBackup = false
 [user]
@@ -39,3 +40,5 @@
 	process = git-lfs filter-process
 [init]
 	defaultBranch = main
+[diff]
+    colorMoved = default

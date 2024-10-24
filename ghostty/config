@@ -1,0 +1,8 @@
+theme = nord
+font-family = "SF Mono"
+font-thicken = true
+
+cursor-style-blink = false
+
+shell-integration = fish
+shell-integration-features = no-cursor

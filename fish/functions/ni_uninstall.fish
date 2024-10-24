@@ -9,8 +9,10 @@ function ni_uninstall -a 'app'
       trash "/Library/Preferences/com.native-instruments.$app.plist"
       trash "/Library/Audio/Plug-Ins/Components/$app.component"
       trash "/Library/Audio/Plug-Ins/VST/$app.vst"
+      trash "/Library/Audio/Plug-Ins/VST3/$app.vst3"
       trash "/Library/Application Support/Native Instruments/$app"
       trash "/Library/Application Support/Native Instruments/Service Center/$app.xml"
+      trash "$HOME/Music/NI/$app"
       trash "$HOME/Library/Preferences/com.native-instruments.$app.plist"
       trash "$HOME/Library/Application Support/Native Instruments/$app"
     else

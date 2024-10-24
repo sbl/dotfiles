@@ -8,5 +8,4 @@
 tags
 
 vim/plugged/*
-
-fish/conf.d/
+vim/.luarc.json

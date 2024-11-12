@@ -24,3 +24,6 @@ vim.keymap.set({ "i", "n", "v" }, "<F1>", "<nop>")
 
 -- use ctrl-c as esc
 vim.keymap.set({ "i", "t" }, "<C-c>", "<Esc>", { noremap = true, silent = true })
+
+-- alternate file
+vim.keymap.set("n", "<leader><leader>", "<C-^>")

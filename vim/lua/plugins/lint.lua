@@ -5,9 +5,8 @@ return {
 		config = function()
 			local lint = require("lint")
 			lint.linters_by_ft = {
-				-- already using lsp
 				-- python = { "ruff" },
-				javascript = { "eslint" },
+				-- javascript = { "eslint" },
 			}
 
 			vim.api.nvim_create_autocmd({ "BufWritePost" }, {

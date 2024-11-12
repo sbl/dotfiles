@@ -12,7 +12,7 @@ opt.hlsearch = false
 opt.ignorecase = true
 opt.wildignore = { "*/tmp/*", "*/cache/*", "*.so", "*.o", "*.swp", "*.zip", "*.pyc", "*.d" }
 
-opt.number = true
+opt.number = false
 opt.signcolumn = "yes"
 opt.foldcolumn = "0"
 opt.foldmethod = "expr"
@@ -58,3 +58,6 @@ opt.clipboard = { "unnamed", "unnamedplus" }
 opt.statusline = "%{expand('%:.')}"
 	.. "%r%m %y" -- read, mod, type
 	.. "%= row %l/%L - %c " -- right line
+
+-- grep
+opt.grepprg = "rg --vimgrep --no-heading"

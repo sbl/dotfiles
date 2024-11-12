@@ -4,10 +4,10 @@
 vim.cmd([[
 command! CD cd %:p:h
 command! Open silent !open '%:p:h'
-command! Todo silent rg "TODO|FIXME|CHANGED|FIX"
 command! Vimrc :Telescope find_files search_dirs={"$HOME/.config/nvim"}
 command! Fish :e ~/.config/fish/config.fish
 command! Oldfiles :Telescope oldfiles
+command! Buffers :Telescope buffers
 ]])
 
 -----------------------------------------------------------------
@@ -22,6 +22,7 @@ autocmd({ "BufWritePost" }, {
 	command = "source " .. HOME .. "/.config/nvim/init.lua",
 })
 
+autocmd({ "BufRead", "BufNewFile" }, { pattern = "*.swi", command = "setlocal ft=ocaml" })
 autocmd({ "BufRead", "BufNewFile" }, { pattern = "*.{md,markdown}", command = "setlocal ft=markdown wrap" })
 autocmd({ "BufRead", "BufNewFile" }, { pattern = "go.mod", command = "set ft=gomod" })
 

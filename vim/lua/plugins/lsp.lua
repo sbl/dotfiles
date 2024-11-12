@@ -54,11 +54,29 @@ return {
 			}))
 
 			nvim_lsp.jsonls.setup(standardSetup)
-			nvim_lsp.pyright.setup(standardSetup)
 
-			nvim_lsp.ruff_lsp.setup(standardSetup)
-			nvim_lsp.rust_analyzer.setup(standardSetup)
-			-- nvim_lsp.ts_ls.setup(standardSetup)
+			-- python
+
+			nvim_lsp.pyright.setup({
+				settings = {
+					pyright = {
+						-- ruff
+						disableOrganizeImports = true,
+						disableTaggedHints = true,
+					},
+					python = {
+						analysis = {
+							diagnosticSeverityOverrides = {
+								-- https://github.com/microsoft/pyright/blob/main/docs/configuration.md#type-check-diagnostics-settings
+								reportUndefinedVariable = "none",
+							},
+						},
+					},
+				},
+			})
+			nvim_lsp.ruff.setup(standardSetup)
+
+			nvim_lsp.ts_ls.setup(standardSetup)
 			-- nvim_lsp.tailwindcss.setup(standardSetup)
 
 			nvim_lsp.zls.setup(standardSetup)

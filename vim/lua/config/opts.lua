@@ -24,7 +24,7 @@ opt.listchars = { tab = "▸ ", nbsp = "•", trail = "…" }
 opt.list = false
 
 -- wrapping and line length
-opt.tw = 78
+-- opt.textwidth = 78
 opt.linebreak = true
 opt.shiftwidth = 2
 opt.softtabstop = 2

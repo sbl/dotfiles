@@ -35,11 +35,11 @@ return {
 
 			nvim_lsp.clangd.setup(standardSetup)
 			nvim_lsp.eslint.setup(standardSetup)
-
 			nvim_lsp.html.setup({
 				on_attach = on_attach_config,
 				capabilities = cmp_capabilities,
-				filetypes = { "html" },
+				handlers = handlers,
+				filetypes = { "html", "htmldjango" },
 			})
 
 			nvim_lsp.gopls.setup(vim.tbl_extend("force", standardSetup, {
@@ -76,8 +76,9 @@ return {
 			})
 			nvim_lsp.ruff.setup(standardSetup)
 
+			nvim_lsp.svelte.setup(standardSetup)
 			nvim_lsp.ts_ls.setup(standardSetup)
-			-- nvim_lsp.tailwindcss.setup(standardSetup)
+			nvim_lsp.tailwindcss.setup(standardSetup)
 
 			nvim_lsp.zls.setup(standardSetup)
 

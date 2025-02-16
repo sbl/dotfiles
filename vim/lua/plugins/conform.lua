@@ -6,12 +6,11 @@ return {
 	opts = {
 		formatters_by_ft = {
 			css = { "prettierd" },
-			html = { "prettierd" },
-			-- htmldjango = { "djlint" },
-			-- gohtmltmpl = { "djlint" },
 			go = { "goimports", "gofmt" },
+			html = { "prettierd" },
 			javascript = { "prettierd" },
 			lua = { "stylua" },
+			markdown = { "prettierd" },
 			python = { "ruff_format", "ruff_organize_imports" },
 			typescript = { "prettierd" },
 			typescriptreact = { "prettierd" },

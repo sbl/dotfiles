@@ -9,3 +9,6 @@ tags
 
 vim/plugged/*
 vim/.luarc.json
+
+fish/functions/vad.fish
+

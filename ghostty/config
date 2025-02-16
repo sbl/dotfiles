@@ -1,7 +1,7 @@
 theme = nord
 font-family = "SF Mono"
 font-thicken = false
-font-size = 14
+font-size = 13
 
 cursor-style-blink = false
 

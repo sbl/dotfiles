@@ -15,11 +15,10 @@ set -g -x PIP_REQUIRE_VIRTUALENV true
 
 # LLVM
 if test "arm64" = (uname -m)
-  set -pgx LDFLAGS "-L/opt/homebrew/lib -L/usr/local/lib"
-  set -pgx CPPFLAGS "-I/opt/homebrew/include -I/usr/local/include"
-  set -pgx CFLAGS "-I/opt/homebrew/include -I/usr/local/include"
+  set -pgx LIBRARY_PATH /opt/homebrew/lib /usr/local/lib
+  set -gx CPATH /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include \
+    /opt/homebrew/include /usr/local/include
 
-  set -gx CPATH /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include
 else
   set -gx LDFLAGS "-L/usr/local/opt/llvm@14/lib"
   set -gx CPPFLAGS "-I/usr/local/opt/llvm@14/include"

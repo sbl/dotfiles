@@ -1,4 +1,5 @@
 set -g __fish_git_prompt_show_informative_status 'yes'
+set -g __fish_git_prompt_showuntrackedfiles 'yes'
 set -g __fish_git_prompt_showcolorhints 'yes'
 set -g __fish_git_prompt_char_stateseparator '|'
 

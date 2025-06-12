@@ -7,7 +7,7 @@ set -x EDITOR nvim
 set -x VISUAL nvim
 set -x PAGER less
 
-set -x GOPATH $HOME
+set -x GOPATH $HOME/src/go
 
 set -x FZF_DEFAULT_COMMAND "rg --files --hidden --follow --glob '!.git'"
 
@@ -40,3 +40,4 @@ alias vi=nvim
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
+alias claude="$HOME/.claude/local/claude"

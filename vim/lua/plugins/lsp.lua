@@ -76,7 +76,7 @@ return {
 			})
 			nvim_lsp.ruff.setup(standardSetup)
 
-			nvim_lsp.svelte.setup(standardSetup)
+			-- nvim_lsp.svelte.setup(standardSetup)
 			nvim_lsp.ts_ls.setup(standardSetup)
 			nvim_lsp.tailwindcss.setup(standardSetup)
 

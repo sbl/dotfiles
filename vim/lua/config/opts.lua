@@ -59,5 +59,7 @@ opt.statusline = "%{expand('%:.')}"
 	.. "%r%m %y" -- read, mod, type
 	.. "%= row %l/%L - %c " -- right line
 
+opt.winborder = "single" -- single line border around windows
+
 -- grep
 opt.grepprg = "rg --vimgrep --no-heading"

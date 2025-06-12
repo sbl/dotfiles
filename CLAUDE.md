@@ -44,7 +44,6 @@ ln -s /path/to/dotfiles/ghostty ~/.config/ghostty
 
 ### Neovim Plugin Management
 - `:Lazy` - Open Lazy.nvim plugin manager
-- `:Mason` - Open Mason LSP installer
 - `:LspInfo` - Show LSP client information
 
 ### Utility Scripts

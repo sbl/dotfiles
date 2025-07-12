@@ -35,8 +35,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		local opts = { buffer = event.buf }
 
 		-- Diagnostic navigation
-		vim.keymap.set("n", "<leader>ö", vim.diagnostic.goto_prev, opts)
-		vim.keymap.set("n", "<leader>ä", vim.diagnostic.goto_next, opts)
+		vim.keymap.set("n", "<leader>ö", function()
+			vim.diagnostic.jump({ count = 1, float = true })
+		end, opts)
+		vim.keymap.set("n", "<leader>ä", function()
+			vim.diagnostic.jump({ count = -1, float = true })
+		end, opts)
 
 		-- LSP navigation
 		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)

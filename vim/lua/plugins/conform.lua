@@ -7,7 +7,8 @@ return {
 		formatters_by_ft = {
 			css = { "prettierd" },
 			go = { "goimports", "gofmt" },
-			html = { "prettierd" },
+			-- html = { "prettierd" },
+			htmldjango = { "djlint" },
 			javascript = { "prettierd" },
 			lua = { "stylua" },
 			markdown = { "prettierd" },
@@ -17,7 +18,7 @@ return {
 		},
 
 		format_on_save = {
-			timeout_ms = 2000, -- djlint is slow
+			timeout_ms = 2000,
 			lsp_fallback = true,
 		},
 	},

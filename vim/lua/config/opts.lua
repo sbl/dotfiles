@@ -53,7 +53,7 @@ opt.mouse = "a"
 opt.clipboard = { "unnamed", "unnamedplus" }
 
 -- UI
--- opt.background = "light"
+opt.background = "light"
 
 opt.statusline = "%{expand('%:.')}"
 	.. "%r%m %y" -- read, mod, type

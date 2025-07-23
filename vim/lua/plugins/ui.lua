@@ -20,13 +20,19 @@ return {
 		},
 	},
 
-	{
-		"nvim-telescope/telescope.nvim",
-		tag = "0.1.8",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		cmd = "Telescope",
-		keys = {
-			{ "<c-p>", require("telescope.builtin").find_files, { silent = true, noremap = true } },
-		},
-	},
+
+  {
+  "ibhagwan/fzf-lua",
+  dependencies = { "nvim-tree/nvim-web-devicons" },
+
+    opts = function(_, opts)
+    end,
+
+    
+  cmd = "FzfLua",
+    keys = {
+       { "<c-p>", "<cmd>FzfLua files<CR>", { silent = true, noremap = true }},
+    },
+
+},
 }

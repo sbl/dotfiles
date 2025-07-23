@@ -4,10 +4,10 @@
 vim.cmd([[
 command! CD cd %:p:h
 command! Open silent !open '%:p:h'
-command! Vimrc :Telescope find_files search_dirs={"$HOME/.config/nvim"}
+command! Vimrc :FzfLua find_files search_dirs={"$HOME/.config/nvim"}
 command! Fish :e ~/.config/fish/config.fish
-command! Oldfiles :Telescope oldfiles
-command! Buffers :Telescope buffers
+command! Oldfiles :FzfLua oldfiles
+command! Buffers :FzfLua buffers
 ]])
 
 -----------------------------------------------------------------

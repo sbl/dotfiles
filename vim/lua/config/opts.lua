@@ -12,7 +12,7 @@ opt.hlsearch = false
 opt.ignorecase = true
 opt.wildignore = { "*/tmp/*", "*/cache/*", "*.so", "*.o", "*.swp", "*.zip", "*.pyc", "*.d" }
 
-opt.number = false
+opt.number = true
 opt.signcolumn = "yes"
 opt.foldcolumn = "0"
 opt.foldmethod = "expr"
@@ -53,7 +53,7 @@ opt.mouse = "a"
 opt.clipboard = { "unnamed", "unnamedplus" }
 
 -- UI
-opt.background = "dark"
+-- opt.background = "dark"
 
 opt.statusline = "%{expand('%:.')}"
 	.. "%r%m %y" -- read, mod, type

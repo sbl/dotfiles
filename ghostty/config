@@ -1,4 +1,4 @@
-theme = NvimDark
+theme = nord
 font-family = "SF Mono"
 font-thicken = true
 font-size = 13

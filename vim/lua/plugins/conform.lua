@@ -5,6 +5,7 @@ return {
 
 	opts = {
 		formatters_by_ft = {
+			-- cpp = { "clang-format" },
 			css = { "prettierd" },
 			go = { "goimports", "gofmt" },
 			-- html = { "prettierd" },

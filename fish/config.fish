@@ -36,8 +36,3 @@ alias ll='ls -alF'
 alias vim=nvim
 alias vi=nvim
 
-
-# bun
-set --export BUN_INSTALL "$HOME/.bun"
-set --export PATH $BUN_INSTALL/bin $PATH
-alias claude="$HOME/.claude/local/claude"

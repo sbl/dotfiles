@@ -19,10 +19,9 @@ return {
 		},
 		python = {
 			analysis = {
-				diagnosticSeverityOverrides = {
-					-- https://github.com/microsoft/pyright/blob/main/docs/configuration.md#type-check-diagnostics-settings
-					reportUndefinedVariable = "none",
-				},
+				autoSearchPaths = true,
+				useLibraryCodeForTypes = true,
+				diagnosticMode = "openFilesOnly",
 			},
 		},
 	},

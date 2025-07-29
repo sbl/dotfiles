@@ -4,7 +4,7 @@
 vim.cmd([[
 command! CD cd %:p:h
 command! Open silent !open '%:p:h'
-command! Vimrc :FzfLua find_files search_dirs={"$HOME/.config/nvim"}
+command! Vimrc :FzfLua files cwd=$HOME/.config/nvim
 command! Fish :e ~/.config/fish/config.fish
 command! Oldfiles :FzfLua oldfiles
 command! Buffers :FzfLua buffers

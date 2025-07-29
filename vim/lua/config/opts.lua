@@ -53,6 +53,8 @@ opt.mouse = "a"
 opt.clipboard = { "unnamed", "unnamedplus" }
 
 -- UI
+
+vim.cmd([[colorscheme nord]])
 -- opt.background = "dark"
 
 opt.statusline = "%{expand('%:.')}"

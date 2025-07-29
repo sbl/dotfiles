@@ -1,6 +1,6 @@
 require("config.opts")
-require("config.lazy")
 require("config.mappings")
 require("config.cmds")
+require("config.lazy")
 require("config.lsp")
 require("config.diagnostic")

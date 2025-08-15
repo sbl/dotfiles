@@ -25,9 +25,6 @@ vim.keymap.set({ "i", "n", "v" }, "<F1>", "<nop>")
 -- use ctrl-c as esc
 vim.keymap.set({ "i", "t" }, "<C-c>", "<Esc>", { noremap = true, silent = true })
 
--- alternate file
-vim.keymap.set("n", "<leader><leader>", "<C-^>")
-
 -- lsp mappings
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("UserLspMappings", {}),
@@ -35,10 +32,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		local opts = { buffer = event.buf }
 
 		-- Diagnostic navigation
-		vim.keymap.set("n", "<leader>ö", function()
+		vim.keymap.set("n", "<leader>ä", function()
 			vim.diagnostic.jump({ count = 1, float = true })
 		end, opts)
-		vim.keymap.set("n", "<leader>ä", function()
+		vim.keymap.set("n", "<leader>ö", function()
 			vim.diagnostic.jump({ count = -1, float = true })
 		end, opts)
 
@@ -50,8 +47,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "gW", vim.lsp.buf.workspace_symbol, opts)
 
 		-- Signature help
-		vim.keymap.set("n", "<c-k>", vim.lsp.buf.signature_help, opts)
-		vim.keymap.set("i", "<c-k>", vim.lsp.buf.signature_help, opts)
+		vim.keymap.set({ "n", "i" }, "<c-k>", vim.lsp.buf.signature_help, opts)
 
 		-- Code actions and refactoring
 		vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, opts)

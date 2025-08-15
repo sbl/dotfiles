@@ -9,4 +9,5 @@ vim.lsp.enable({
 	"pyright",
 	"ruff",
 	"ts_ls",
+	"zls",
 })

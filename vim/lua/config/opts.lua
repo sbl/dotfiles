@@ -54,8 +54,7 @@ opt.clipboard = { "unnamed", "unnamedplus" }
 
 -- UI
 
-vim.cmd([[colorscheme nord]])
--- opt.background = "dark"
+opt.background = "dark"
 
 opt.statusline = "%{expand('%:.')}"
 	.. "%r%m %y" -- read, mod, type

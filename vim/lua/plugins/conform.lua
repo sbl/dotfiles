@@ -9,7 +9,6 @@ return {
 			css = { "prettierd" },
 			go = { "goimports", "gofmt" },
 			-- html = { "prettierd" },
-			htmldjango = { "djlint" },
 			javascript = { "prettierd" },
 			lua = { "stylua" },
 			markdown = { "prettierd" },

@@ -52,6 +52,9 @@ opt.secure = true
 opt.mouse = "a"
 opt.clipboard = { "unnamed", "unnamedplus" }
 
+-- completion
+opt.completeopt = { "fuzzy", "menu", "popup", "noselect" }
+
 -- UI
 
 opt.background = "dark"

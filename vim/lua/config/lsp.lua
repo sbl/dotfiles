@@ -1,12 +1,13 @@
 -- LSP setup and config
 
 vim.lsp.enable({
-	"clangd",
-	-- "eslint",
+	"basedpyright",
+	-- "clangd",
+	"eslint",
+	"expert",
 	"gopls",
 	"jsonls",
 	"lua_ls",
-	"pyright",
 	"ruff",
 	"ts_ls",
 	"zls",

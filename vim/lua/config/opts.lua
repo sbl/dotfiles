@@ -4,7 +4,13 @@ vim.g.mapleader = ","
 
 opt.history = 10000
 opt.wildmode = "list:longest,full"
+-- auto-reload files when modified externally
+-- https://unix.stackexchange.com/a/383044
 opt.autoread = true
+vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
+	command = "if mode() != 'c' | checktime | endif",
+	pattern = { "*" },
+})
 
 opt.showcmd = true -- show incomplete cmds down the bottom
 opt.smartcase = true --be smart when searching

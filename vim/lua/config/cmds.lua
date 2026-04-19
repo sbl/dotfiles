@@ -8,6 +8,7 @@ command! Vimrc :FzfLua files cwd=$HOME/.config/nvim
 command! Fish :e ~/.config/fish/config.fish
 command! Oldfiles :FzfLua oldfiles
 command! Buffers :FzfLua buffers
+command! Diagnostics :Trouble diagnostics
 ]])
 
 -----------------------------------------------------------------

@@ -1,11 +1,9 @@
 return {
-{
+  {
     "gbprod/nord.nvim",
-    lazy = false,
-    priority = 1000,
+    lazy = true, -- kept installed; load on demand via `:colorscheme nord`
     config = function()
       require("nord").setup({})
-      vim.cmd.colorscheme("nord")
     end,
   },
 }

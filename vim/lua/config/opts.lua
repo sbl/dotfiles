@@ -63,7 +63,8 @@ opt.completeopt = { "fuzzy", "menu", "popup", "noselect" }
 
 -- UI
 
-opt.background = "dark"
+opt.background = "light"
+vim.cmd.colorscheme("default")
 
 opt.statusline = "%{expand('%:.')}"
 	.. "%r%m %y" -- read, mod, type

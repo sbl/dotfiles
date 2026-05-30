@@ -2,7 +2,7 @@
 
 vim.lsp.enable({
 	"basedpyright",
-	-- "clangd",
+	"clangd",
 	"eslint",
 	"expert",
 	"gopls",

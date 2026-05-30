@@ -1,7 +1,7 @@
-theme = nord
+theme = Nvim Light
 font-family = "Maple Mono NF"
 font-thicken = true
-font-size = 13
+font-size = 15
 
 cursor-style-blink = false
 

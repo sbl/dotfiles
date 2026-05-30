@@ -18,6 +18,8 @@ opt.hlsearch = false
 opt.ignorecase = true
 opt.wildignore = { "*/tmp/*", "*/cache/*", "*.so", "*.o", "*.swp", "*.zip", "*.pyc", "*.d" }
 
+opt.conceallevel = 2
+
 opt.number = true
 opt.signcolumn = "yes"
 opt.foldcolumn = "0"

@@ -33,3 +33,5 @@ __pycache__
 .exrc
 .nvimrc
 tags
+
+**/.claude/settings.local.json

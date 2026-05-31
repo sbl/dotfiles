@@ -65,8 +65,18 @@ opt.completeopt = { "fuzzy", "menu", "popup", "noselect" }
 
 -- UI
 
-opt.background = "light"
-vim.cmd.colorscheme("default")
+-- background is auto-detected from the terminal (OSC 11), so it follows
+-- Ghostty's light/dark theme, which in turn follows the macOS appearance.
+vim.cmd.colorscheme("catppuccin")
+
+-- re-apply the colorscheme when the background flips live, so catppuccin
+-- re-resolves its `auto` flavour (latte <-> mocha).
+vim.api.nvim_create_autocmd("OptionSet", {
+	pattern = "background",
+	callback = function()
+		vim.cmd.colorscheme("catppuccin")
+	end,
+})
 
 opt.statusline = "%{expand('%:.')}"
 	.. "%r%m %y" -- read, mod, type

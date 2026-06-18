@@ -35,4 +35,3 @@ alias ll='ls -alF'
 
 alias vim=nvim
 alias vi=nvim
-

@@ -1,4 +1,4 @@
-theme = light:Catppuccin Latte,dark:Catppuccin Frappe
+theme = Catppuccin Mocha
 font-family = "Maple Mono NF"
 font-thicken = true
 font-size = 13

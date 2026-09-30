@@ -1,7 +1,6 @@
 -- LSP setup and config
 
 vim.lsp.enable({
-	"basedpyright",
 	"clangd",
 	"eslint",
 	"expert",
@@ -10,6 +9,7 @@ vim.lsp.enable({
 	"lua_ls",
 	"ruff",
 	"ts_ls",
+	"ty",
 	"zls",
 })
 

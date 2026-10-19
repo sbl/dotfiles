@@ -9,6 +9,8 @@ set -x PAGER less
 
 set -x GOPATH $HOME/src/go
 
+fish_add_path $HOME/.local/bin
+
 set -x FZF_DEFAULT_COMMAND "rg --files --hidden --follow --glob '!.git'"
 
 set -g -x PIP_REQUIRE_VIRTUALENV true

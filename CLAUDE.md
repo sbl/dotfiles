@@ -10,6 +10,7 @@ This is a personal dotfiles repository containing configuration files for variou
 - `vim/` - Neovim configuration using Lazy.nvim plugin manager
 - `ghostty/` - Ghostty terminal emulator configuration
 - `bin/` - Custom utility scripts
+- `claude/themes/` - Claude Code custom themes (Catppuccin Mocha/Latte), linked to `~/.claude/themes`
 - `misc/` - `.gitconfig`, `.gitignore` (linked to `~/.gitconfig` and `~/.gitignore`) and `.ctags`. `.ghci`, `.psqlrc` and `.tmux.conf` were removed as superseded; they remain in git history.
 - `misc/` - Miscellaneous configuration files
 
@@ -41,6 +42,7 @@ This is a personal dotfiles repository containing configuration files for variou
 ln -s /path/to/dotfiles/fish ~/.config/fish
 ln -s /path/to/dotfiles/vim ~/.config/nvim
 ln -s /path/to/dotfiles/ghostty ~/.config/ghostty
+ln -s /path/to/dotfiles/claude/themes ~/.claude/themes
 ln -s /path/to/dotfiles/misc/.gitconfig ~/.gitconfig
 ln -s /path/to/dotfiles/misc/.gitignore ~/.gitignore
 ```

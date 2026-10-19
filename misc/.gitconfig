@@ -20,9 +20,6 @@
   conflictstyle = diff3
 [mergetool]
   keepBackup = false
-[user]
-	name = Stephen Lumenta
-	email = stephen.lumenta@gmail.com
 [filter "media"]
 	required = true
 	clean = git media clean %f
@@ -48,3 +45,7 @@
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/opt/homebrew/bin/gh auth git-credential
+
+# identity (name/email) lives outside the repo
+[include]
+	path = ~/.gitconfig.local

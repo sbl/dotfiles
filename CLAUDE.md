@@ -10,6 +10,7 @@ This is a personal dotfiles repository containing configuration files for variou
 - `vim/` - Neovim configuration using Lazy.nvim plugin manager
 - `ghostty/` - Ghostty terminal emulator configuration
 - `bin/` - Custom utility scripts
+- `misc/` - `.gitconfig`, `.gitignore` (linked to `~/.gitconfig` and `~/.gitignore`) and `.ctags`. `.ghci`, `.psqlrc` and `.tmux.conf` were removed as superseded; they remain in git history.
 - `misc/` - Miscellaneous configuration files
 
 ## Architecture
@@ -40,7 +41,11 @@ This is a personal dotfiles repository containing configuration files for variou
 ln -s /path/to/dotfiles/fish ~/.config/fish
 ln -s /path/to/dotfiles/vim ~/.config/nvim
 ln -s /path/to/dotfiles/ghostty ~/.config/ghostty
+ln -s /path/to/dotfiles/misc/.gitconfig ~/.gitconfig
+ln -s /path/to/dotfiles/misc/.gitignore ~/.gitignore
 ```
+
+Git identity (name/email) is deliberately not tracked: `misc/.gitconfig` includes an untracked `~/.gitconfig.local` with a `[user]` section. Do not commit personal or work emails to this repo (it is pushed to a private GitHub account).
 
 ### Neovim Plugin Management
 - `:Lazy` - Open Lazy.nvim plugin manager
